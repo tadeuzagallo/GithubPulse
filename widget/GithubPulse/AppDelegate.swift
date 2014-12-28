@@ -25,10 +25,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     var button = NSButton(frame: NSRect(x: 0, y: 0, width: 24, height: 24))
+    button.bordered = false
     button.image = NSImage(named: "octocat")
     button.target = self
     button.action = "toggle:"
-    button.bordered = false
     
     self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(24)
     self.statusItem.title = "Github Pulse"
@@ -36,7 +36,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     self.statusItem.view = button
   }
 
-  func applicationWillTerminate(aNotification: NSNotification) {
+  func applicationWillResignActive(notification: NSNotification) {
+    self.open = false
     self.popover.close()
   }
   
