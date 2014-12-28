@@ -1,12 +1,10 @@
 var React = require('react');
 var Chart = require('chart.js');
 
-require('../styles/ActivityGraph')
-
 var ActivityGraph = React.createClass({
   render() {
     return (
-      <canvas className="activity-graph" width="390" height="197" ref="canvas"></canvas>
+      <canvas className="activity-graph" width="390" height="145" ref="canvas"></canvas>
     );
   },
   componentDidMount() {
@@ -19,12 +17,14 @@ var ActivityGraph = React.createClass({
       13,8,1,7,20,11,1,
       2,8,10,1,3,5,6
     ];
+    var labels = [];
     var max = commits.reduce(function (a, b) {
+      labels.push('');
       return Math.max(a, b);
     }, 0);
     var step = Math.ceil(max / 2);
     new Chart(ctx).Line({
-      labels: new Array(30),
+      labels: labels,
       datasets: [{
         label: 'Commits',
         fillColor: 'rgba(151,187,205,0.2)',
