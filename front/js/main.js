@@ -1,5 +1,4 @@
 (function (window, document) {
-  document.write('here');
   var loginForm = document.querySelector('.gh-login-form');
   var usernameInput = document.querySelector('.gh-username-input');
   var userData;

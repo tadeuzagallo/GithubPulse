@@ -14,7 +14,7 @@
 		5C406D6E1A4F9FBE0005AF61 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C406D6D1A4F9FBE0005AF61 /* ContentViewController.swift */; };
 		5C406D701A4FA0CC0005AF61 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C406D6F1A4FA0CC0005AF61 /* WebKit.framework */; };
 		5C406D721A4FA4DB0005AF61 /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C406D711A4FA4DB0005AF61 /* ContentViewController.xib */; };
-		5C406D771A4FA9C70005AF61 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 5C406D761A4FA9C70005AF61 /* index.html */; };
+		5C406D7E1A4FC7850005AF61 /* front in Resources */ = {isa = PBXBuildFile; fileRef = 5C406D7D1A4FC7850005AF61 /* front */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		5C406D6D1A4F9FBE0005AF61 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		5C406D6F1A4FA0CC0005AF61 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		5C406D711A4FA4DB0005AF61 /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
-		5C406D761A4FA9C70005AF61 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		5C406D7D1A4FC7850005AF61 /* front */ = {isa = PBXFileReference; lastKnownFileType = folder; name = front; path = ../front; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +45,7 @@
 		5C406D401A4F93140005AF61 = {
 			isa = PBXGroup;
 			children = (
-				5C406D751A4FA9C70005AF61 /* front */,
+				5C406D7D1A4FC7850005AF61 /* front */,
 				5C406D4B1A4F93140005AF61 /* GithubPulse */,
 				5C406D4A1A4F93140005AF61 /* Products */,
 			);
@@ -80,15 +80,6 @@
 				5C406D4D1A4F93140005AF61 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		5C406D751A4FA9C70005AF61 /* front */ = {
-			isa = PBXGroup;
-			children = (
-				5C406D761A4FA9C70005AF61 /* index.html */,
-			);
-			name = front;
-			path = ../front;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,9 +139,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C406D771A4FA9C70005AF61 /* index.html in Resources */,
 				5C406D721A4FA4DB0005AF61 /* ContentViewController.xib in Resources */,
 				5C406D511A4F93140005AF61 /* Images.xcassets in Resources */,
+				5C406D7E1A4FC7850005AF61 /* front in Resources */,
 				5C406D541A4F93140005AF61 /* MainMenu.xib in Resources */,
 				5C406D6C1A4F95BC0005AF61 /* octocat.png in Resources */,
 			);

@@ -11,7 +11,7 @@ import WebKit
 
 class ContentViewController: NSViewController {
   override func viewDidLoad() {
-    var indexPath = NSBundle.mainBundle().pathForResource("index", ofType: "html")
+    var indexPath = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "front")
     var url = NSURL(fileURLWithPath: indexPath!)
     var request = NSURLRequest(URL: url!)
     
