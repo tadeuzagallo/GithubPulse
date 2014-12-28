@@ -7,7 +7,7 @@ var Stats = require('./Stats.react');
 var GithubPulse = React.createClass({
   render() {
     return (
-      <div>
+      <div className="github-pulse">
         <ProfileInfo />
         <ActivityGraph />
         <Stats />
