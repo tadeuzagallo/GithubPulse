@@ -18,6 +18,11 @@ var Stats = React.createClass({
           <h3>31</h3>
           <small>days streak</small>
         </div>
+
+        <div>
+          <h3>4</h3>
+          <small>commits today</small>
+        </div>
       </div>
     );
   }
