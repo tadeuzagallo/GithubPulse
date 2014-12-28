@@ -1,19 +1,4 @@
-(function (window, document) {
-  var loginForm = document.querySelector('.gh-login-form');
-  var usernameInput = document.querySelector('.gh-username-input');
-  var userData;
+var React = require('react');
+var GithubPulse = require('./components/GithubPulse.react.js'); 
 
-  loginForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    var username = usernameInput.value.trim();
-    GithubApi.get('users', username, function (err, result) {
-      if (err) {
-        alert(err);
-      } else {
-        userData = result;
-        document.body.innerHTML = JSON.stringify(result);
-      }
-    });
-  }, false);
-})(window, document);
+React.render(<GithubPulse />, document.body);

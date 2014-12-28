@@ -1,0 +1,17 @@
+{
+  "name": "github_pulse",
+  "version": "0.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tadeu Zagallo <tadeuzagallo@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "jsx-loader": "^0.12.2",
+    "react": "^0.12.2",
+    "webpack": "^1.4.15",
+    "webpack-dev-server": "^1.7.0"
+  }
+}
