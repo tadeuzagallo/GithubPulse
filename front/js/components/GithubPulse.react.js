@@ -1,9 +1,17 @@
 var React = require('react');
 
+var ProfileInfo = require('./ProfileInfo.react');
+var ActivityGraph = require('./ActivityGraph.react');
+var Stats = require('./Stats.react');
+
 var GithubPulse = React.createClass({
   render() {
     return (
-      <h1>Github Pulse</h1>
+      <div>
+        <ProfileInfo />
+        <ActivityGraph />
+        <Stats />
+      </div>
     );
   }
 });
