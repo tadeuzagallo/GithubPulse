@@ -1,26 +1,28 @@
 var React = require('react');
 
+require('../styles/Stats');
+
 var Stats = React.createClass({
   render() {
     return (
-      <div>
-        <div>
-          <h3>57</h3>
+      <div className="stats">
+        <div className="stat">
+          <h3 className="stat__count">57</h3>
           <small>repos</small>
         </div>
         
-        <div>
-          <h3>34</h3>
+        <div className="stat">
+          <h3 className="stat__count">34</h3>
           <small>followers</small>
         </div>
 
-        <div>
-          <h3>31</h3>
+        <div className="stat">
+          <h3 className="stat__count">31</h3>
           <small>days streak</small>
         </div>
 
-        <div>
-          <h3>4</h3>
+        <div className="stat">
+          <h3 className="stat__count">4</h3>
           <small>commits today</small>
         </div>
       </div>
