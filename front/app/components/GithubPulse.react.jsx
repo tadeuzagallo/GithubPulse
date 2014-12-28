@@ -4,7 +4,7 @@ var ProfileInfo = require('./ProfileInfo.react');
 var ActivityGraph = require('./ActivityGraph.react');
 var Stats = require('./Stats.react');
 
-require('../styles/GithubPulse.styl');
+require('../styles/GithubPulse');
 
 var GithubPulse = React.createClass({
   render() {
