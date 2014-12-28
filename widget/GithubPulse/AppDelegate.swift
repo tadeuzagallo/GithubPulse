@@ -41,11 +41,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     self.popover.close()
   }
   
-  func toggle(sender: AnyObject) {
+  func toggle(_: AnyObject) {
     if (self.open) {
       self.popover.close()
     } else {
       self.popover.showRelativeToRect(self.statusItem.view!.bounds, ofView: self.statusItem.view!, preferredEdge: NSMaxYEdge)
+      NSApp.activateIgnoringOtherApps(true)
     }
     
     self.open = !self.open
