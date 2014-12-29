@@ -24,13 +24,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-    var button = NSButton(frame: NSRect(x: 0, y: 0, width: 24, height: 24))
+    var button = NSButton(frame: NSRect(x: 0, y: 0, width: 32, height: 24))
     button.bordered = false
-    button.image = NSImage(named: "octocat")
+    button.image = NSImage(named: "icon")
     button.target = self
     button.action = "toggle:"
     
-    self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(24)
+    self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(32)
     self.statusItem.title = "Github Pulse"
     self.statusItem.highlightMode = true
     self.statusItem.view = button

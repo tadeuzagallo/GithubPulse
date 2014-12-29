@@ -10,14 +10,15 @@ import Cocoa
 import WebKit
 
 class ContentViewController: NSViewController {
+  @IBOutlet weak var webView:WebView?
+  
   override func viewDidLoad() {
     var indexPath = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "front")
     var url = NSURL(fileURLWithPath: indexPath!)
     var request = NSURLRequest(URL: url!)
     
-    var webView:WebView = self.view as WebView
-    webView.drawsBackground = false
-    webView.mainFrame.loadRequest(request)
+    self.webView!.drawsBackground = false
+    self.webView!.mainFrame.loadRequest(request)
     
     super.viewDidLoad()
   }
