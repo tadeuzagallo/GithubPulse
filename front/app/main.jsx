@@ -1,6 +1,6 @@
 var React = require('react');
-var GithubPulse = require('./components/GithubPulse.react'); 
+var Login = require('./components/Login.react'); 
 
 require('./styles/main');
 
-React.render(<GithubPulse />, document.body);
+React.render(<Login />, document.body);
