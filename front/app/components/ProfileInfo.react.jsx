@@ -11,9 +11,8 @@ var ProfileInfo = React.createClass({
           <img className="profile-info__picture" src="https://avatars3.githubusercontent.com/u/764414?v=3&s=100" />
 
           <div className="profile-info__data">
-            <h1 className="profile-info__name">Tade Zagallo</h1>
+            <h1 className="profile-info__name">Tade Zagallo <Link to="login"><img width="16" src="images/sign-out.svg" /></Link></h1>
             <h3 className="profile-info__username">@tadeuzagallo</h3>
-            <Link to="login">logout</Link>
           </div>
         </div>
       </div>

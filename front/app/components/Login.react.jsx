@@ -16,7 +16,7 @@ var Login =  React.createClass({
     return (
       <div className="login">
         <div className="login__logo">
-          <img src="icon.png" />
+          <img src="images/icon.png" />
         </div>
         <div>
           <h1>Github <span className="login__blue">Pulse</span></h1>
