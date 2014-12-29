@@ -1,6 +1,8 @@
 var React = require('react');
-var GithubApi = require('../github-api');
 var Navigation = require('react-router').Navigation;
+var assign = require('object-assign');
+var Utils = require('../utils');
+var GithubApi = require('../github-api');
 
 require('../styles/Login');
 
@@ -32,21 +34,28 @@ var Login =  React.createClass({
     );
   },
   componentWillMount() {
-    GithubApi.get('zen', (err, result) => {
-      this.setState({
-        zen: result,
-        username: this.state.username
-      });
-    });
-  },
-  _onChange(event) {
-    if (event.keyCode === 13) {
+    var zen = Utils.fetch('zen', 60 * 60 * 1000);
+
+    if (zen) {
+      this._update({ zen: zen });
     } else {
-      this.setState({
-        zen: this.state.zen,
-        username: event.target.value.trim()
+      GithubApi.get('zen', (err, result) => {
+        Utils.save('zen', result);
+        this._update({ zen: zen });
       });
     }
+  },
+  componentDidMount() {
+    var username = Utils.fetch('username');
+    if (username) {
+      this.transitionTo('profile', { username: username });
+    }
+  },
+  _update(object) {
+    this.setState(assign({}, this.state, object));
+  },
+  _onChange(event) {
+    this._update({ username: event.target.value.trim() });
   },
   _onKeyDown(event) {
     if (event.keyCode === 13) {

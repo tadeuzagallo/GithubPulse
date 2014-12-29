@@ -38,6 +38,7 @@ var Profile = React.createClass({
     var username = this.props.params.username;
 
     GithubApi.get('users', username, (err, result) => {
+      localStorage.putItem('user_info', JSON.stringify(result));
       this.setState(result);
     })
 
@@ -53,11 +54,14 @@ var Profile = React.createClass({
         streak++;
       }
 
-      this.setState(assign({}, this.state, {
+      var newState = {
         streak: streak,
         commits: commits,
         today: today
-      }));
+      };
+
+      store('user_contributions', newState);
+      this.setState(assign({}, this.state, newState));
     });
   }
 });
