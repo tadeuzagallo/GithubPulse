@@ -16,7 +16,7 @@ var ProfileInfo = React.createClass({
           <img className="profile-info__picture" src={ this.props.picture + '&size=100' } />
 
           <div className="profile-info__data">
-            <h1 className="profile-info__name">{this.props.name} <Link to="login"><img width="16" src="images/sign-out.svg" /></Link></h1>
+            <h1 className="profile-info__name">{this.props.name} <Link to="login"><span className="octicon octicon-sign-out" /></Link></h1>
             <h3 className="profile-info__username">@{ this.props.username }</h3>
           </div>
         </div>

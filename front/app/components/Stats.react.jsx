@@ -2,6 +2,8 @@ var React = require('react');
 
 require('../styles/Stats');
 
+var p = (l, n) => n === 1 ? l : l + 's';
+
 var Stats = React.createClass({
   propTypes: {
     repos: React.PropTypes.number.isRequired,
@@ -14,22 +16,22 @@ var Stats = React.createClass({
       <div className="stats">
         <div className="stat">
           <h3 className="stat__count">{ this.props.repos }</h3>
-          <small>repos</small>
+          <small>{ p('repo', this.props.repos) }</small>
         </div>
 
         <div className="stat">
           <h3 className="stat__count">{ this.props.followers }</h3>
-          <small>followers</small>
+          <small>{ p('follower', this.props.followers) }</small>
         </div>
 
         <div className="stat">
-          <h3 className="stat__count">{ this.props.streak }</h3>
-          <small>days streak</small>
+          <h3 className="stat__count">{ this.props.streak }{ this.props.streak > 15 ? <span className="octicon octicon-flame notification" /> : '' }</h3>
+          <small>{ p('day', this.props.streak) } streak</small>
         </div>
 
         <div className="stat">
-          <h3 className="stat__count">{ this.props.today }</h3>
-          <small>commits today</small>
+          <h3 className="stat__count">{ this.props.today }{ !this.props.today ? <span className="octicon octicon-stop notification" /> : '' }</h3>
+          <small>{ p('commit', this.props.today) } today</small>
         </div>
       </div>
     );
