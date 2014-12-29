@@ -13,7 +13,7 @@ var Login =  React.createClass({
     };
   },
   render() {
-    return this.state.zen ? (
+    return (
       <div className="login">
         <div className="login__logo">
           <img src="icon.png" />
@@ -29,7 +29,7 @@ var Login =  React.createClass({
           <small>api.github.com/zen</small>
         </div>
       </div>
-    ) : <span />;
+    );
   },
   componentWillMount() {
     GithubApi.get('zen', (err, result) => {
