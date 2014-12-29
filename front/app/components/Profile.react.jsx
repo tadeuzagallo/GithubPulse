@@ -1,4 +1,5 @@
 var React = require('react');
+var assign = require('object-assign');
 
 var ProfileInfo = require('./ProfileInfo.react');
 var ActivityGraph = require('./ActivityGraph.react');
@@ -25,7 +26,7 @@ var Profile = React.createClass({
           name={ this.state.name }
           username={ this.state.login } />
         <ActivityGraph commits={ this.state.commits } />
-        <Stats 
+        <Stats
           repos={ this.state.public_repos }
           followers={ this.state.followers }
           streak={ this.state.streak }
@@ -34,9 +35,30 @@ var Profile = React.createClass({
     );
   },
   componentWillMount() {
-    GithubApi.get('users', this.props.params.username, (err, result) => {
+    var username = this.props.params.username;
+
+    GithubApi.get('users', username, (err, result) => {
       this.setState(result);
     })
+
+    GithubApi.contributions(username, (err, contributions) => {
+      var svg = document.createElement('svg');
+      svg.innerHTML = contributions;
+      var year = [].map.call(svg.getElementsByTagName('rect'), (r) => parseInt(r.getAttribute('data-count'), 10));
+      var l = year.length - 1;
+      var today = year[l];
+      var streak = today ? 1 : 0;
+      var commits = year.slice(-30);
+      for (var i = l - 1; i >= 0 && year[i]; i--) {
+        streak++;
+      }
+
+      this.setState(assign({}, this.state, {
+        streak: streak,
+        commits: commits,
+        today: today
+      }));
+    });
   }
 });
 

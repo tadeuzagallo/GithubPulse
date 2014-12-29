@@ -2,21 +2,18 @@ var React = require('react');
 var Chart = require('chart.js');
 
 var ActivityGraph = React.createClass({
+  propTypes: {
+    commits: React.PropTypes.arrayOf(React.PropTypes.number).isRequired
+  },
   render() {
     return (
       <canvas className="activity-graph" width="390" height="145" ref="canvas"></canvas>
     );
   },
-  componentDidMount() {
+  componentDidUpdate() {
     var canvas = this.refs.canvas.getDOMNode();
     var ctx = canvas.getContext('2d');
-    var commits = [
-      1,1,
-      4,5,1,8,1,1,4,
-      2,10,3,2,8,20,3,
-      13,8,1,7,20,11,1,
-      2,8,10,1,3,5,6
-    ];
+    var commits = this.props.commits;
     var labels = [];
     var max = commits.reduce(function (a, b) {
       labels.push('');
