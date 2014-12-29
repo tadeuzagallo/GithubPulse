@@ -37,11 +37,11 @@ var Login =  React.createClass({
     var zen = Utils.fetch('zen', 60 * 60 * 1000);
 
     if (zen) {
-      this._update({ zen: zen });
+      this.setState({ zen: zen });
     } else {
       GithubApi.get('zen', (err, result) => {
         Utils.save('zen', result);
-        this._update({ zen: zen });
+        this.setState({ zen: zen });
       });
     }
   },
@@ -51,14 +51,12 @@ var Login =  React.createClass({
       this.transitionTo('profile', { username: username });
     }
   },
-  _update(object) {
-    this.setState(assign({}, this.state, object));
-  },
   _onChange(event) {
-    this._update({ username: event.target.value.trim() });
+    this.setState({ username: event.target.value.trim() });
   },
   _onKeyDown(event) {
     if (event.keyCode === 13) {
+      Utils.save('username', this.state.username);
       this.transitionTo('profile', { username: this.state.username });
     }
   }

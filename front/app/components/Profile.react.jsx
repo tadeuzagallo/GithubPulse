@@ -1,5 +1,6 @@
 var React = require('react');
-var assign = require('object-assign');
+var GithubApi = require('../github-api');
+var Utils = require('../utils');
 
 var ProfileInfo = require('./ProfileInfo.react');
 var ActivityGraph = require('./ActivityGraph.react');
@@ -35,34 +36,52 @@ var Profile = React.createClass({
     );
   },
   componentWillMount() {
+    this._fetchUserInfo();
+    this._fetchUserContributions();
+  },
+  _fetchUserInfo(force) {
     var username = this.props.params.username;
+    var userInfo = force ? false : Utils.fetch(['user_info', username], 15*60*1000);
 
-    GithubApi.get('users', username, (err, result) => {
-      localStorage.putItem('user_info', JSON.stringify(result));
-      this.setState(result);
-    })
+    if (userInfo) {
+      this.setState(userInfo);
+    } else {
+      GithubApi.get('users', username, (err, result) => {
+        Utils.save(['user_info', username], result);
+        this.setState(result);
+      })
+    }
 
-    GithubApi.contributions(username, (err, contributions) => {
-      var svg = document.createElement('svg');
-      svg.innerHTML = contributions;
-      var year = [].map.call(svg.getElementsByTagName('rect'), (r) => parseInt(r.getAttribute('data-count'), 10));
-      var l = year.length - 1;
-      var today = year[l];
-      var streak = today ? 1 : 0;
-      var commits = year.slice(-30);
-      for (var i = l - 1; i >= 0 && year[i]; i--) {
-        streak++;
-      }
+  },
+  _fetchUserContributions(force) {
+    var username = this.props.params.username;
+    var userContributions = force ? false : Utils.fetch(['user_contributions', username], 15*60*1000);
 
-      var newState = {
-        streak: streak,
-        commits: commits,
-        today: today
-      };
+    if (userContributions) {
+      this.setState(userContributions);
+    } else {
+      GithubApi.contributions(username, (err, contributions) => {
+        var svg = document.createElement('svg');
+        svg.innerHTML = contributions;
+        var year = [].map.call(svg.getElementsByTagName('rect'), (r) => parseInt(r.getAttribute('data-count'), 10));
+        var l = year.length - 1;
+        var today = year[l];
+        var streak = today ? 1 : 0;
+        var commits = year.slice(-30);
+        for (var i = l - 1; i >= 0 && year[i]; i--) {
+          streak++;
+        }
 
-      store('user_contributions', newState);
-      this.setState(assign({}, this.state, newState));
-    });
+        var newState = {
+          streak: streak,
+          commits: commits,
+          today: today
+        };
+
+        Utils.save(['user_contributions', username], newState);
+        this.setState(newState);
+      });
+    }
   }
 });
 
