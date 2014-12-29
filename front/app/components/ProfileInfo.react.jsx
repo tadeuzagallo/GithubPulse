@@ -4,15 +4,20 @@ var Link = require('react-router').Link;
 require('../styles/ProfileInfo');
 
 var ProfileInfo = React.createClass({
+  propTypes: {
+    picture: React.PropTypes.string.isRequired,
+    name: React.PropTypes.string.isRequired,
+    username: React.PropTypes.string.isRequired
+  },
   render() {
     return (
       <div className="profile-info">
         <div>
-          <img className="profile-info__picture" src="https://avatars3.githubusercontent.com/u/764414?v=3&s=100" />
+          <img className="profile-info__picture" src={ this.props.picture + '&size=100' } />
 
           <div className="profile-info__data">
-            <h1 className="profile-info__name">Tade Zagallo <Link to="login"><img width="16" src="images/sign-out.svg" /></Link></h1>
-            <h3 className="profile-info__username">@tadeuzagallo</h3>
+            <h1 className="profile-info__name">{this.props.name} <Link to="login"><img width="16" src="images/sign-out.svg" /></Link></h1>
+            <h3 className="profile-info__username">@{ this.props.username }</h3>
           </div>
         </div>
       </div>
