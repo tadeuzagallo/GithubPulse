@@ -1,4 +1,5 @@
 var React = require('react');
+var Link = require('react-router').Link;
 
 require('../styles/ProfileInfo');
 
@@ -12,6 +13,7 @@ var ProfileInfo = React.createClass({
           <div className="profile-info__data">
             <h1 className="profile-info__name">Tade Zagallo</h1>
             <h3 className="profile-info__username">@tadeuzagallo</h3>
+            <Link to="login">logout</Link>
           </div>
         </div>
       </div>

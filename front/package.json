@@ -14,6 +14,7 @@
     "jsx-loader": "^0.12.2",
     "nib": "^1.0.4",
     "react": "^0.12.2",
+    "react-router": "^0.11.6",
     "style-loader": "^0.8.2",
     "stylus": "^0.49.3",
     "stylus-loader": "^0.5.0",

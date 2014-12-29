@@ -1,8 +1,5 @@
 var React = require('react');
-
-var ProfileInfo = require('./ProfileInfo.react');
-var ActivityGraph = require('./ActivityGraph.react');
-var Stats = require('./Stats.react');
+var RouteHandler = require('react-router').RouteHandler;
 
 require('../styles/GithubPulse');
 
@@ -10,9 +7,7 @@ var GithubPulse = React.createClass({
   render() {
     return (
       <div className="github-pulse">
-        <ProfileInfo />
-        <ActivityGraph />
-        <Stats />
+        <RouteHandler {...this.props} />
       </div>
     );
   }
