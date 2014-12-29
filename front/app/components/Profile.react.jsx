@@ -60,18 +60,7 @@ var Profile = React.createClass({
     if (userContributions) {
       this.setState(userContributions);
     } else {
-      GithubApi.contributions(username, (err, contributions) => {
-        var svg = document.createElement('svg');
-        svg.innerHTML = contributions;
-        var year = [].map.call(svg.getElementsByTagName('rect'), (r) => parseInt(r.getAttribute('data-count'), 10));
-        var l = year.length - 1;
-        var today = year[l];
-        var streak = today ? 1 : 0;
-        var commits = year.slice(-30);
-        for (var i = l - 1; i >= 0 && year[i]; i--) {
-          streak++;
-        }
-
+      GithubApi.contributions(username, (today, streak, commits) => {
         var newState = {
           streak: streak,
           commits: commits,

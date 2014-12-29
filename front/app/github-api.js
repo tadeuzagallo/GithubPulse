@@ -26,8 +26,8 @@ window.GithubApi = (function () {
   };
 
   GithubApi.contributions = function (username, callback) {
-    window.contributions = function(response) {
-      callback(null, response);
+    window.contributions = function() {
+      callback.apply(null, arguments);
     };
     window.location = 'osx:contributions/' + username;
   };

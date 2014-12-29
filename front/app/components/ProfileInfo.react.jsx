@@ -22,9 +22,9 @@ var ProfileInfo = React.createClass({
           <div className="profile-info__data">
             <h1 className="profile-info__name">
               {this.props.name}
-              &nbsp; 
+              &nbsp;
               <a onClick={ this._logout }>
-                 <span  className="octicon octicon-sign-out" />
+                <span className="octicon octicon-sign-out" />
               </a>
             </h1>
             <h3 className="profile-info__username">@{ this.props.username }</h3>
