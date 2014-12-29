@@ -26,8 +26,6 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     self.webView!.drawsBackground = false
     self.webView!.mainFrame.loadRequest(request)
     
-    self.contributions("tadeuzagallo", nil)
-    
     super.viewDidLoad()
   }
   
