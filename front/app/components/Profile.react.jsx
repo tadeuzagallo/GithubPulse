@@ -44,7 +44,7 @@ var Profile = React.createClass({
           <span className="octicon octicon-sync" onClick={ this._update.bind(null, true) } />
           &nbsp;
           <small>
-            <span>last updated at:&nbsp;</span>
+            <span>Last updated at:&nbsp;</span>
             <strong>{ this.state.lastUpdatedAt }</strong>
           </small>
         </div>
