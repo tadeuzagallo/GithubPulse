@@ -67,7 +67,9 @@ var Profile = React.createClass({
 
     var callback = (userInfo) => {
       if (userInfo) {
-        this.setState(userInfo);
+        if (userInfo.updated_at !== this.state.updated_at) {
+          this.setState(userInfo);
+        }
       } else {
         GithubApi.get('users', username, (err, result) => {
           Utils.save(['user_info', username], result);
@@ -88,7 +90,9 @@ var Profile = React.createClass({
     var callback = (userContributions, time) => {
       if (userContributions) {
         userContributions.lastUpdatedAt = new Date(time).toLocaleString();
-        this.setState(userContributions);
+        if (userContributions.lastUpdatedAt !== this.state.lastUpdatedAt) {
+          this.setState(userContributions);
+        }
       } else {
         GithubApi.contributions(username, (today, streak, commits, time) => {
           var newState = {
