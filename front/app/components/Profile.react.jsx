@@ -6,6 +6,8 @@ var ProfileInfo = require('./ProfileInfo.react');
 var ActivityGraph = require('./ActivityGraph.react');
 var Stats = require('./Stats.react');
 
+require('../styles/Profile')
+
 var Profile = React.createClass({
   getInitialState() {
     return {
@@ -16,28 +18,42 @@ var Profile = React.createClass({
       followers: 0,
       streak: 0,
       today: 0,
+      lastUpdatedAt: '',
       commits: []
     };
   },
   render() {
     return (
       <div>
-        <ProfileInfo
-          picture={ this.state.avatar_url }
-          name={ this.state.name }
-          username={ this.state.login } />
-        <ActivityGraph commits={ this.state.commits } />
-        <Stats
-          repos={ this.state.public_repos }
-          followers={ this.state.followers }
-          streak={ this.state.streak }
-          today={ this.state.today } />
+        <div className="profile">
+          <ProfileInfo
+            picture={ this.state.avatar_url }
+            name={ this.state.name }
+            username={ this.state.login } />
+          <ActivityGraph commits={ this.state.commits } />
+          <Stats
+            repos={ this.state.public_repos }
+            followers={ this.state.followers }
+            streak={ this.state.streak }
+            today={ this.state.today } />
+        </div>
+        <div className="update">
+          <span className="octicon octicon-sync" onClick={ this._update.bind(null, true) } />
+          &nbsp;
+          <small>
+            <span>last updated at:</span>
+            <strong>{ this.state.lastUpdatedAt }</strong>
+          </small>
+        </div>
       </div>
     );
   },
   componentDidMount() {
-    this._fetchUserInfo();
-    setTimeout(_=> this._fetchUserContributions(), 1)
+    this._update(false);
+  },
+  _update(force) {
+    this._fetchUserInfo(force);
+    setTimeout(_=> this._fetchUserContributions(force), 1)
   },
   _fetchUserInfo(force) {
     var username = this.props.params.username;
@@ -63,16 +79,18 @@ var Profile = React.createClass({
   _fetchUserContributions(force) {
     var username = this.props.params.username;
 
-    var callback = (userContributions) => {
+    var callback = (userContributions, time) => {
       if (userContributions) {
+        userContributions.lastUpdatedAt = new Date(time).toLocaleString();
         this.setState(userContributions);
       } else {
         window.location = 'log:requesting contributions';
-        GithubApi.contributions(username, (today, streak, commits) => {
+        GithubApi.contributions(username, (today, streak, commits, time) => {
           var newState = {
             streak: streak,
             commits: commits,
-            today: today
+            today: today,
+            lastUpdatedAt: new Date().toLocaleString()
           };
 
           Utils.save(['user_contributions', username], newState);

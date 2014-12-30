@@ -11,6 +11,8 @@ import WebKit
 
 class ContentViewController: NSViewController, NSXMLParserDelegate {
   @IBOutlet weak var webView:WebView?
+  @IBOutlet weak var lastUpdate:NSTextField?
+  
   var year = [Int]()
   var commits = [Int]()
   var today = 0

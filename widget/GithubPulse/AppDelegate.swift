@@ -8,6 +8,24 @@
 
 import Cocoa
 
+class Button : NSButton {
+  var rightAction:((NSEvent) -> Void)?
+  
+  override init(frame frameRect: NSRect) {
+    super.init(frame: frameRect)
+  }
+
+  required init?(coder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
+  }
+  
+  override func rightMouseDown(theEvent: NSEvent) {
+    if self.rightAction != nil {
+      self.rightAction?(theEvent)
+    }
+  }
+}
+
 @NSApplicationMain
 
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -24,11 +42,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-    var button = NSButton(frame: NSRect(x: 0, y: 0, width: 32, height: 24))
+    var button = Button(frame: NSRect(x: 0, y: 0, width: 32, height: 24))
     button.bordered = false
     button.image = NSImage(named: "icon")
     button.target = self
     button.action = "toggle:"
+    button.rightAction = { (_) in
+      let controller = self.popover.contentViewController as ContentViewController
+      controller.webView?.reload(nil)
+    }
     
     self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(32)
     self.statusItem.title = "Github Pulse"

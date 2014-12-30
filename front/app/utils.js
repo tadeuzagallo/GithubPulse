@@ -23,8 +23,8 @@ var Utils = (function () {
     if (expiration !== -1 && item && Date.now() - item.time > expiration) {
       item = null;
     } else if (item) {
-      item = item.data;
       time = item.time;
+      item = item.data;
     }
 
     var callback = callbacks[key];

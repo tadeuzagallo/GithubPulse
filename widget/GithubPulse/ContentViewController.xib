@@ -18,13 +18,13 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <webView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AJl-zo-hY7">
-                    <rect key="frame" x="0.0" y="30" width="400" height="320"/>
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="380"/>
                     <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12" javaEnabled="NO">
                         <nil key="identifier"/>
                     </webPreferences>
                 </webView>
             </subviews>
-            <point key="canvasLocation" x="176.5" y="42"/>
+            <point key="canvasLocation" x="176" y="42"/>
         </customView>
     </objects>
 </document>
