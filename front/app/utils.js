@@ -6,26 +6,45 @@ var Utils = (function () {
       key = key.join('/');
     }
 
-    localStorage.setItem(key, JSON.stringify({
+    value = JSON.stringify({
       time: Date.now(),
       data: value
-    }));
+    });
+
+    window.location = 'osx:set(' + key + '%%' + value + ')';
   };
 
-  Utils.fetch = function (key, expiration) {
+  var callbacks = {};
+  window.get = function (key, value, expiration) {
+    window.location = 'log:get(' + key + ') = ' + value;
+    var item = value && JSON.parse(value);
+    var time = null;
+
+    if (expiration !== -1 && item && Date.now() - item.time > expiration) {
+      item = null;
+    } else if (item) {
+      item = item.data;
+      time = item.time;
+    }
+
+    var callback = callbacks[key];
+    callbacks[key] = null;
+    callback(item, time);
+  };
+
+  Utils.fetch = function (key, expiration, callback) {
     if (Array.isArray(key)) {
       key = key.join('/');
     }
 
-    var item = JSON.parse(localStorage.getItem(key));
-
-    if (expiration !== undefined && item && Date.now() - item.time > expiration) {
-      item = null;
-    } else if (item) {
-      item = item.data;
+    if (typeof expiration === 'function') {
+      callback = expiration;
+      expiration = undefined;
     }
 
-    return item;
+
+    callbacks[key] = callback;
+    window.location = encodeURI('osx:get(' + key + '%%' + (expiration || -1) + ')');
   };
 
   Utils.clear = function (key) {
@@ -33,7 +52,7 @@ var Utils = (function () {
       key = key.join('/');
     }
 
-    localStorage.removeItem(key);
+    window.location = 'osx:remove(' + key + ')';
   };
 
   return Utils;

@@ -29,7 +29,7 @@ window.GithubApi = (function () {
     window.contributions = function() {
       callback.apply(null, arguments);
     };
-    window.location = 'osx:contributions/' + username;
+    window.location = 'osx:contributions(' + username + ')';
   };
 
   return GithubApi;

@@ -37,38 +37,54 @@ var Profile = React.createClass({
   },
   componentDidMount() {
     this._fetchUserInfo();
-    this._fetchUserContributions();
+    setTimeout(_=> this._fetchUserContributions(), 1)
   },
   _fetchUserInfo(force) {
     var username = this.props.params.username;
-    var userInfo = force ? false : Utils.fetch(['user_info', username], 15*60*1000);
 
-    if (userInfo) {
-      this.setState(userInfo);
+    var callback = (userInfo) => {
+      if (userInfo) {
+        this.setState(userInfo);
+      } else {
+        GithubApi.get('users', username, (err, result) => {
+          Utils.save(['user_info', username], result);
+          this.setState(result);
+        })
+      }
+    };
+
+    if (force) {
+      callback(false);
     } else {
-      GithubApi.get('users', username, (err, result) => {
-        Utils.save(['user_info', username], result);
-        this.setState(result);
-      })
+      window.location = 'log:fetching user info from cache';
+      Utils.fetch(['user_info', username], 15*60*1000, callback);
     }
   },
   _fetchUserContributions(force) {
     var username = this.props.params.username;
-    var userContributions = force ? false : Utils.fetch(['user_contributions', username], 15*60*1000);
 
-    if (userContributions) {
-      this.setState(userContributions);
+    var callback = (userContributions) => {
+      if (userContributions) {
+        this.setState(userContributions);
+      } else {
+        window.location = 'log:requesting contributions';
+        GithubApi.contributions(username, (today, streak, commits) => {
+          var newState = {
+            streak: streak,
+            commits: commits,
+            today: today
+          };
+
+          Utils.save(['user_contributions', username], newState);
+          this.setState(newState);
+        });
+      }
+    };
+
+    if (force) {
+      callback(false);
     } else {
-      GithubApi.contributions(username, (today, streak, commits) => {
-        var newState = {
-          streak: streak,
-          commits: commits,
-          today: today
-        };
-
-        Utils.save(['user_contributions', username], newState);
-        this.setState(newState);
-      });
+      Utils.fetch(['user_contributions', username], 15*60*1000, callback);
     }
   }
 });
