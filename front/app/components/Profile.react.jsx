@@ -24,7 +24,10 @@ var Profile = React.createClass({
   },
   render() {
     return (
-      <div>
+      <div className="profile-container">
+        <div className="profile-title">
+          Github Pulse
+        </div>
         <div className="profile">
           <ProfileInfo
             picture={ this.state.avatar_url }
@@ -41,7 +44,7 @@ var Profile = React.createClass({
           <span className="octicon octicon-sync" onClick={ this._update.bind(null, true) } />
           &nbsp;
           <small>
-            <span>last updated at:</span>
+            <span>last updated at:&nbsp;</span>
             <strong>{ this.state.lastUpdatedAt }</strong>
           </small>
         </div>
