@@ -35,7 +35,7 @@ var Profile = React.createClass({
       </div>
     );
   },
-  componentWillMount() {
+  componentDidMount() {
     this._fetchUserInfo();
     this._fetchUserContributions();
   },
@@ -51,7 +51,6 @@ var Profile = React.createClass({
         this.setState(result);
       })
     }
-
   },
   _fetchUserContributions(force) {
     var username = this.props.params.username;
