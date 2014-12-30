@@ -67,6 +67,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     if (self.open) {
       self.popover.close()
     } else {
+      let controller = self.popover.contentViewController as ContentViewController
+      controller.webView?.stringByEvaluatingJavaScriptFromString("update(false)")
+      
       self.popover.showRelativeToRect(self.statusItem.view!.bounds, ofView: self.statusItem.view!, preferredEdge: NSMaxYEdge)
       NSApp.activateIgnoringOtherApps(true)
     }

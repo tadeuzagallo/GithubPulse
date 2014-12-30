@@ -52,7 +52,11 @@ var Profile = React.createClass({
     );
   },
   componentDidMount() {
+    window.update = this._update;
     this._update(false);
+  },
+  componentWillUnmount() {
+    window.update = null;
   },
   _update(force) {
     this._fetchUserInfo(force);
