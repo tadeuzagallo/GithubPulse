@@ -42,7 +42,10 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
         value = ""
       }
       
-      self.webView?.stringByEvaluatingJavaScriptFromString("get('\(args[0])', '\(value!)', \(args[1]))");
+      let key = args[0].stringByReplacingOccurrencesOfString("'", withString: "\\'", options: nil, range: nil)
+      let v = value!.stringByReplacingOccurrencesOfString("'", withString: "\\'", options: nil, range: nil)
+      
+      self.webView?.stringByEvaluatingJavaScriptFromString("get('\(key)', '\(v)', \(args[1]))");
     }
     
     self.calls["remove"] = { (args) in

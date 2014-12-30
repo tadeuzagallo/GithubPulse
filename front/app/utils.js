@@ -1,6 +1,31 @@
 var Utils = (function () {
   var Utils = {};
 
+  var queue = [];
+  var running = false;
+  var pop = function () {
+    if (queue.length) {
+      setTimeout(function() {
+        window.location = encodeURI(queue.shift());
+        pop();
+      }, 0);
+    } else {
+      running = false;
+    }
+  };
+
+  Utils.redirect = function (url) {
+    queue.push(url);
+    if (!running) {
+      running = true;
+      pop();
+    }
+  };
+
+  Utils.log = function () {
+    Utils.redirect('log:' + [].join.call(arguments, '  '));
+  };
+
   Utils.save = function (key, value) {
     if (Array.isArray(key)) {
       key = key.join('/');
@@ -11,12 +36,15 @@ var Utils = (function () {
       data: value
     });
 
-    window.location = 'osx:set(' + key + '%%' + value + ')';
+    Utils.redirect('osx:set(' + key + '%%' + value + ')');
   };
 
   var callbacks = {};
   window.get = function (key, value, expiration) {
-    window.location = 'log:get(' + key + ') = ' + value;
+    key = decodeURI(key);
+    value = decodeURI(value);
+    Utils.log('get(', key, ') = ', value);
+
     var item = value && JSON.parse(value);
     var time = null;
 
@@ -44,7 +72,7 @@ var Utils = (function () {
 
 
     callbacks[key] = callback;
-    window.location = encodeURI('osx:get(' + key + '%%' + (expiration || -1) + ')');
+    Utils.redirect('osx:get(' + key + '%%' + (expiration || -1) + ')');
   };
 
   Utils.clear = function (key) {
@@ -52,7 +80,7 @@ var Utils = (function () {
       key = key.join('/');
     }
 
-    window.location = 'osx:remove(' + key + ')';
+    Utils.redirect('osx:remove(' + key + ')');
   };
 
   return Utils;

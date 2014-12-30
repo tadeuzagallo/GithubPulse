@@ -33,25 +33,26 @@ var Login =  React.createClass({
       </div>
     );
   },
-  componentWillMount() {
+  componentDidMount() {
+    this._fetchZen();
+    this._fetchUserName();
+  },
+  _fetchZen() {
     Utils.fetch('zen', 60 * 60 * 1000, (zen) => {
       if (zen) {
         this.setState({ zen: zen });
       } else {
-        window.location = 'log:requesting zen';
         GithubApi.get('zen', (err, result) => {
+          this.setState({ zen: result });
           Utils.save('zen', result);
-          this.setState({ zen: zen });
         });
       }
     });
   },
-  componentDidMount() {
+  _fetchUserName() {
     Utils.fetch('username', (username) => {
       if (username) {
         this.transitionTo('profile', { username: username });
-      } else {
-        window.location = 'log:username not found';
       }
     });
   },

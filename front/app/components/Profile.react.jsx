@@ -53,7 +53,7 @@ var Profile = React.createClass({
   },
   _update(force) {
     this._fetchUserInfo(force);
-    setTimeout(_=> this._fetchUserContributions(force), 1)
+    this._fetchUserContributions(force);
   },
   _fetchUserInfo(force) {
     var username = this.props.params.username;
@@ -72,7 +72,6 @@ var Profile = React.createClass({
     if (force) {
       callback(false);
     } else {
-      window.location = 'log:fetching user info from cache';
       Utils.fetch(['user_info', username], 15*60*1000, callback);
     }
   },
@@ -84,7 +83,6 @@ var Profile = React.createClass({
         userContributions.lastUpdatedAt = new Date(time).toLocaleString();
         this.setState(userContributions);
       } else {
-        window.location = 'log:requesting contributions';
         GithubApi.contributions(username, (today, streak, commits, time) => {
           var newState = {
             streak: streak,
