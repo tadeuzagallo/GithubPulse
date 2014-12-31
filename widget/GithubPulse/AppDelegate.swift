@@ -126,7 +126,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
   override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
     if context == &myContext {
-      if let username = change[NSKeyValueChangeNewKey] as String? {
+      if let username = self.contentViewController.username {
         self.fetchCommits(username)
       } else {
         self.updateIcon(1)
