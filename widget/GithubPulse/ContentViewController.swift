@@ -13,10 +13,6 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
   @IBOutlet weak var webView:WebView?
   @IBOutlet weak var lastUpdate:NSTextField?
   
-  var year = [Int]()
-  var commits = [Int]()
-  var today = 0
-  var streak = 0
   var regex = NSRegularExpression(pattern: "^osx:([a-z]+)\\((.*)\\)$", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
   var calls: [String: [String] -> Void]
   
@@ -24,8 +20,8 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     self.calls = [:]
     self.calls["contributions"] = { (args) in
       println("contributions", args)
-      self.contributions(args[0]) {
-        let _ = self.webView?.stringByEvaluatingJavaScriptFromString("contributions(\(self.today),\(self.streak),\(self.commits))")
+      Contributions.fetch(args[0]) { (commits, streak, today) in
+        let _ = self.webView?.stringByEvaluatingJavaScriptFromString("contributions(\(today),\(streak),\(commits))")
       }
     }
     
@@ -105,42 +101,6 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
       println(url)
     } else {
       listener.use()
-    }
-  }
-  
-  func contributions(username: String, completionBlock: (() -> Void)?) {
-    self.year = [];
-    
-    let url = NSURL(string: "https://github.com/users/\(username)/contributions")
-    let request = NSURLRequest(URL: url!)
-    
-    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
-      let parser = NSXMLParser(data: data)
-      parser.delegate = self
-      parser.parse()
-      
-      self.calculate()
-      
-      if completionBlock != nil {
-        completionBlock?()
-      }
-    }
-  }
-  
-  func calculate() {
-    var length = self.year.count - 1
-    self.today = self.year[length]
-    self.streak = self.today > 0 ? 1 : 0
-    self.commits = Array(self.year[length-29 ... length])
-    
-    for var i = length - 1; i >= 0 && self.year[i] > 0; i-- {
-      self.streak++;
-    }
-  }
-  
-  func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]!) {
-    if elementName == "rect" {
-      self.year.append((attributeDict["data-count"] as String).toInt()!)
     }
   }
 }

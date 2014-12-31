@@ -8,23 +8,6 @@
 
 import Cocoa
 
-class Button : NSButton {
-  var rightAction:((NSEvent) -> Void)?
-  
-  override init(frame frameRect: NSRect) {
-    super.init(frame: frameRect)
-  }
-
-  required init?(coder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-  }
-  
-  override func rightMouseDown(theEvent: NSEvent) {
-    if self.rightAction != nil {
-      self.rightAction?(theEvent)
-    }
-  }
-}
 
 @NSApplicationMain
 
@@ -43,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-    var button = Button(frame: NSRect(x: 0, y: 0, width: 32, height: 24))
+    var button = CustomButton(frame: NSRect(x: 0, y: 0, width: 32, height: 24))
     button.bordered = false
     button.image = NSImage(named: "icon")
     button.target = self
@@ -66,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       now = NSDate(timeIntervalSinceNow: 24*60*60)
     }
     
-    now = calendar.dateBySettingHour(23, minute: 0, second: 0, ofDate: now, options: nil)!
+    now = calendar.dateBySettingHour(17, minute: 0, second: 0, ofDate: now, options: nil)!
     
     self.timer = NSTimer(fireDate: now, interval: 24*60*60, target: self, selector: "checkForCommits", userInfo: nil, repeats: true)
     NSRunLoop.currentRunLoop().addTimer(self.timer, forMode: NSDefaultRunLoopMode)

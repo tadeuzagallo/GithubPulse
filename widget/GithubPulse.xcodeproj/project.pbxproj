@@ -16,6 +16,8 @@
 		5C406D721A4FA4DB0005AF61 /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C406D711A4FA4DB0005AF61 /* ContentViewController.xib */; };
 		5C406D7E1A4FC7850005AF61 /* front in Resources */ = {isa = PBXBuildFile; fileRef = 5C406D7D1A4FC7850005AF61 /* front */; };
 		5CF9C1F51A537C6E00539044 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CF9C1F41A537C6E00539044 /* NotificationCenter.framework */; };
+		5CF9C1F71A53825000539044 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF9C1F61A53825000539044 /* CustomButton.swift */; };
+		5CF9C1F91A53830A00539044 /* Contributions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF9C1F81A53830A00539044 /* Contributions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		5C406D711A4FA4DB0005AF61 /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
 		5C406D7D1A4FC7850005AF61 /* front */ = {isa = PBXFileReference; lastKnownFileType = folder; name = front; path = ../front; sourceTree = "<group>"; };
 		5CF9C1F41A537C6E00539044 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		5CF9C1F61A53825000539044 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		5CF9C1F81A53830A00539044 /* Contributions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contributions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				5C1181B41A50D592001E1E13 /* icon.png */,
 				5C406D4E1A4F93140005AF61 /* AppDelegate.swift */,
 				5C406D6D1A4F9FBE0005AF61 /* ContentViewController.swift */,
+				5CF9C1F81A53830A00539044 /* Contributions.swift */,
+				5CF9C1F61A53825000539044 /* CustomButton.swift */,
 				5C406D711A4FA4DB0005AF61 /* ContentViewController.xib */,
 				5C406D501A4F93140005AF61 /* Images.xcassets */,
 				5C406D521A4F93140005AF61 /* MainMenu.xib */,
@@ -159,7 +165,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C406D6E1A4F9FBE0005AF61 /* ContentViewController.swift in Sources */,
+				5CF9C1F91A53830A00539044 /* Contributions.swift in Sources */,
 				5C406D4F1A4F93140005AF61 /* AppDelegate.swift in Sources */,
+				5CF9C1F71A53825000539044 /* CustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
