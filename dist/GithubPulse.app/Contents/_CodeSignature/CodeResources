@@ -39,7 +39,7 @@
 		</data>
 		<key>Resources/front/public/bundle.js</key>
 		<data>
-		bq1LvCnurVrfpg7zygFP77Rl7w8=
+		kvDmlQfYE0AqxHtQHdHXM0Qj+mk=
 		</data>
 		<key>Resources/front/webpack.config.js</key>
 		<data>
@@ -48,6 +48,10 @@
 		<key>Resources/icon.png</key>
 		<data>
 		8+YiCsgG23Jz9m4411GA/yvK7Mg=
+		</data>
+		<key>Resources/icon_notification.png</key>
+		<data>
+		WGtckiX542+bkLGEpyI6l1dLcKg=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -168,7 +172,7 @@
 		</data>
 		<key>Resources/front/public/bundle.js</key>
 		<data>
-		bq1LvCnurVrfpg7zygFP77Rl7w8=
+		kvDmlQfYE0AqxHtQHdHXM0Qj+mk=
 		</data>
 		<key>Resources/front/webpack.config.js</key>
 		<data>
@@ -177,6 +181,10 @@
 		<key>Resources/icon.png</key>
 		<data>
 		8+YiCsgG23Jz9m4411GA/yvK7Mg=
+		</data>
+		<key>Resources/icon_notification.png</key>
+		<data>
+		WGtckiX542+bkLGEpyI6l1dLcKg=
 		</data>
 	</dict>
 	<key>rules</key>
