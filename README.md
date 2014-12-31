@@ -1,13 +1,13 @@
 # ![Github Pulse](resources/icon.png) Github Pulse
 
+Github Pulse is a status bar app for osx to help you keep your streaks, making a commit every day.
+
 ![Screenshot 1](resources/screenshot1.png)
 ![Screenshot 2](resources/screenshot2.png)
 
-Github Pulse is a notification bar app for osx to help you keep your streaks, making a commit every day.
-
 ## Installation
 
-Just download it [here](dist/GithubPulse.app) and copy to your applications folder
+Just download it [here](https://github.com/tadeuzagallo/GithubPulse/raw/master/dist/GithubPulse.zip) and copy to your applications folder
 
 ## What's being used
 
