@@ -63,6 +63,11 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
         NSBundle.mainBundle().addToLoginItems()
       }
     }
+    
+    self.calls["quit"] = { (args) in
+      println("quit", args)
+      NSApplication.sharedApplication().terminate(self)
+    }
   }
   
   override init() {

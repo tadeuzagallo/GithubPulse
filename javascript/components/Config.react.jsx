@@ -18,12 +18,20 @@ var Config = React.createClass({
         <div>
           <div onClick={ this._togglePanel } className="config__overlay" />
           <div className="config__panel">
-            <input
-              className="config__startup"
-              type="checkbox"
-              checked={ this.state.active }
-              onChange={ this._toggleActive } />
-            Launch at startup
+            <div className="config__item">
+              <input
+                id="login"
+                className="config__startup"
+                type="checkbox"
+                checked={ this.state.active }
+                onChange={ this._toggleActive } />
+              <label htmlFor="login">Launch at startup</label>
+            </div>
+            <div className="config__separator"/>
+            <div className="config__item" onClick={ this._quit }>
+              <span className="octicon octicon-alert config__quit"/>
+              Quit Github Pulse
+            </div>
           </div>
         </div>
       );
@@ -47,6 +55,9 @@ var Config = React.createClass({
   },
   _togglePanel() {
     this.setState({ open: !this.state.open });
+  },
+  _quit() {
+    Utils.raw('quit()');
   }
 });
 
