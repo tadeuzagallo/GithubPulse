@@ -39,7 +39,7 @@ var Config = React.createClass({
 
     return (
       <div className="config">
-        <span onClick={ this._togglePanel } className="octicon octicon-gear config__gear" />
+        <span onClick={ this._togglePanel } className={ 'octicon octicon-gear config__gear ' + this.state.open } />
         { panel }
       </div>
     );
