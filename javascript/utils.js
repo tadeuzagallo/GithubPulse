@@ -43,7 +43,6 @@ var Utils = (function () {
   window.get = function (key, value, expiration) {
     key = decodeURI(key);
     value = decodeURI(value);
-    Utils.log('get(', key, ') = ', value);
 
     var item = value && JSON.parse(value);
     var time = null;

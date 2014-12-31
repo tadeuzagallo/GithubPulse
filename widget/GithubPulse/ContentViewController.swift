@@ -20,14 +20,12 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
   func loadCalls() {
     self.calls = [:]
     self.calls["contributions"] = { (args) in
-      println("contributions", args)
       Contributions.fetch(args[0]) { (commits, streak, today) in
         let _ = self.webView?.stringByEvaluatingJavaScriptFromString("contributions(\(today),\(streak),\(commits))")
       }
     }
     
     self.calls["set"] = { (args) in
-      println("set", args)
       
       if args[0] == "username" {
         self.username? = args[1]
@@ -37,7 +35,6 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     }
     
     self.calls["get"] = { (args) in
-      println("get", args)
       var value = NSUserDefaults.standardUserDefaults().valueForKey(args[0]) as String?
       
       if value == nil {
@@ -51,7 +48,6 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     }
     
     self.calls["remove"] = { (args) in
-      println("remove", args)
       
       if args[0] == "username" {
         self.username = nil
@@ -61,13 +57,11 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     }
     
     self.calls["check_login"] = { (args) in
-      println("check_login", args)
       let active = NSBundle.mainBundle().isLoginItem()
       self.webView?.stringByEvaluatingJavaScriptFromString("raw('check_login', \(active))")
     }
     
     self.calls["toggle_login"] = { (args) in
-      println("toggle_login", args)
       if NSBundle.mainBundle().isLoginItem() {
         NSBundle.mainBundle().removeFromLoginItems()
       } else {
@@ -76,7 +70,6 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     }
     
     self.calls["quit"] = { (args) in
-      println("quit", args)
       NSApplication.sharedApplication().terminate(self)
     }
   }
@@ -132,7 +125,9 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
       let closure = self.calls[fn]
       closure?(args)
     } else if (url.hasPrefix("log:")) {
+#if DEBUG
       println(url)
+#endif
     } else {
       listener.use()
     }
