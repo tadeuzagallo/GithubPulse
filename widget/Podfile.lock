@@ -1,0 +1,10 @@
+PODS:
+  - IYLoginItem (0.1)
+
+DEPENDENCIES:
+  - IYLoginItem
+
+SPEC CHECKSUMS:
+  IYLoginItem: dbdbc4636da5087b200f68456aa4367a1af35c1d
+
+COCOAPODS: 0.35.0
