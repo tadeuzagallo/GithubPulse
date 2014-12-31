@@ -5,6 +5,7 @@ var Utils = require('../utils');
 var ProfileInfo = require('./ProfileInfo.react');
 var ActivityGraph = require('./ActivityGraph.react');
 var Stats = require('./Stats.react');
+var Config = require('./Config.react');
 
 require('../styles/Profile')
 
@@ -29,6 +30,7 @@ var Profile = React.createClass({
 
     return (
       <div className="profile-container">
+        <Config />
         <div className="profile-title">
           Github Pulse
         </div>
