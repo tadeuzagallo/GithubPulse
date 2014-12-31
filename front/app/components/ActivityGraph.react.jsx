@@ -10,6 +10,22 @@ var ActivityGraph = React.createClass({
       <canvas className="activity-graph" width="390" height="145" ref="canvas"></canvas>
     );
   },
+  shouldComponentUpdate(nextProps) {
+    var pc = this.props.commits || [];
+    var nc = nextProps.commits || [];
+
+    if (pc.length != nc.length) {
+      return true;
+    }
+
+    for (var i = 0, l = pc.length; i < l; i++) {
+      if (pc[i] !== nc[i]) {
+        return true;
+      }
+    }
+
+    return false;
+  },
   componentDidUpdate() {
     var canvas = this.refs.canvas.getDOMNode();
     var ctx = canvas.getContext('2d');
