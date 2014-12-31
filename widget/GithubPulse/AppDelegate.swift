@@ -61,12 +61,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func checkForCommits() {
-    let notification = NSUserNotification()
-    notification.title = "You haven't commited today yet...";
-    notification.subtitle = "Rush to keep your streak going!"
-    
-    let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
-    notificationCenter.scheduleNotification(notification)
+    if let usernameString = NSUserDefaults.standardUserDefaults().valueForKey("username") as String? {
+      let usernameData = usernameString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+      let usernameObject = NSJSONSerialization.JSONObjectWithData(usernameData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
+      let username = usernameObject["data"] as String
+      
+      Contributions.fetch(username) { (_, _, today) in
+        if (today == 0) {
+          let notification = NSUserNotification()
+          notification.title = "You haven't commited today yet...";
+          notification.subtitle = "Rush to keep your streak going!"
+          
+          let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
+          notificationCenter.scheduleNotification(notification)
+        }
+      }
+    }
   }
 
   func applicationWillResignActive(notification: NSNotification) {
