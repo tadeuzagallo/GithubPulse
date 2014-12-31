@@ -85,8 +85,11 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
   
   override func viewDidLoad() {
     var indexPath = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "front")
-//    var url = NSURL(fileURLWithPath: indexPath!)
+#if DEBUG
     var url = NSURL(string: "http://localhost:8080")
+#else
+    var url = NSURL(fileURLWithPath: indexPath!)
+#endif
     var request = NSURLRequest(URL: url!)
     
     self.webView!.policyDelegate = self;
