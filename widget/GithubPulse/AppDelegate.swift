@@ -32,6 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var open:Bool = false
   var popover:NSPopover
   var statusItem:NSStatusItem!
+  var timer:NSTimer!
   
   override init() {
     self.popover = NSPopover()
@@ -56,6 +57,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     self.statusItem.title = "Github Pulse"
     self.statusItem.highlightMode = true
     self.statusItem.view = button
+    
+    var now = NSDate()
+    let calendar = NSCalendar.currentCalendar()
+    let components = calendar.components(NSCalendarUnit.CalendarUnitDay|NSCalendarUnit.CalendarUnitHour, fromDate: now)
+    
+    if components.hour > 17 {
+      now = NSDate(timeIntervalSinceNow: 24*60*60)
+    }
+    
+    now = calendar.dateBySettingHour(23, minute: 0, second: 0, ofDate: now, options: nil)!
+    
+    self.timer = NSTimer(fireDate: now, interval: 24*60*60, target: self, selector: "checkForCommits", userInfo: nil, repeats: true)
+    NSRunLoop.currentRunLoop().addTimer(self.timer, forMode: NSDefaultRunLoopMode)
+  }
+  
+  deinit {
+    self.timer.invalidate()
+    self.timer = nil
+  }
+  
+  func checkForCommits() {
+    let notification = NSUserNotification()
+    notification.title = "You haven't commited today yet...";
+    notification.subtitle = "Rush to keep your streak going!"
+    
+    let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
+    notificationCenter.scheduleNotification(notification)
   }
 
   func applicationWillResignActive(notification: NSNotification) {

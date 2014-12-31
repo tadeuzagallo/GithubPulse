@@ -15,6 +15,7 @@
 		5C406D701A4FA0CC0005AF61 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C406D6F1A4FA0CC0005AF61 /* WebKit.framework */; };
 		5C406D721A4FA4DB0005AF61 /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C406D711A4FA4DB0005AF61 /* ContentViewController.xib */; };
 		5C406D7E1A4FC7850005AF61 /* front in Resources */ = {isa = PBXBuildFile; fileRef = 5C406D7D1A4FC7850005AF61 /* front */; };
+		5CF9C1F51A537C6E00539044 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CF9C1F41A537C6E00539044 /* NotificationCenter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		5C406D6F1A4FA0CC0005AF61 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		5C406D711A4FA4DB0005AF61 /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
 		5C406D7D1A4FC7850005AF61 /* front */ = {isa = PBXFileReference; lastKnownFileType = folder; name = front; path = ../front; sourceTree = "<group>"; };
+		5CF9C1F41A537C6E00539044 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CF9C1F51A537C6E00539044 /* NotificationCenter.framework in Frameworks */,
 				5C406D701A4FA0CC0005AF61 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +48,7 @@
 		5C406D401A4F93140005AF61 = {
 			isa = PBXGroup;
 			children = (
+				5CF9C1F41A537C6E00539044 /* NotificationCenter.framework */,
 				5C406D7D1A4FC7850005AF61 /* front */,
 				5C406D4B1A4F93140005AF61 /* GithubPulse */,
 				5C406D4A1A4F93140005AF61 /* Products */,
