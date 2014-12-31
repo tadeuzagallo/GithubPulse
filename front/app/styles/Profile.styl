@@ -11,6 +11,20 @@
   margin: 5px 0 0 5px;
 }
 
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.rotate {
+  -webkit-animation: rotate 2s infinite linear;
+}
+
 .profile-title {
   height: 25px;
   padding-top: 4px;

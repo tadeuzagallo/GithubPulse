@@ -19,10 +19,14 @@ var Profile = React.createClass({
       streak: 0,
       today: 0,
       lastUpdatedAt: '',
-      commits: []
+      commits: [],
+      _fetchingUserInfo: true,
+      _fetchingUserContributions: true
     };
   },
   render() {
+    var className = this.state._fetchUserInfo || this.state._fetchingUserContributions ? 'rotate' : '';
+
     return (
       <div className="profile-container">
         <div className="profile-title">
@@ -41,7 +45,9 @@ var Profile = React.createClass({
             today={ this.state.today } />
         </div>
         <div className="update">
-          <span className="octicon octicon-sync" onClick={ this._update.bind(null, true) } />
+          <span
+            className={ 'octicon octicon-sync ' + className }
+            onClick={ this._update.bind(null, true) } />
           &nbsp;
           <small>
             <span>Last updated at:&nbsp;</span>
@@ -59,6 +65,11 @@ var Profile = React.createClass({
     window.update = null;
   },
   _update(force) {
+    this.setState({
+      _fetchingUserInfo: true,
+      _fetchingUserContributions: true
+    });
+
     this._fetchUserInfo(force);
     this._fetchUserContributions(force);
   },
@@ -68,11 +79,13 @@ var Profile = React.createClass({
     var callback = (userInfo) => {
       if (userInfo) {
         if (userInfo.updated_at !== this.state.updated_at) {
+          userInfo._fetchUserInfo = false;
           this.setState(userInfo);
         }
       } else {
         GithubApi.get('users', username, (err, result) => {
           Utils.save(['user_info', username], result);
+          result._fetchUserInfo = false;
           this.setState(result);
         })
       }
@@ -91,7 +104,10 @@ var Profile = React.createClass({
       if (userContributions) {
         userContributions.lastUpdatedAt = new Date(time).toLocaleString();
         if (userContributions.lastUpdatedAt !== this.state.lastUpdatedAt) {
+          userContributions._fetchingUserContributions = false;
           this.setState(userContributions);
+        } else {
+          this.setState({ _fetchingUserContributions: false });
         }
       } else {
         GithubApi.contributions(username, (today, streak, commits, time) => {
@@ -99,6 +115,7 @@ var Profile = React.createClass({
             streak: streak,
             commits: commits,
             today: today,
+            _fetchingUserContributions: false,
             lastUpdatedAt: new Date().toLocaleString()
           };
 
