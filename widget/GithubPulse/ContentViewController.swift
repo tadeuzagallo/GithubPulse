@@ -13,7 +13,7 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
   @IBOutlet weak var webView:WebView?
   @IBOutlet weak var lastUpdate:NSTextField?
   
-  var regex = NSRegularExpression(pattern: "^osx:([a-z]+)\\((.*)\\)$", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
+  var regex = NSRegularExpression(pattern: "^osx:(\\w+)\\((.*)\\)$", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
   var calls: [String: [String] -> Void]
   
   func loadCalls() {
@@ -47,6 +47,21 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     self.calls["remove"] = { (args) in
       println("remove", args)
       NSUserDefaults.standardUserDefaults().removeObjectForKey(args[0])
+    }
+    
+    self.calls["check_login"] = { (args) in
+      println("check_login", args)
+      let active = NSBundle.mainBundle().isLoginItem()
+      self.webView?.stringByEvaluatingJavaScriptFromString("raw('check_login', \(active))")
+    }
+    
+    self.calls["toggle_login"] = { (args) in
+      println("toggle_login", args)
+      if NSBundle.mainBundle().isLoginItem() {
+        NSBundle.mainBundle().removeFromLoginItems()
+      } else {
+        NSBundle.mainBundle().addToLoginItems()
+      }
     }
   }
   

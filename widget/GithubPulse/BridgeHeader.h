@@ -6,8 +6,4 @@
 //  Copyright (c) 2014 Tadeu Zagallo. All rights reserved.
 //
 
-#ifndef GithubPulse_BridgeHeader_h
-#define GithubPulse_BridgeHeader_h
-
-
-#endif
+#import <IYLoginItem/NSBundle+LoginItem.h>

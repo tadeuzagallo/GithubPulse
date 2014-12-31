@@ -75,6 +75,23 @@ var Utils = (function () {
     Utils.redirect('osx:get(' + key + '%%' + (expiration || -1) + ')');
   };
 
+  var rawCallbacks = {};
+  window.raw = function (fnName) {
+    var args = [].slice.call(arguments, 1);
+    var callback = rawCallbacks[fnName];
+    rawCallbacks[fnName] = null;
+    callback.apply(null, args);
+  };
+
+  Utils.raw = function (expression, callback) {
+    if (callback) {
+      fnName = expression.split('(').shift();
+      rawCallbacks[fnName] = callback;
+    }
+
+    Utils.redirect('osx:' + expression);
+  };
+
   Utils.clear = function (key) {
     if (Array.isArray(key)) {
       key = key.join('/');
