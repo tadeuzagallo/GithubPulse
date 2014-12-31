@@ -13,14 +13,17 @@ import Cocoa
 
 class AppDelegate: NSObject, NSApplicationDelegate {
   var open:Bool = false
-  var popover:NSPopover
+  var contentViewController:ContentViewController
+  var popover:INPopoverController
   var statusItem:NSStatusItem!
   var timer:NSTimer!
   
   override init() {
-    self.popover = NSPopover()
-    self.popover.animates = false
-    self.popover.contentViewController = ContentViewController(nibName: "ContentViewController", bundle: nil)
+    self.contentViewController = ContentViewController(nibName: "ContentViewController", bundle: nil)!
+    self.popover = INPopoverController(contentViewController: self.contentViewController)
+    self.popover.animates = false;
+    self.popover.color = NSColor(calibratedWhite: 0.9, alpha: 1)
+    self.popover.borderWidth = 0
     
     super.init()
   }
@@ -32,8 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     button.target = self
     button.action = "toggle:"
     button.rightAction = { (_) in
-      let controller = self.popover.contentViewController as ContentViewController
-      controller.webView?.reload(nil)
+      self.contentViewController.refresh(nil)
     }
     
     self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(32)
@@ -81,17 +83,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationWillResignActive(notification: NSNotification) {
     self.open = false
-    self.popover.close()
+    self.popover.closePopover(nil)
   }
   
   func toggle(_: AnyObject) {
     if (self.open) {
-      self.popover.close()
+      self.popover.closePopover(nil)
     } else {
       let controller = self.popover.contentViewController as ContentViewController
       controller.webView?.stringByEvaluatingJavaScriptFromString("update(false)")
       
-      self.popover.showRelativeToRect(self.statusItem.view!.bounds, ofView: self.statusItem.view!, preferredEdge: NSMaxYEdge)
+      self.popover.presentPopoverFromRect(self.statusItem.view!.bounds, inView: self.statusItem.view!, preferredArrowDirection: INPopoverArrowDirection.Up, anchorsToPositionView: true)
       NSApp.activateIgnoringOtherApps(true)
     }
     
