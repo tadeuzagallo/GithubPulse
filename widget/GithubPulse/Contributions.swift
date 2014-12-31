@@ -46,6 +46,10 @@ class Contributions : NSObject, NSXMLParserDelegate {
     for var i = length - 1; i >= 0 && self.year[i] > 0; i-- {
       self.streak++;
     }
+    
+    if self.streak == 1 {
+      self.streak = 0
+    }
   }
   
   func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]!) {
