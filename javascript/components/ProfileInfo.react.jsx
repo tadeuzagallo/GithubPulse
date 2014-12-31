@@ -23,7 +23,7 @@ var ProfileInfo = React.createClass({
             <h1 className="profile-info__name">
               {this.props.name}
               &nbsp;
-              <a onClick={ this._logout }>
+              <a className="profile-info__logout" onClick={ this._logout }>
                 <span className="octicon octicon-sign-out" />
               </a>
             </h1>
