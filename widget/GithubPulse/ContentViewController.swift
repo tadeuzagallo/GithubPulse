@@ -12,6 +12,7 @@ import WebKit
 class ContentViewController: NSViewController, NSXMLParserDelegate {
   @IBOutlet weak var webView:WebView?
   @IBOutlet weak var lastUpdate:NSTextField?
+  dynamic var username:String?
   
   var regex = NSRegularExpression(pattern: "^osx:(\\w+)\\((.*)\\)$", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
   var calls: [String: [String] -> Void]
@@ -27,6 +28,11 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     
     self.calls["set"] = { (args) in
       println("set", args)
+      
+      if args[0] == "username" {
+        self.username? = args[1]
+      }
+      
       NSUserDefaults.standardUserDefaults().setValue(args[1], forKey: args[0])
     }
     
@@ -46,6 +52,11 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     
     self.calls["remove"] = { (args) in
       println("remove", args)
+      
+      if args[0] == "username" {
+        self.username = nil
+      }
+      
       NSUserDefaults.standardUserDefaults().removeObjectForKey(args[0])
     }
     

@@ -8,6 +8,7 @@
 
 import Cocoa
 
+private var myContext = 0
 
 @NSApplicationMain
 
@@ -27,6 +28,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     self.popover.borderWidth = 0
     
     super.init()
+    
+    self.contentViewController.addObserver(self, forKeyPath: "username", options: nil, context: &myContext)
   }
   
   func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -49,28 +52,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   deinit {
+    self.contentViewController.removeObserver(self, forKeyPath: "username")
     self.timer.invalidate()
     self.timer = nil
   }
   
   func checkForCommits() {
-    if let usernameString = NSUserDefaults.standardUserDefaults().valueForKey("username") as String? {
-      let usernameData = usernameString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
-      let usernameObject = NSJSONSerialization.JSONObjectWithData(usernameData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
-      let username = usernameObject["data"] as String
+    if let username = NSUserDefaults.standardUserDefaults().valueForKey("username") as String? {
+      self.fetchCommits(username)
+    }
+  }
+  
+  func fetchCommits(usernameString: String) {
+    let usernameData = usernameString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+    let usernameObject = NSJSONSerialization.JSONObjectWithData(usernameData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
+    let username = usernameObject["data"] as String
+    
+    Contributions.fetch(username) { (_, _, today) in
+      self.updateIcon(today)
       
-      Contributions.fetch(username) { (_, _, today) in
-        self.updateIcon(today)
-        
-        if today == 0 {
-          self.checkForNotification()
-        }
+      if today == 0 {
+        self.checkForNotification()
       }
     }
   }
   
   func updateIcon(count: Int) {
-    let imageName = count == 0 ? "icon" : "icon_notification"
+    let imageName = count == 0 ?  "icon_notification" : "icon"
     self.statusButton.image = NSImage(named: imageName)
   }
   
@@ -114,5 +122,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     self.open = !self.open
+  }
+  
+  override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    if context == &myContext {
+      if let username = change[NSKeyValueChangeNewKey] as String? {
+        self.fetchCommits(username)
+      } else {
+        self.updateIcon(1)
+      }
+    } else {
+      super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+    }
   }
 }
