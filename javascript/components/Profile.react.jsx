@@ -104,7 +104,7 @@ var Profile = React.createClass({
 
     var callback = (userContributions, time) => {
       if (userContributions) {
-        userContributions.lastUpdatedAt = new Date(time).toLocaleString();
+        userContributions.lastUpdatedAt = new Date(time).toTimeString().split(' ').shift();
         if (userContributions.lastUpdatedAt !== this.state.lastUpdatedAt) {
           userContributions._fetchingUserContributions = false;
           this.setState(userContributions);
@@ -118,7 +118,7 @@ var Profile = React.createClass({
             commits: commits,
             today: today,
             _fetchingUserContributions: false,
-            lastUpdatedAt: new Date().toLocaleString()
+            lastUpdatedAt: new Date().toTimeString().split(' ').shift()
           };
 
           Utils.save(['user_contributions', username], newState);
