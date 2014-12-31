@@ -1,3 +1,5 @@
+var Utils = require('./utils');
+
 window.GithubApi = (function () {
   var GithubApi = {};
   GithubApi.host = 'https://api.github.com';
@@ -26,10 +28,8 @@ window.GithubApi = (function () {
   };
 
   GithubApi.contributions = function (username, callback) {
-    window.contributions = function() {
-      callback.apply(null, arguments);
-    };
-    window.location = 'osx:contributions(' + username + ')';
+    Utils.redirect('osx:contributions(' + username + ')');
+    window.contributions = callback;
   };
 
   return GithubApi;
