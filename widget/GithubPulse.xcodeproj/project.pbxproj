@@ -19,6 +19,7 @@
 		5CF9C1F51A537C6E00539044 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CF9C1F41A537C6E00539044 /* NotificationCenter.framework */; };
 		5CF9C1F71A53825000539044 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF9C1F61A53825000539044 /* CustomButton.swift */; };
 		5CF9C1F91A53830A00539044 /* Contributions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF9C1F81A53830A00539044 /* Contributions.swift */; };
+		5CF9C1FC1A5426F200539044 /* icon_notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9C1FB1A5426F200539044 /* icon_notification.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		5CF9C1F61A53825000539044 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		5CF9C1F81A53830A00539044 /* Contributions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contributions.swift; sourceTree = "<group>"; };
 		5CF9C1FA1A53AE2B00539044 /* BridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeHeader.h; sourceTree = "<group>"; };
+		5CF9C1FB1A5426F200539044 /* icon_notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_notification.png; sourceTree = "<group>"; };
 		B2C688CC2B78A1B8230CD0BC /* Pods-GithubPulse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubPulse.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GithubPulse/Pods-GithubPulse.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +97,7 @@
 		5C406D4B1A4F93140005AF61 /* GithubPulse */ = {
 			isa = PBXGroup;
 			children = (
+				5CF9C1FB1A5426F200539044 /* icon_notification.png */,
 				5C1181B41A50D592001E1E13 /* icon.png */,
 				5C406D4E1A4F93140005AF61 /* AppDelegate.swift */,
 				5C406D6D1A4F9FBE0005AF61 /* ContentViewController.swift */,
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C406D721A4FA4DB0005AF61 /* ContentViewController.xib in Resources */,
+				5CF9C1FC1A5426F200539044 /* icon_notification.png in Resources */,
 				5C406D511A4F93140005AF61 /* Images.xcassets in Resources */,
 				5C1181B51A50D592001E1E13 /* icon.png in Resources */,
 				5C406D7E1A4FC7850005AF61 /* front in Resources */,

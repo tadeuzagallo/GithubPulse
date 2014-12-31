@@ -16,6 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var contentViewController:ContentViewController
   var popover:INPopoverController
   var statusItem:NSStatusItem!
+  var statusButton:CustomButton!
   var timer:NSTimer!
   
   override init() {
@@ -29,31 +30,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-    var button = CustomButton(frame: NSRect(x: 0, y: 0, width: 32, height: 24))
-    button.bordered = false
-    button.image = NSImage(named: "icon")
-    button.target = self
-    button.action = "toggle:"
-    button.rightAction = { (_) in
+    self.statusButton = CustomButton(frame: NSRect(x: 0, y: 0, width: 32, height: 24))
+    self.statusButton.bordered = false
+    self.statusButton.image = NSImage(named: "icon")
+    self.statusButton.target = self
+    self.statusButton.action = "toggle:"
+    self.statusButton.rightAction = { (_) in
       self.contentViewController.refresh(nil)
     }
     
     self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(32)
     self.statusItem.title = "Github Pulse"
     self.statusItem.highlightMode = true
-    self.statusItem.view = button
+    self.statusItem.view = self.statusButton
     
-    var now = NSDate()
-    let calendar = NSCalendar.currentCalendar()
-    let components = calendar.components(NSCalendarUnit.CalendarUnitDay|NSCalendarUnit.CalendarUnitHour, fromDate: now)
-    
-    if components.hour > 17 {
-      now = NSDate(timeIntervalSinceNow: 24*60*60)
-    }
-    
-    now = calendar.dateBySettingHour(17, minute: 0, second: 0, ofDate: now, options: nil)!
-    
-    self.timer = NSTimer(fireDate: now, interval: 24*60*60, target: self, selector: "checkForCommits", userInfo: nil, repeats: true)
+    self.timer = NSTimer(fireDate: NSDate(), interval: 15*60, target: self, selector: "checkForCommits", userInfo: nil, repeats: true)
     NSRunLoop.currentRunLoop().addTimer(self.timer, forMode: NSDefaultRunLoopMode)
   }
   
@@ -69,13 +60,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       let username = usernameObject["data"] as String
       
       Contributions.fetch(username) { (_, _, today) in
-        if (today == 0) {
+        self.updateIcon(today)
+        
+        if today == 0 {
+          self.checkForNotification()
+        }
+      }
+    }
+  }
+  
+  func updateIcon(count: Int) {
+    let imageName = count == 0 ? "icon" : "icon_notification"
+    self.statusButton.image = NSImage(named: imageName)
+  }
+  
+  func checkForNotification() {
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    let now = NSDate()
+    let components = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitHour, fromDate: now)
+          
+    if components.hour >= 17 {
+      
+      if let lastNotification = userDefaults.valueForKey("last_notification") as NSDate? {
+      
+        if now.timeIntervalSinceDate(lastNotification) >= 23 * 60 * 60 {
           let notification = NSUserNotification()
           notification.title = "You haven't commited today yet...";
           notification.subtitle = "Rush to keep your streak going!"
           
           let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
           notificationCenter.scheduleNotification(notification)
+          
+          userDefaults.setValue(now, forKey: "last_notification")
         }
       }
     }
