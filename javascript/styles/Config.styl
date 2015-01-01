@@ -10,7 +10,7 @@
   right: 5px;
 
   -webkit-transform: rotate(0deg);
-  -webkit-transition: -webkit-transform .5s ease-in-out;
+  transition: -webkit-transform .5s ease-in-out;
 }
 
 .config__gear.true {
@@ -55,4 +55,30 @@
   margin: 8px 0;
 
   border-bottom: 1px solid #aaa;
+}
+
+
+.panel-enter.panel-enter-active,
+.panel-leave {
+  -webkit-transform: scale(1, 1);
+  transition: -webkit-transform .2s;
+
+  .content {
+    opacity: 1;
+    transition: opacity .15s;
+  }
+}
+
+.panel-enter,
+.panel-leave {
+  -webkit-transform-origin: top right;
+}
+
+.panel-enter,
+.panel-leave.panel-leave-active {
+  -webkit-transform: scale(0.15, 0.25);
+
+  .content {
+    opacity: 0;
+  }
 }

@@ -1,5 +1,7 @@
-var React = require('react');
+var React = require('react/addons');
 var Utils = require('../utils');
+
+var CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 require('../styles/Config');
 
@@ -12,12 +14,14 @@ var Config = React.createClass({
   },
   render() {
     var panel = '';
+    var overlay = '';
 
     if (this.state.open) {
+      overlay = <div onClick={ this._togglePanel } className="config__overlay" />
+
       panel = (
-        <div>
-          <div onClick={ this._togglePanel } className="config__overlay" />
-          <div className="config__panel">
+        <div className="config__panel" key="config__panel">
+          <div className="content">
             <div className="config__item">
               <input
                 id="login"
@@ -40,7 +44,10 @@ var Config = React.createClass({
     return (
       <div className="config">
         <span onClick={ this._togglePanel } className={ 'octicon octicon-gear config__gear ' + this.state.open } />
-        { panel }
+        { overlay }
+        <CSSTransitionGroup transitionName="panel">
+          { panel }
+        </CSSTransitionGroup>
       </div>
     );
   },
