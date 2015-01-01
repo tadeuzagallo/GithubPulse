@@ -2,6 +2,8 @@
 
 Github Pulse is a status bar app for osx to help you keep your streaks, making a commit every day.
 
+It shows a graph of your last month commits and how long is your current streak. Its icon also turns red if you haven't commited today yet, and by the end of the afternoon it'll remember you once, in case you still haven't commited.
+
 ![Screenshot 1](resources/screenshot1.png)
 ![Screenshot 2](resources/screenshot2.png)
 
@@ -53,4 +55,4 @@ Done!
 
 ## Credits and Motivation
 
-I ([@tadeuzagallo](https://github.com/tadeuzagallo)) really believe commiting every day on an open source project is the best practice a developer can keep, so I made this project to show my love to Github and make I sure I never miss a commit! :D
+I really believe commiting every day on an open source project is the best practice a developer can keep, so I made this project to show my love to Github and make I sure I never miss a commit! :D
