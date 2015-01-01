@@ -38,17 +38,19 @@ class Contributions : NSObject, NSXMLParserDelegate {
   }
   
   func calculate() {
-    var length = self.year.count - 1
-    self.today = self.year[length]
-    self.streak = self.today > 0 ? 1 : 0
-    self.commits = Array(self.year[length-29 ... length])
-    
-    for var i = length - 1; i >= 0 && self.year[i] > 0; i-- {
-      self.streak++;
-    }
-    
-    if self.streak == 1 {
-      self.streak = 0
+    if !self.year.isEmpty {
+      var length = self.year.count - 1
+      self.today = self.year[length]
+      self.streak = self.today > 0 ? 1 : 0
+      self.commits = Array(self.year[length-29 ... length])
+      
+      for var i = length - 1; i >= 0 && self.year[i] > 0; i-- {
+        self.streak++;
+      }
+      
+      if self.streak == 1 {
+        self.streak = 0
+      }
     }
   }
   
