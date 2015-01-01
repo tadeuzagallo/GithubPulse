@@ -116,7 +116,7 @@ var Profile = React.createClass({
           if (!success) {
             this.setState({
               _fetchingUserContributions: false,
-              lastUpdatedAt: "No internet connection..."
+              lastUpdatedAt: this.state.lastUpdatedAt.replace(' (offline)', '') + ' (offline)'
             });
             return;
           }
