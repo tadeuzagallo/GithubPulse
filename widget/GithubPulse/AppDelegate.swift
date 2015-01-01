@@ -68,11 +68,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let usernameObject = NSJSONSerialization.JSONObjectWithData(usernameData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
     let username = usernameObject["data"] as String
     
-    Contributions.fetch(username) { (_, _, today) in
-      self.updateIcon(today)
-      
-      if today == 0 {
-        self.checkForNotification()
+    Contributions.fetch(username) { (success, _, _, today) in
+      if success {
+        self.updateIcon(today)
+        
+        if today == 0 {
+          self.checkForNotification()
+        }
       }
     }
   }

@@ -20,8 +20,8 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
   func loadCalls() {
     self.calls = [:]
     self.calls["contributions"] = { (args) in
-      Contributions.fetch(args[0]) { (commits, streak, today) in
-        let _ = self.webView?.stringByEvaluatingJavaScriptFromString("contributions(\(today),\(streak),\(commits))")
+      Contributions.fetch(args[0]) { (success, commits, streak, today) in
+        let _ = self.webView?.stringByEvaluatingJavaScriptFromString("contributions(\(success), \(today),\(streak),\(commits))")
       }
     }
     
@@ -121,6 +121,10 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
       
       let fn = (url as NSString).substringWithRange(match.rangeAtIndex(1))
       let args = (url as NSString).substringWithRange(match.rangeAtIndex(2)).componentsSeparatedByString("%%")
+      
+      #if DEBUG
+        println(fn, args)
+      #endif
       
       let closure = self.calls[fn]
       closure?(args)

@@ -13,27 +13,32 @@ class Contributions : NSObject, NSXMLParserDelegate {
   var commits = [Int]()
   var today = 0
   var streak = 0
+  var succeeded = false
   
-  class func fetch(username: String, completionBlock: (([Int], Int, Int) -> Void)?) {
+  class func fetch(username: String, completionBlock: ((Bool, [Int], Int, Int) -> Void)?) {
     Contributions().fetch(username, completionBlock)
   }
   
-  func fetch(username: String, completionBlock: (([Int], Int, Int) -> Void)?) {
+  func fetch(username: String, completionBlock: ((Bool, [Int], Int, Int) -> Void)!) {
     self.year = [];
     
     let url = NSURL(string: "https://github.com/users/\(username)/contributions")
     let request = NSURLRequest(URL: url!)
     
     NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
-      let parser = NSXMLParser(data: data)
-      parser.delegate = self
-      parser.parse()
-      
-      self.calculate()
-      
-      if completionBlock != nil {
-        completionBlock?(self.commits, self.streak, self.today)
+      if error != nil {
+        self.succeeded = false
+      } else {
+        self.succeeded = true
+        
+        let parser = NSXMLParser(data: data)
+        parser.delegate = self
+        parser.parse()
+        
+        self.calculate()
       }
+      
+      completionBlock(self.succeeded, self.commits, self.streak, self.today)
     }
   }
   

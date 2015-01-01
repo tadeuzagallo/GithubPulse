@@ -28,8 +28,8 @@ window.GithubApi = (function () {
   };
 
   GithubApi.contributions = function (username, callback) {
-    Utils.redirect('osx:contributions(' + username + ')');
     window.contributions = callback;
+    Utils.redirect('osx:contributions(' + username + ')');
   };
 
   return GithubApi;

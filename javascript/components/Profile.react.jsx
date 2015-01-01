@@ -112,7 +112,15 @@ var Profile = React.createClass({
           this.setState({ _fetchingUserContributions: false });
         }
       } else {
-        GithubApi.contributions(username, (today, streak, commits, time) => {
+        GithubApi.contributions(username, (success, today, streak, commits) => {
+          if (!success) {
+            this.setState({
+              _fetchingUserContributions: false,
+              lastUpdatedAt: "No internet connection..."
+            });
+            return;
+          }
+
           var newState = {
             streak: streak,
             commits: commits,
