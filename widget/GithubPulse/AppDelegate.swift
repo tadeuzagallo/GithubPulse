@@ -30,6 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     super.init()
     
     self.contentViewController.addObserver(self, forKeyPath: "username", options: nil, context: &myContext)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "_checkIconNotification:", name: "check_icon", object: nil)
   }
   
   func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -52,6 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
     self.contentViewController.removeObserver(self, forKeyPath: "username")
     self.timer.invalidate()
     self.timer = nil
@@ -124,6 +126,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     self.open = !self.open
+  }
+  
+  func _checkIconNotification(notification:NSNotification) {
+    self.updateIcon(notification.userInfo?["today"] as Int!)
   }
   
   override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {

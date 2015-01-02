@@ -21,6 +21,9 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     self.calls = [:]
     self.calls["contributions"] = { (args) in
       Contributions.fetch(args[0]) { (success, commits, streak, today) in
+        if success {
+          NSNotificationCenter.defaultCenter().postNotificationName("check_icon", object: nil, userInfo: ["today": today])
+        }
         let _ = self.webView?.stringByEvaluatingJavaScriptFromString("contributions(\(success), \(today),\(streak),\(commits))")
       }
     }
