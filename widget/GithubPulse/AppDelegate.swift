@@ -92,19 +92,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let components = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitHour, fromDate: now)
           
     if components.hour >= 17 {
+      var lastNotification = userDefaults.valueForKey("last_notification") as NSDate?
       
-      if let lastNotification = userDefaults.valueForKey("last_notification") as NSDate? {
-      
-        if now.timeIntervalSinceDate(lastNotification) >= 23 * 60 * 60 {
-          let notification = NSUserNotification()
-          notification.title = "You haven't commited today yet...";
-          notification.subtitle = "Rush to keep your streak going!"
-          
-          let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
-          notificationCenter.scheduleNotification(notification)
-          
-          userDefaults.setValue(now, forKey: "last_notification")
-        }
+      if lastNotification == nil || now.timeIntervalSinceDate(lastNotification!) >= 23 * 60 * 60 {
+        let notification = NSUserNotification()
+        notification.title = "You haven't commited today yet...";
+        notification.subtitle = "Rush to keep your streak going!"
+        
+        let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
+        notificationCenter.scheduleNotification(notification)
+        
+        userDefaults.setValue(now, forKey: "last_notification")
       }
     }
   }
