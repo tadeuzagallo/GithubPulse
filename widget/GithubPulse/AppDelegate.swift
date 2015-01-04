@@ -95,7 +95,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     if components.hour >= 18 {
       var lastNotification = userDefaults.valueForKey("last_notification") as NSDate?
       
-      if true || lastNotification == nil || now.timeIntervalSinceDate(lastNotification!) >= 23 * 60 * 60 {
+      if lastNotification == nil || now.timeIntervalSinceDate(lastNotification!) >= 23 * 60 * 60 {
         let notification = NSUserNotification()
         notification.title = "You haven't commited today yet...";
         notification.subtitle = "Rush to keep your streak going!"
