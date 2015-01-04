@@ -91,10 +91,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let now = NSDate()
     let components = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitHour, fromDate: now)
           
-    if components.hour >= 17 {
+
+    if components.hour >= 18 {
       var lastNotification = userDefaults.valueForKey("last_notification") as NSDate?
       
-      if lastNotification == nil || now.timeIntervalSinceDate(lastNotification!) >= 23 * 60 * 60 {
+      if true || lastNotification == nil || now.timeIntervalSinceDate(lastNotification!) >= 23 * 60 * 60 {
         let notification = NSUserNotification()
         notification.title = "You haven't commited today yet...";
         notification.subtitle = "Rush to keep your streak going!"
