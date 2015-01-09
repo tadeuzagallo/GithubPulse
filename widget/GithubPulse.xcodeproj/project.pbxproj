@@ -8,38 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		10DAAD523F5C7C1C6185D6B9 /* libPods-GithubPulse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C97BE66B33F57FE3EF09C1 /* libPods-GithubPulse.a */; };
-		5C1181B51A50D592001E1E13 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1181B41A50D592001E1E13 /* icon.png */; };
-		5C406D4F1A4F93140005AF61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C406D4E1A4F93140005AF61 /* AppDelegate.swift */; };
-		5C406D511A4F93140005AF61 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C406D501A4F93140005AF61 /* Images.xcassets */; };
-		5C406D541A4F93140005AF61 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C406D521A4F93140005AF61 /* MainMenu.xib */; };
-		5C406D6E1A4F9FBE0005AF61 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C406D6D1A4F9FBE0005AF61 /* ContentViewController.swift */; };
-		5C406D701A4FA0CC0005AF61 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C406D6F1A4FA0CC0005AF61 /* WebKit.framework */; };
-		5C406D721A4FA4DB0005AF61 /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C406D711A4FA4DB0005AF61 /* ContentViewController.xib */; };
 		5C406D7E1A4FC7850005AF61 /* front in Resources */ = {isa = PBXBuildFile; fileRef = 5C406D7D1A4FC7850005AF61 /* front */; };
-		5CF9C1F51A537C6E00539044 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CF9C1F41A537C6E00539044 /* NotificationCenter.framework */; };
-		5CF9C1F71A53825000539044 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF9C1F61A53825000539044 /* CustomButton.swift */; };
-		5CF9C1F91A53830A00539044 /* Contributions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF9C1F81A53830A00539044 /* Contributions.swift */; };
-		5CF9C1FC1A5426F200539044 /* icon_notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9C1FB1A5426F200539044 /* icon_notification.png */; };
+		5CFF3A161A603B26001B3536 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF3A031A603B25001B3536 /* CustomButton.swift */; };
+		5CFF3A171A603B26001B3536 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF3A051A603B25001B3536 /* ContentViewController.swift */; };
+		5CFF3A181A603B26001B3536 /* Contributions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF3A071A603B25001B3536 /* Contributions.swift */; };
+		5CFF3A191A603B26001B3536 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF3A091A603B25001B3536 /* AppDelegate.swift */; };
+		5CFF3A1A1A603B26001B3536 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CFF3A0D1A603B25001B3536 /* icon.png */; };
+		5CFF3A1B1A603B26001B3536 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CFF3A0E1A603B25001B3536 /* icon@2x.png */; };
+		5CFF3A1C1A603B26001B3536 /* icon_notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CFF3A0F1A603B25001B3536 /* icon_notification.png */; };
+		5CFF3A1D1A603B26001B3536 /* icon_notification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CFF3A101A603B25001B3536 /* icon_notification@2x.png */; };
+		5CFF3A1E1A603B26001B3536 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CFF3A111A603B25001B3536 /* Images.xcassets */; };
+		5CFF3A201A603B26001B3536 /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CFF3A141A603B26001B3536 /* ContentViewController.xib */; };
+		5CFF3A211A603B26001B3536 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CFF3A151A603B26001B3536 /* MainMenu.xib */; };
+		5CFF3A231A603B45001B3536 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CFF3A221A603B45001B3536 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		43C97BE66B33F57FE3EF09C1 /* libPods-GithubPulse.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GithubPulse.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		537663C2FEED19D550D9B685 /* Pods-GithubPulse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubPulse.release.xcconfig"; path = "Pods/Target Support Files/Pods-GithubPulse/Pods-GithubPulse.release.xcconfig"; sourceTree = "<group>"; };
-		5C1181B41A50D592001E1E13 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		5C406D491A4F93140005AF61 /* GithubPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5C406D4D1A4F93140005AF61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C406D4E1A4F93140005AF61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5C406D501A4F93140005AF61 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		5C406D531A4F93140005AF61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		5C406D6D1A4F9FBE0005AF61 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
-		5C406D6F1A4FA0CC0005AF61 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		5C406D711A4FA4DB0005AF61 /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
 		5C406D7D1A4FC7850005AF61 /* front */ = {isa = PBXFileReference; lastKnownFileType = folder; name = front; path = ../front; sourceTree = "<group>"; };
-		5CF9C1F41A537C6E00539044 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		5CF9C1F61A53825000539044 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		5CF9C1F81A53830A00539044 /* Contributions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contributions.swift; sourceTree = "<group>"; };
-		5CF9C1FA1A53AE2B00539044 /* BridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeHeader.h; sourceTree = "<group>"; };
-		5CF9C1FB1A5426F200539044 /* icon_notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_notification.png; sourceTree = "<group>"; };
+		5CFF3A031A603B25001B3536 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		5CFF3A051A603B25001B3536 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		5CFF3A071A603B25001B3536 /* Contributions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contributions.swift; sourceTree = "<group>"; };
+		5CFF3A091A603B25001B3536 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5CFF3A0A1A603B25001B3536 /* BridgeHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeHeader.h; sourceTree = "<group>"; };
+		5CFF3A0D1A603B25001B3536 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		5CFF3A0E1A603B25001B3536 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		5CFF3A0F1A603B25001B3536 /* icon_notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_notification.png; sourceTree = "<group>"; };
+		5CFF3A101A603B25001B3536 /* icon_notification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_notification@2x.png"; sourceTree = "<group>"; };
+		5CFF3A111A603B25001B3536 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5CFF3A121A603B25001B3536 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5CFF3A141A603B26001B3536 /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
+		5CFF3A151A603B26001B3536 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		5CFF3A221A603B45001B3536 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		B2C688CC2B78A1B8230CD0BC /* Pods-GithubPulse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubPulse.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GithubPulse/Pods-GithubPulse.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -48,8 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CF9C1F51A537C6E00539044 /* NotificationCenter.framework in Frameworks */,
-				5C406D701A4FA0CC0005AF61 /* WebKit.framework in Frameworks */,
+				5CFF3A231A603B45001B3536 /* WebKit.framework in Frameworks */,
 				10DAAD523F5C7C1C6185D6B9 /* libPods-GithubPulse.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,6 +61,7 @@
 		34E85245A6050C883BA59349 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5CFF3A221A603B45001B3536 /* WebKit.framework */,
 				43C97BE66B33F57FE3EF09C1 /* libPods-GithubPulse.a */,
 			);
 			name = Frameworks;
@@ -77,7 +79,6 @@
 		5C406D401A4F93140005AF61 = {
 			isa = PBXGroup;
 			children = (
-				5CF9C1F41A537C6E00539044 /* NotificationCenter.framework */,
 				5C406D7D1A4FC7850005AF61 /* front */,
 				5C406D4B1A4F93140005AF61 /* GithubPulse */,
 				5C406D4A1A4F93140005AF61 /* Products */,
@@ -97,28 +98,77 @@
 		5C406D4B1A4F93140005AF61 /* GithubPulse */ = {
 			isa = PBXGroup;
 			children = (
-				5CF9C1FB1A5426F200539044 /* icon_notification.png */,
-				5C1181B41A50D592001E1E13 /* icon.png */,
-				5C406D4E1A4F93140005AF61 /* AppDelegate.swift */,
-				5C406D6D1A4F9FBE0005AF61 /* ContentViewController.swift */,
-				5CF9C1F81A53830A00539044 /* Contributions.swift */,
-				5CF9C1F61A53825000539044 /* CustomButton.swift */,
-				5C406D711A4FA4DB0005AF61 /* ContentViewController.xib */,
-				5C406D501A4F93140005AF61 /* Images.xcassets */,
-				5C406D521A4F93140005AF61 /* MainMenu.xib */,
-				5C406D4C1A4F93140005AF61 /* Supporting Files */,
-				5CF9C1FA1A53AE2B00539044 /* BridgeHeader.h */,
+				5CFF3A021A603B25001B3536 /* Components */,
+				5CFF3A041A603B25001B3536 /* Controllers */,
+				5CFF3A061A603B25001B3536 /* Models */,
+				5CFF3A081A603B25001B3536 /* Other Sources */,
+				5CFF3A0B1A603B25001B3536 /* Resources */,
+				5CFF3A131A603B25001B3536 /* Views */,
 			);
 			path = GithubPulse;
 			sourceTree = "<group>";
 		};
-		5C406D4C1A4F93140005AF61 /* Supporting Files */ = {
+		5CFF3A021A603B25001B3536 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				5C406D6F1A4FA0CC0005AF61 /* WebKit.framework */,
-				5C406D4D1A4F93140005AF61 /* Info.plist */,
+				5CFF3A031A603B25001B3536 /* CustomButton.swift */,
 			);
-			name = "Supporting Files";
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5CFF3A041A603B25001B3536 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5CFF3A051A603B25001B3536 /* ContentViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5CFF3A061A603B25001B3536 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5CFF3A071A603B25001B3536 /* Contributions.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5CFF3A081A603B25001B3536 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				5CFF3A091A603B25001B3536 /* AppDelegate.swift */,
+				5CFF3A0A1A603B25001B3536 /* BridgeHeader.h */,
+			);
+			path = "Other Sources";
+			sourceTree = "<group>";
+		};
+		5CFF3A0B1A603B25001B3536 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5CFF3A0C1A603B25001B3536 /* Images */,
+				5CFF3A111A603B25001B3536 /* Images.xcassets */,
+				5CFF3A121A603B25001B3536 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5CFF3A0C1A603B25001B3536 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5CFF3A0D1A603B25001B3536 /* icon.png */,
+				5CFF3A0E1A603B25001B3536 /* icon@2x.png */,
+				5CFF3A0F1A603B25001B3536 /* icon_notification.png */,
+				5CFF3A101A603B25001B3536 /* icon_notification@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		5CFF3A131A603B25001B3536 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5CFF3A141A603B26001B3536 /* ContentViewController.xib */,
+				5CFF3A151A603B26001B3536 /* MainMenu.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,12 +230,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C406D721A4FA4DB0005AF61 /* ContentViewController.xib in Resources */,
-				5CF9C1FC1A5426F200539044 /* icon_notification.png in Resources */,
-				5C406D511A4F93140005AF61 /* Images.xcassets in Resources */,
-				5C1181B51A50D592001E1E13 /* icon.png in Resources */,
+				5CFF3A1D1A603B26001B3536 /* icon_notification@2x.png in Resources */,
+				5CFF3A1A1A603B26001B3536 /* icon.png in Resources */,
 				5C406D7E1A4FC7850005AF61 /* front in Resources */,
-				5C406D541A4F93140005AF61 /* MainMenu.xib in Resources */,
+				5CFF3A1E1A603B26001B3536 /* Images.xcassets in Resources */,
+				5CFF3A201A603B26001B3536 /* ContentViewController.xib in Resources */,
+				5CFF3A1B1A603B26001B3536 /* icon@2x.png in Resources */,
+				5CFF3A1C1A603B26001B3536 /* icon_notification.png in Resources */,
+				5CFF3A211A603B26001B3536 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,25 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C406D6E1A4F9FBE0005AF61 /* ContentViewController.swift in Sources */,
-				5CF9C1F91A53830A00539044 /* Contributions.swift in Sources */,
-				5C406D4F1A4F93140005AF61 /* AppDelegate.swift in Sources */,
-				5CF9C1F71A53825000539044 /* CustomButton.swift in Sources */,
+				5CFF3A191A603B26001B3536 /* AppDelegate.swift in Sources */,
+				5CFF3A181A603B26001B3536 /* Contributions.swift in Sources */,
+				5CFF3A171A603B26001B3536 /* ContentViewController.swift in Sources */,
+				5CFF3A161A603B26001B3536 /* CustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		5C406D521A4F93140005AF61 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5C406D531A4F93140005AF61 /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5C406D611A4F93140005AF61 /* Debug */ = {
@@ -333,11 +374,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = GithubPulse/Info.plist;
+				INFOPLIST_FILE = GithubPulse/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = GithubPulse/BridgeHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "GithubPulse/Other Sources/BridgeHeader.h";
 			};
 			name = Debug;
 		};
@@ -347,10 +388,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = GithubPulse/Info.plist;
+				INFOPLIST_FILE = GithubPulse/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = GithubPulse/BridgeHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "GithubPulse/Other Sources/BridgeHeader.h";
 			};
 			name = Release;
 		};
