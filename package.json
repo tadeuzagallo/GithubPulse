@@ -1,6 +1,6 @@
 {
   "name": "github_pulse",
-  "version": "0.0.0",
+  "version": "0.2.4",
   "description": "",
   "main": "",
   "scripts": {
@@ -11,6 +11,7 @@
   "devDependencies": {
     "chart.js": "nnnick/Chart.js",
     "css-loader": "^0.9.0",
+    "json-loader": "^0.5.1",
     "jsx-loader": "^0.12.2",
     "nib": "^1.0.4",
     "object-assign": "^2.0.0",

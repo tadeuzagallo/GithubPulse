@@ -6,6 +6,7 @@ var ProfileInfo = require('./ProfileInfo.react');
 var ActivityGraph = require('./ActivityGraph.react');
 var Stats = require('./Stats.react');
 var Config = require('./Config.react');
+var pkg = require('../../package.json');
 
 require('../styles/Profile')
 
@@ -54,6 +55,9 @@ var Profile = React.createClass({
           <small>
             <span>Last updated at:&nbsp;</span>
             <strong>{ this.state.lastUpdatedAt }</strong>
+          </small>
+          <small className="version">
+            v{ pkg.version }
           </small>
         </div>
       </div>
