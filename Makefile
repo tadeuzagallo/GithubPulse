@@ -1,5 +1,5 @@
-release: front
-	$(MAKE) -C ./widget release
+release: build_front
+	$(MAKE) -C ./widget -B release
 
-front:
-	$(MAKE) -C ./front build
+build_front:
+	$(MAKE) -C ./front -B build
