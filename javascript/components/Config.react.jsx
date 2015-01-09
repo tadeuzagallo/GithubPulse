@@ -9,7 +9,8 @@ var Config = React.createClass({
   getInitialState() {
     return {
       open: false,
-      active: false
+      active: false,
+      notify: false
     };
   },
   render() {
@@ -30,6 +31,16 @@ var Config = React.createClass({
                 checked={ this.state.active }
                 onChange={ this._toggleActive } />
               <label htmlFor="login">Launch at startup</label>
+            </div>
+            <div className="config__separator"/>
+            <div className="config__item">
+              <input
+                id="notify"
+                className="config__startup"
+                type="checkbox"
+                checked={ this.state.notify }
+                onChange={ this._toggleNotifications } />
+              <label htmlFor="notify">Remind me to contribute</label>
             </div>
             <div className="config__separator"/>
             <div className="config__item" onClick={ this._quit }>
@@ -55,10 +66,19 @@ var Config = React.createClass({
     Utils.raw('check_login()', (active) => {
       this.setState({ active: active });
     });
+
+    Utils.fetch('dont_notify', (dontNotify) => {
+      this.setState({ notify: !dontNotify });
+    });
   },
   _toggleActive() {
     this.setState({ active: !this.state.active });
     Utils.raw('toggle_login()');
+  },
+  _toggleNotifications() {
+    var notify = !this.state.notify;
+    this.setState({ notify: notify });
+    Utils.save('dont_notify', !notify);
   },
   _togglePanel() {
     this.setState({ open: !this.state.open });

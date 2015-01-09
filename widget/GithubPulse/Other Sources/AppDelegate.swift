@@ -60,21 +60,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func checkForCommits() {
-    if let username = NSUserDefaults.standardUserDefaults().valueForKey("username") as String? {
+    if let username = parseData("username") as String? {
       self.fetchCommits(username)
     }
   }
   
-  func fetchCommits(usernameString: String) {
-    let usernameData = usernameString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
-    let usernameObject = NSJSONSerialization.JSONObjectWithData(usernameData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
-    let username = usernameObject["data"] as String
+  func parseData(key: String) -> AnyObject? {
+    if let input = NSUserDefaults.standardUserDefaults().valueForKey(key) as String? {
+      if let data = input.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+        if let object = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary? {
+          return object["data"]
+        }
+      }
+    }
+    
+    return nil
+  }
+  
+  func fetchCommits(username: String) {
+    let dontNotify = parseData("dont_notify") as Bool?
     
     Contributions.fetch(username) { (success, _, _, today) in
       if success {
         self.updateIcon(today)
         
-        if today == 0 {
+        
+        if today == 0 && (dontNotify == nil || !dontNotify!) {
           self.checkForNotification()
         }
       }
