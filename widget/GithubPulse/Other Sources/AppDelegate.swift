@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     super.init()
     
-    self.contentViewController.addObserver(self, forKeyPath: "username", options: nil, context: &myContext)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "_checkUsernameNotification:", name: "check_username", object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "_checkIconNotification:", name: "check_icon", object: nil)
     NSDistributedNotificationCenter.defaultCenter().addObserver(self, selector: "_darkModeChanged:", name: "AppleInterfaceThemeChangedNotification", object: nil)
 
@@ -57,7 +57,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
     NSDistributedNotificationCenter.defaultCenter().removeObserver(self)
-    self.contentViewController.removeObserver(self, forKeyPath: "username")
     self.timer.invalidate()
     self.timer = nil
   }
@@ -169,15 +168,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     self.updateIcon(-1)
   }
   
-  override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-    if context == &myContext {
-      if let username = self.parseData("username") as String? {
-        self.fetchCommits(username)
-      } else {
-        self.updateIcon(1)
-      }
+  func _checkUsernameNotification(notification:NSNotification) {
+    if let username = self.parseData("username") as String? {
+      self.fetchCommits(username)
     } else {
-      super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+      self.updateIcon(1)
     }
   }
 }

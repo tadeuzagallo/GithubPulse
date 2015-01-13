@@ -12,7 +12,6 @@ import WebKit
 class ContentViewController: NSViewController, NSXMLParserDelegate {
   @IBOutlet weak var webView:WebView?
   @IBOutlet weak var lastUpdate:NSTextField?
-  dynamic var username:String?
   
   var regex = NSRegularExpression(pattern: "^osx:(\\w+)\\((.*)\\)$", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
   var calls: [String: [String] -> Void]
@@ -29,11 +28,12 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     }
     
     self.calls["set"] = { (args) in
-      
-      NSUserDefaults.standardUserDefaults().setValue(args[1], forKey: args[0])
+      let userDefaults = NSUserDefaults.standardUserDefaults()
+      userDefaults.setValue(args[1], forKey: args[0])
+      userDefaults.synchronize()
       
       if args[0] == "username" {
-        self.username = args[1]
+        NSNotificationCenter.defaultCenter().postNotificationName("check_username", object: self, userInfo: nil)
       }
       
     }
@@ -52,12 +52,13 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     }
     
     self.calls["remove"] = { (args) in
+      let userDefaults = NSUserDefaults.standardUserDefaults()
+      userDefaults.removeObjectForKey(args[0])
+      userDefaults.synchronize()
       
       if args[0] == "username" {
-        self.username = nil
+        NSNotificationCenter.defaultCenter().postNotificationName("check_username", object: self, userInfo: nil)
       }
-      
-      NSUserDefaults.standardUserDefaults().removeObjectForKey(args[0])
     }
     
     self.calls["check_login"] = { (args) in
