@@ -4,19 +4,24 @@ PODS:
 
 DEPENDENCIES:
   - INPopoverController (from `https://github.com/indragiek/INPopoverController.git`)
-  - IYLoginItem
+  - IYLoginItem (from `https://github.com/ianyh/IYLoginItem.git`)
 
 EXTERNAL SOURCES:
   INPopoverController:
     :git: https://github.com/indragiek/INPopoverController.git
+  IYLoginItem:
+    :git: https://github.com/ianyh/IYLoginItem.git
 
 CHECKOUT OPTIONS:
   INPopoverController:
     :commit: 3564f98827415c858766720c0d0d3092c989b78d
     :git: https://github.com/indragiek/INPopoverController.git
+  IYLoginItem:
+    :commit: 937cbed76598b5c0666d20d760507c7f2d473f86
+    :git: https://github.com/ianyh/IYLoginItem.git
 
 SPEC CHECKSUMS:
-  INPopoverController: 98d3a1678f0e986ed47b22c22ad39994617c6ad1
-  IYLoginItem: dbdbc4636da5087b200f68456aa4367a1af35c1d
+  INPopoverController: e4c315804b6d227c84a6dd64adf6732600b659fc
+  IYLoginItem: e57a86b39d3b9ab0e2fc033adedae01efafd9adf
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.0.beta.1
