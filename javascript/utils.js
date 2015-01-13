@@ -1,4 +1,4 @@
-var Utils = (function () {
+window.Utils = (function () {
   var Utils = {};
 
   var queue = [];
@@ -99,7 +99,10 @@ var Utils = (function () {
     Utils.redirect('osx:remove(' + key + ')');
   };
 
+  Utils.contributions = function (username, callback) {
+    window.contributions = callback;
+    Utils.redirect('osx:contributions(' + username + ')');
+  };
+
   return Utils;
 })();
-
-module.exports = Utils;

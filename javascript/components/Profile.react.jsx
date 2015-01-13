@@ -1,6 +1,5 @@
 var React = require('react');
 var GithubApi = require('../github-api');
-var Utils = require('../utils');
 
 var ProfileInfo = require('./ProfileInfo.react');
 var ActivityGraph = require('./ActivityGraph.react');
@@ -116,7 +115,7 @@ var Profile = React.createClass({
           this.setState({ _fetchingUserContributions: false });
         }
       } else {
-        GithubApi.contributions(username, (success, today, streak, commits) => {
+        Utils.contributions(username, (success, today, streak, commits) => {
           if (!success) {
             this.setState({
               _fetchingUserContributions: false,

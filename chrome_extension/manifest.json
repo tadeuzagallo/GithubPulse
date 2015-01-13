@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "GithubPulse",
+  "description": "OS X StatusBar app to help you remember to contribute every day on Github",
+  "version": "0.2.7",
+
+  "permissions": [
+    "https://*/"
+  ],
+  "browser_action": {
+    "default_icon": "images/icon19.png",
+    "default_popup": "front/index.html"
+  }
+}

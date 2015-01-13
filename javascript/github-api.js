@@ -1,38 +1,27 @@
-var Utils = require('./utils');
+var GithubApi = {};
+GithubApi.host = 'https://api.github.com';
 
-window.GithubApi = (function () {
-  var GithubApi = {};
-  GithubApi.host = 'https://api.github.com';
-
-  var request = function (method, path, callback) {
-    var request = new XMLHttpRequest();
-    request.onload = function () {
-      var result = request.responseText;
-      if (~request.getResponseHeader('content-type').indexOf('json')) {
-        result = JSON.parse(result);
-      }
-      callback(null, result);
-    };
-    request.onerror = function (err) {
-      callback(err, null);
-    };
-    request.open(method, GithubApi.host + '/' + path, true);
-    request.send();
+var request = function (method, path, callback) {
+  var request = new XMLHttpRequest();
+  request.onload = function () {
+    var result = request.responseText;
+    if (~request.getResponseHeader('content-type').indexOf('json')) {
+      result = JSON.parse(result);
+    }
+    callback(null, result);
   };
-
-  GithubApi.get = function () {
-    var args = [].slice.call(arguments);
-    var callback = args.pop();
-    var path = args.join('/');
-    request('GET', path, callback);
+  request.onerror = function (err) {
+    callback(err, null);
   };
+  request.open(method, GithubApi.host + '/' + path, true);
+  request.send();
+};
 
-  GithubApi.contributions = function (username, callback) {
-    window.contributions = callback;
-    Utils.redirect('osx:contributions(' + username + ')');
-  };
-
-  return GithubApi;
-})();
+GithubApi.get = function () {
+  var args = [].slice.call(arguments);
+  var callback = args.pop();
+  var path = args.join('/');
+  request('GET', path, callback);
+};
 
 module.exports = GithubApi;

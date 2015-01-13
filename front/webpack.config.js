@@ -1,5 +1,10 @@
+var utils = {
+  osx: '../javascript/utils.js',
+  chrome: '../chrome_extension/js/utils.js'
+};
+
 module.exports = {
-  entry: "../javascript/main.jsx",
+  entry: [utils[process.env.TARGET], '../javascript/main.jsx'],
   output: {
     filename: "public/bundle.js"
   },

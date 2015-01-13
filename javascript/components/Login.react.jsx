@@ -2,7 +2,6 @@ var React = require('react');
 var Navigation = require('react-router').Navigation;
 var assign = require('object-assign');
 
-var Utils = require('../utils');
 var GithubApi = require('../github-api');
 var Config = require('./Config.react');
 

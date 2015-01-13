@@ -1,6 +1,5 @@
 var React = require('react');
 var Router = require('react-router');
-var Utils = require('../utils');
 
 var Link = Router.Link;
 

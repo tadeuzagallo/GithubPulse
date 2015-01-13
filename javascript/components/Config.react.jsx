@@ -1,5 +1,4 @@
 var React = require('react/addons');
-var Utils = require('../utils');
 
 var CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
