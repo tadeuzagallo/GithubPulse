@@ -53,7 +53,8 @@ var Config = React.createClass({
 
     return (
       <div className="config">
-        <span onClick={ this._togglePanel } className={ 'octicon octicon-gear config__gear ' + this.state.open } />
+        <img src="images/gear.svg" onClick={ this._togglePanel } className={ 'config__gear ' + this.state.open } />
+
         { overlay }
         <CSSTransitionGroup transitionName="panel">
           { panel }
