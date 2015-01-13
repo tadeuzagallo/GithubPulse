@@ -38,7 +38,7 @@ As mentioned above I'm using Swift and React, so you'll need to have XCode 6+ in
 
 * Clone the repo: `$ git clone https://github.com/tadeuzagallo/GithubPulse.git`
 * Install the npm dependencies: `$ npm install`
-* Install the pods: `$ cd widget && pod install`
+* Install the pods: `$ cd widget && pod install`. If you haven't used pod before, you will need to run `pod setup` first.
 
 ### Debug building
 
