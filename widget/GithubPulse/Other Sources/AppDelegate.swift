@@ -31,6 +31,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     self.contentViewController.addObserver(self, forKeyPath: "username", options: nil, context: &myContext)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "_checkIconNotification:", name: "check_icon", object: nil)
+    NSDistributedNotificationCenter.defaultCenter().addObserver(self, selector: "_darkModeChanged:", name: "AppleInterfaceThemeChangedNotification", object: nil)
+
   }
   
   func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -54,6 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
+    NSDistributedNotificationCenter.defaultCenter().removeObserver(self)
     self.contentViewController.removeObserver(self, forKeyPath: "username")
     self.timer.invalidate()
     self.timer = nil
@@ -92,7 +95,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
   
-  func updateIcon(count: Int) {
+  var lastIconCount = 0
+  func updateIcon(_count: Int) {
+    var count:Int
+    
+    if _count == -1 {
+      count = self.lastIconCount
+    } else {
+      count = _count
+      self.lastIconCount = count
+    }
+    
     var imageName = count == 0 ?  "icon_notification" : "icon"
     
     if let domain = NSUserDefaults.standardUserDefaults().persistentDomainForName(NSGlobalDomain) {
@@ -150,6 +163,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
   func _checkIconNotification(notification:NSNotification) {
     self.updateIcon(notification.userInfo?["today"] as Int!)
+  }
+  
+  func _darkModeChanged(notification:NSNotification) {
+    self.updateIcon(-1)
   }
   
   override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
