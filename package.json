@@ -1,7 +1,7 @@
 {
-  "name": "github_pulse",
+  "name": "GithubPulse",
   "version": "0.2.7",
-  "description": "",
+  "description": "OS X StatusBar app to help you remember to contribute every day on Github",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
