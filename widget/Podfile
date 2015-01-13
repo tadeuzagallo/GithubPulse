@@ -3,7 +3,7 @@
 
 target 'GithubPulse' do
 
-pod 'IYLoginItem'
+pod 'IYLoginItem', git: 'https://github.com/ianyh/IYLoginItem.git'
 pod 'INPopoverController', git: 'https://github.com/indragiek/INPopoverController.git'
 
 end
