@@ -36,9 +36,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     self.statusButton = CustomButton(frame: NSRect(x: 0, y: 0, width: 32, height: 24))
     self.statusButton.bordered = false
-    self.statusButton.image = NSImage(named: "icon")
     self.statusButton.target = self
     self.statusButton.action = "toggle:"
+    self.updateIcon(1)
     self.statusButton.rightAction = { (_) in
       self.contentViewController.refresh(nil)
     }
@@ -93,7 +93,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func updateIcon(count: Int) {
-    let imageName = count == 0 ?  "icon_notification" : "icon"
+    var imageName = count == 0 ?  "icon_notification" : "icon"
+    
+    if let domain = NSUserDefaults.standardUserDefaults().persistentDomainForName(NSGlobalDomain) {
+      if let style = domain["AppleInterfaceStyle"] as String? {
+        if style == "Dark" {
+          imageName += "_dark"
+        }
+      }
+    }
+    
     self.statusButton.image = NSImage(named: imageName)
   }
   

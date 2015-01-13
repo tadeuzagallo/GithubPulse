@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		10DAAD523F5C7C1C6185D6B9 /* libPods-GithubPulse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C97BE66B33F57FE3EF09C1 /* libPods-GithubPulse.a */; };
 		5C406D7E1A4FC7850005AF61 /* front in Resources */ = {isa = PBXBuildFile; fileRef = 5C406D7D1A4FC7850005AF61 /* front */; };
+		5C6F3C6B1A65782E00181655 /* icon_notification_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C6F3C671A65782E00181655 /* icon_notification_dark.png */; };
+		5C6F3C6C1A65782E00181655 /* icon_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C6F3C681A65782E00181655 /* icon_dark.png */; };
+		5C6F3C6D1A65782E00181655 /* icon_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C6F3C691A65782E00181655 /* icon_dark@2x.png */; };
+		5C6F3C6E1A65782E00181655 /* icon_notification_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C6F3C6A1A65782E00181655 /* icon_notification_dark@2x.png */; };
 		5CFF3A161A603B26001B3536 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF3A031A603B25001B3536 /* CustomButton.swift */; };
 		5CFF3A171A603B26001B3536 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF3A051A603B25001B3536 /* ContentViewController.swift */; };
 		5CFF3A181A603B26001B3536 /* Contributions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF3A071A603B25001B3536 /* Contributions.swift */; };
@@ -28,6 +32,10 @@
 		537663C2FEED19D550D9B685 /* Pods-GithubPulse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubPulse.release.xcconfig"; path = "Pods/Target Support Files/Pods-GithubPulse/Pods-GithubPulse.release.xcconfig"; sourceTree = "<group>"; };
 		5C406D491A4F93140005AF61 /* GithubPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C406D7D1A4FC7850005AF61 /* front */ = {isa = PBXFileReference; lastKnownFileType = folder; name = front; path = ../front; sourceTree = "<group>"; };
+		5C6F3C671A65782E00181655 /* icon_notification_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_notification_dark.png; sourceTree = "<group>"; };
+		5C6F3C681A65782E00181655 /* icon_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_dark.png; sourceTree = "<group>"; };
+		5C6F3C691A65782E00181655 /* icon_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_dark@2x.png"; sourceTree = "<group>"; };
+		5C6F3C6A1A65782E00181655 /* icon_notification_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_notification_dark@2x.png"; sourceTree = "<group>"; };
 		5CFF3A031A603B25001B3536 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		5CFF3A051A603B25001B3536 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		5CFF3A071A603B25001B3536 /* Contributions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contributions.swift; sourceTree = "<group>"; };
@@ -154,6 +162,10 @@
 		5CFF3A0C1A603B25001B3536 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C6F3C671A65782E00181655 /* icon_notification_dark.png */,
+				5C6F3C681A65782E00181655 /* icon_dark.png */,
+				5C6F3C691A65782E00181655 /* icon_dark@2x.png */,
+				5C6F3C6A1A65782E00181655 /* icon_notification_dark@2x.png */,
 				5CFF3A0D1A603B25001B3536 /* icon.png */,
 				5CFF3A0E1A603B25001B3536 /* icon@2x.png */,
 				5CFF3A0F1A603B25001B3536 /* icon_notification.png */,
@@ -232,12 +244,16 @@
 			files = (
 				5CFF3A1D1A603B26001B3536 /* icon_notification@2x.png in Resources */,
 				5CFF3A1A1A603B26001B3536 /* icon.png in Resources */,
+				5C6F3C6C1A65782E00181655 /* icon_dark.png in Resources */,
 				5C406D7E1A4FC7850005AF61 /* front in Resources */,
 				5CFF3A1E1A603B26001B3536 /* Images.xcassets in Resources */,
 				5CFF3A201A603B26001B3536 /* ContentViewController.xib in Resources */,
 				5CFF3A1B1A603B26001B3536 /* icon@2x.png in Resources */,
+				5C6F3C6B1A65782E00181655 /* icon_notification_dark.png in Resources */,
 				5CFF3A1C1A603B26001B3536 /* icon_notification.png in Resources */,
 				5CFF3A211A603B26001B3536 /* MainMenu.xib in Resources */,
+				5C6F3C6E1A65782E00181655 /* icon_notification_dark@2x.png in Resources */,
+				5C6F3C6D1A65782E00181655 /* icon_dark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
