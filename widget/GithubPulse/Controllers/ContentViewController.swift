@@ -30,11 +30,12 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     
     self.calls["set"] = { (args) in
       
+      NSUserDefaults.standardUserDefaults().setValue(args[1], forKey: args[0])
+      
       if args[0] == "username" {
         self.username = args[1]
       }
       
-      NSUserDefaults.standardUserDefaults().setValue(args[1], forKey: args[0])
     }
     
     self.calls["get"] = { (args) in
