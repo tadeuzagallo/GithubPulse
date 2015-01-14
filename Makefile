@@ -1,5 +1,6 @@
-release: build_front
+osx:
+	TARGET=osx $(MAKE) -C ./front -B build
 	$(MAKE) -C ./widget -B release
 
-build_front:
-	$(MAKE) -C ./front -B build
+chrome:
+	TARGET=chrome $(MAKE) -C ./front -B build
