@@ -15,7 +15,9 @@ window.Utils = (function () {
       data: value
     });
 
-    localStorage.setItem(key, value);
+    var data = {};
+    data[key] = value;
+    chrome.storage.sync.set(data);
   };
 
   Utils.fetch = function (key, expiration, callback) {
@@ -28,23 +30,25 @@ window.Utils = (function () {
       expiration = undefined;
     }
 
-    var value = localStorage.getItem(key);
+    chrome.storage.sync.get(key, function (r) {
+      var value = r[key];
 
-    var item = value && JSON.parse(value);
-    var time = null;
+      var item = value && JSON.parse(value);
+      var time = null;
 
-    if (expiration !== -1 && item && Date.now() - item.time > expiration) {
-      item = null;
-    } else if (item) {
-      time = item.time;
-      item = item.data;
-    }
+      if (expiration !== -1 && item && Date.now() - item.time > expiration) {
+        item = null;
+      } else if (item) {
+        time = item.time;
+        item = item.data;
+      }
 
-    if (key.indexOf('user_contributions') === 0 && item) {
-      this.updateIcon(item.today);
-    }
+      if (key.indexOf('user_contributions') === 0 && item) {
+        Utils.updateIcon(item.today);
+      }
 
-    callback(item, time);
+      callback(item, time);
+    });
   };
 
   Utils.raw = function (expression, callback) {
@@ -65,7 +69,7 @@ window.Utils = (function () {
       this.updateIcon(1);
     }
 
-    localStorage.removeItem(key);
+    chrome.storage.sync.remove(key);
   };
 
   Utils.contributions = function (username, callback) {
