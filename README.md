@@ -2,7 +2,7 @@
 
 Github Pulse is an app to help you keep your streaks, making a commit every day.
 
-It shows a graph of your last month commits and how long is your current streak. Its icon also turns red if you haven't commited today yet, and by the end of the afternoon it'll remember you once, in case you still haven't commited.
+It shows a graph of your last month commits and how long is your current streak. Its icon also turns red if you haven't commited today yet, and by the end of the afternoon it'll remind you once, in case you still haven't commited.
 
 ![Screenshot 1](resources/screenshot1.png)
 ![Screenshot 2](resources/screenshot2.png)
