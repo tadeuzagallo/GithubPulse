@@ -84,7 +84,7 @@ var Config = React.createClass({
     this.setState({ open: !this.state.open });
   },
   _quit() {
-    Utils.raw('quit()');
+    Utils.quit();
   }
 });
 

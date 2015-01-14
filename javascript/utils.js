@@ -104,5 +104,9 @@ window.Utils = (function () {
     Utils.redirect('osx:contributions(' + username + ')');
   };
 
+  Utils.quit = function () {
+    this.raw('quit()');
+  };
+
   return Utils;
 })();

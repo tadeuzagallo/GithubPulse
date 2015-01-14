@@ -111,6 +111,32 @@ window.Utils = (function () {
     });
   };
 
+  Utils.terminate = function () {
+    chrome.management.setEnabled(chrome.i18n.getMessage("@@extension_id"), false);
+    window.close();
+  };
+
+  Utils.quit = function () {
+    chrome.notifications.create('bye', {
+      type: 'basic',
+      iconUrl: '../images/icons/icon128.png',
+      title: 'Github Pulse is being disabled...',
+      message: 'To re-enable it navigate to chrome:extensions',
+      priority: 2,
+      buttons: [{ title: 'cancel' }, { title: 'OK' }]
+    }, function (id) { });
+
+    chrome.notifications.onButtonClicked.addListener(function (notificationId, buttonIndex) {
+      if (notificationId === 'bye') {
+        if (buttonIndex === 1) {
+          Utils.terminate();
+        } else {
+          chrome.notifications.clear('bye', function () {});
+        }
+      }
+    });
+  };
+
   document.body.className = 'chrome';
 
   return Utils;
