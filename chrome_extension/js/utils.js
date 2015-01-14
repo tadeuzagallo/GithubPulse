@@ -40,6 +40,10 @@ window.Utils = (function () {
       item = item.data;
     }
 
+    if (key.indexOf('user_contributions') === 0 && item) {
+      this.updateIcon(item.today);
+    }
+
     callback(item, time);
   };
 
@@ -55,6 +59,10 @@ window.Utils = (function () {
   Utils.clear = function (key) {
     if (Array.isArray(key)) {
       key = key.join('/');
+    }
+
+    if (key === 'username') {
+      this.updateIcon(1);
     }
 
     localStorage.removeItem(key);
