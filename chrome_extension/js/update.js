@@ -9,7 +9,7 @@ var notify = function () {
   }, function (id) { });
 };
 
-var checkShouldNotify = function () {
+var checkNotificationInterval = function () {
   var d = new Date();
 
   if (d.getHours() < 18) {
@@ -29,6 +29,18 @@ var checkShouldNotify = function () {
     chrome.storage.sync.set({
       last_notification: Date.now()
     });
+  });
+};
+
+var checkShouldNotify = function () {
+  chrome.storage.sync.get('dont_notify', function (r) {
+    var dont_notify = r.dont_notify && JSON.parse(r.dont_notify).data;
+
+    if (dont_notify) {
+      return;
+    }
+
+    checkNotificationInterval();
   });
 };
 
