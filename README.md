@@ -1,6 +1,6 @@
 # ![Github Pulse](resources/icon.png) Github Pulse
 
-Github Pulse is a status bar app for osx to help you keep your streaks, making a commit every day.
+Github Pulse is an app to help you keep your streaks, making a commit every day.
 
 It shows a graph of your last month commits and how long is your current streak. Its icon also turns red if you haven't commited today yet, and by the end of the afternoon it'll remember you once, in case you still haven't commited.
 
@@ -10,11 +10,17 @@ It shows a graph of your last month commits and how long is your current streak.
 
 ## Installation
 
-Just download it [here](https://github.com/tadeuzagallo/GithubPulse/raw/master/dist/GithubPulse.zip) and copy to your applications folder
+Right now it is available to OSX and Google Chrome
+
+For OSX you can just download it [here](https://github.com/tadeuzagallo/GithubPulse/raw/master/dist/GithubPulse.zip), unzip and copy to your applications folder.
+
+The Google Chrome Extension is avaiable on the [Chrome Web Store](https://chrome.google.com/webstore/detail/githubpulse/ppkickbgijieebbgfipephpafiiebapg) and if, for any reason, you want to download directly, it's also available [here](https://github.com/tadeuzagallo/GithubPulse/raw/master/dist/GithubPulse.crx.zip)
 
 ## What's being used
 
-The application has a small shell of native code, written in Swift and renders a React app (using JSX) on a WebView and uses `window.location` redirects to communicate with the native app.
+The OSX application has a small shell of native code, written in Swift and renders a React app (using JSX) on a WebView and uses `window.location` redirects to communicate with the native app.
+
+The same react code is used for the Chrome Extension, just replacing the storage helpers and background workers.
 
 ### 3rd party libraries (Front)
 
@@ -49,10 +55,11 @@ The debug build points the WebView to `webback-dev-server` default address: `loc
 
 ### Release building
 
-* Pack the front with webpack: `$ cd front && webpack`
-* Go to XCode, on the `Product` menu, click and `Archive` and then `Export...` and  finally `Export as Mac Application`
+Just run `$ make osx` and the file `GithubPulse.zip` will be placed inside the `dist` directory.
 
-Done!
+### Chrome Extension
+
+You can build de front end code with `$ make chrome`, I'm still packing the extension manually though...
 
 ## Credits and Motivation
 
