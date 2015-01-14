@@ -5,8 +5,12 @@
   "description": "OS X StatusBar app to help you remember to contribute every day on Github",
   "version": "0.2.7",
 
+  "background": {
+    "scripts": ["js/update.js"]
+  },
   "permissions": [
     "storage",
+    "alarms",
     "https://*/"
   ],
   "icons": {
