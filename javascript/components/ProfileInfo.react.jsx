@@ -9,7 +9,7 @@ var ProfileInfo = React.createClass({
   mixins: [ Router.Navigation ],
   propTypes: {
     picture: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired,
+    name: React.PropTypes.string,
     username: React.PropTypes.string.isRequired
   },
   render() {
