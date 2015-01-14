@@ -9,6 +9,7 @@
     "scripts": ["js/update.js"]
   },
   "permissions": [
+    "notifications",
     "storage",
     "alarms",
     "https://*/"
