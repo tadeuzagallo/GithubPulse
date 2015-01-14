@@ -111,5 +111,7 @@ window.Utils = (function () {
     });
   };
 
+  document.body.className = 'chrome';
+
   return Utils;
 })();
