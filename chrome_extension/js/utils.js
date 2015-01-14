@@ -63,14 +63,18 @@ window.Utils = (function () {
   Utils.contributions = function (username, callback) {
     var request = new XMLHttpRequest();
     request.onload = function () {
-      var svg = this.responseXML;
+      var parser = new DOMParser();
+      var svg = parser.parseFromString(this.responseText, "image/svg+xml");
       var nodeCounts = svg.querySelectorAll('rect');
       var commits = [].map.call(nodeCounts, function (node) {
         return parseInt(node.getAttribute('data-count'), 10);
       });
 
+      var today = commits[commits.length - 1];
       for (var i = commits.length - 1, streak = 0; i >= 0 && commits[i] > 0; i--, streak++);
-      callback(true, commits[commits.length - 1], streak, commits.slice(-30));
+
+      Utils.updateIcon(today);
+      callback(true, today, streak, commits.slice(-30));
     };
 
     request.onerror = function () {
@@ -78,9 +82,21 @@ window.Utils = (function () {
       console.error(this.statusText);
     };
 
-    //request.open('GET', 'https://github.com/users/' + username + '/contributions', true);
-    request.open('GET', 'http://localhost:8081/contributions.svg', true);
+    request.open('GET', 'https://github.com/users/' + username + '/contributions', true);
+    //request.open('GET', 'http://localhost:8081/contributions.svg', true);
     request.send(null);
+  };
+
+  Utils.updateIcon = function (commits) {
+    var color = commits === 0 ? 'red' : 'blue';
+    var imgs = {};
+    [19, 38].forEach(function (size) {
+      imgs[size] = '../images/' + color + '/icon' + size + '.png';
+    });
+
+    chrome.browserAction.setIcon({
+      path: imgs
+    });
   };
 
   return Utils;
