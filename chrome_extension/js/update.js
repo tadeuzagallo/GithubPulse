@@ -68,7 +68,7 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 
 chrome.alarms.clearAll(function () {
   chrome.alarms.create('check_contributions', {
-    delayInMinutes: 0.25,
+    delayInMinutes: 15,
     periodInMinutes: 15
   });
 });
