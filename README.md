@@ -55,6 +55,8 @@ The debug build points the WebView to `webback-dev-server` default address: `loc
 
 ### Release building
 
+__NOTICE__: If you just cloned the repo and wants `make` it, you'll have to open the file `widget/GithubPulse.xcworkspace` on XCode at least once for the build to succeed.
+
 Just run `$ make osx` and the file `GithubPulse.zip` will be placed inside the `dist` directory.
 
 ### Chrome Extension
