@@ -6,13 +6,16 @@ var utils = {
 module.exports = {
   entry: [utils[process.env.TARGET], '../javascript/main.jsx'],
   output: {
-    filename: "public/bundle.js"
+    publicPath: './public/',
+    path: __dirname + '/public',
+    filename: 'bundle.js'
   },
   module: {
     loaders: [
       {test: /\.jsx$/, loader: 'jsx-loader?harmony'},
       {test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader'},
-      {test: /\.json$/, loader: 'json-loader'}
+      {test: /\.json$/, loader: 'json-loader'},
+      {test: /\.ttf$/, loader: 'file-loader' }
     ]
   },
   resolve: {
