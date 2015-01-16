@@ -1,6 +1,6 @@
 {
   "name": "GithubPulse",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "description": "Application to help you remember to contribute every day on Github",
   "main": "",
   "scripts": {
