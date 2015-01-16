@@ -16,7 +16,7 @@ var ProfileInfo = React.createClass({
     return (
       <div className="profile-info">
         <div>
-          <img className="profile-info__picture" src={ this.props.picture + '&size=100' } />
+          <img className="profile-info__picture" src={ this.props.picture + '&size=48' } />
 
           <div className="profile-info__data">
             <h1 className="profile-info__name">

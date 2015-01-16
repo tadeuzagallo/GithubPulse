@@ -47,17 +47,17 @@ var Profile = React.createClass({
             today={ this.state.today } />
         </div>
         <div className="update">
-          <span
-            className={ 'octicon octicon-sync ' + className }
+          <img
+            src="images/sync.svg"
+            className="update__sync"
             onClick={ this._update.bind(null, true) } />
-          &nbsp;
-          <small>
+          <div className="update__last">
             <span>Last updated at:&nbsp;</span>
-            <strong>{ this.state.lastUpdatedAt }</strong>
-          </small>
-          <small className="version">
+            <span>{ this.state.lastUpdatedAt }</span>
+          </div>
+          <div className="version">
             v{ pkg.version }
-          </small>
+          </div>
         </div>
       </div>
     );

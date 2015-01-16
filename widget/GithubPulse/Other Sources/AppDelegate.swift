@@ -23,9 +23,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   override init() {
     self.contentViewController = ContentViewController(nibName: "ContentViewController", bundle: nil)!
     self.popover = INPopoverController(contentViewController: self.contentViewController)
+    
     self.popover.animates = false;
-    self.popover.color = NSColor(calibratedWhite: 0.9, alpha: 1)
-    self.popover.borderWidth = 0
+    self.popover.color = NSColor.whiteColor()
+    self.popover.borderWidth = 1
+    self.popover.cornerRadius = 5;
+    self.popover.borderColor = NSColor(calibratedWhite: 0.76, alpha: 1)
     
     super.init()
     
