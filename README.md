@@ -2,7 +2,7 @@
 
 Github Pulse is an app to help you keep your streaks, making a commit every day.
 
-It shows a graph of your last month commits and how long is your current streak. Its icon also turns red if you haven't commited today yet, and by the end of the afternoon it'll remind you once, in case you still haven't commited.
+It shows a graph of your last month commits and how long is your current streak. Its icon also turns red if you haven't committed today yet, and by the end of the afternoon it'll remind you once, in case you still haven't committed.
 
 ![Screenshot 1](resources/screenshot1.png)
 ![Screenshot 2](resources/screenshot2.png)
@@ -14,7 +14,7 @@ Right now it is available to OSX and Google Chrome
 
 For OSX you can just download it [here](https://github.com/tadeuzagallo/GithubPulse/raw/master/dist/GithubPulse.zip), unzip and copy to your applications folder.
 
-The Google Chrome Extension is avaiable on the [Chrome Web Store](https://chrome.google.com/webstore/detail/githubpulse/ppkickbgijieebbgfipephpafiiebapg) and if, for any reason, you want to download directly, it's also available [here](https://github.com/tadeuzagallo/GithubPulse/raw/master/dist/GithubPulse.crx.zip)
+The Google Chrome Extension is available on the [Chrome Web Store](https://chrome.google.com/webstore/detail/githubpulse/ppkickbgijieebbgfipephpafiiebapg) and if, for any reason, you want to download directly, it's also available [here](https://github.com/tadeuzagallo/GithubPulse/raw/master/dist/GithubPulse.crx.zip)
 
 ## What's being used
 
@@ -65,4 +65,4 @@ You can build de front end code with `$ make chrome`, I'm still packing the exte
 
 ## Credits and Motivation
 
-I really believe commiting every day on an open source project is the best practice a developer can keep, so I made this project to show my love to Github and make I sure I never miss a commit! :D
+I really believe committing every day on an open source project is the best practice a developer can keep, so I made this project to show my love to Github and make I sure I never miss a commit! :D
