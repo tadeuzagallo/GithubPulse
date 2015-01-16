@@ -49,7 +49,7 @@ var Profile = React.createClass({
         <div className="update">
           <img
             src="images/sync.svg"
-            className="update__sync"
+            className={ 'update__sync ' + className }
             onClick={ this._update.bind(null, true) } />
           <div className="update__last">
             <span>Last updated at:&nbsp;</span>
