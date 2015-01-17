@@ -32,6 +32,10 @@ var ActivityGraph = React.createClass({
     return false;
   },
   componentDidUpdate() {
+    if (this.chart) {
+      this.chart.destroy();
+    }
+
     var canvas = this.refs.canvas.getDOMNode();
     var ctx = canvas.getContext('2d');
     var commits = this.props.commits;
@@ -41,7 +45,8 @@ var ActivityGraph = React.createClass({
       return Math.max(a, b);
     }, 0);
     var step = Math.ceil(max / 2);
-    new Chart(ctx).Line({
+
+    this.chart = new Chart(ctx).Line({
       labels: labels,
       datasets: [{
         label: 'Commits',
