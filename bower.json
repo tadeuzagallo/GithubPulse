@@ -1,0 +1,21 @@
+{
+  "name": "GithubPulse",
+  "version": "0.1.0",
+  "description": "A simple landing page about the Github Pulse Project",
+  "main": "index.html",
+  "homepage": "https://github.com/rafaell-lycan/GithubPulse",
+  "authors": [
+    "Rafaell Lycan <sonny.webdsg@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "skeleton-css": "~2.0.4"
+  }
+}
