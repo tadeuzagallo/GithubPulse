@@ -10,11 +10,11 @@ It shows a graph of your last month commits and how long is your current streak.
 
 ## Installation
 
-Right now it is available to OSX and Google Chrome
+Right now it is available for OSX and Google Chrome
 
 For OSX you can just download it [here](https://github.com/tadeuzagallo/GithubPulse/raw/master/dist/GithubPulse.zip), unzip and copy to your applications folder.
 
-The Google Chrome Extension is available on the [Chrome Web Store](https://chrome.google.com/webstore/detail/githubpulse/ppkickbgijieebbgfipephpafiiebapg) and if, for any reason, you want to download directly, it's also available [here](https://github.com/tadeuzagallo/GithubPulse/raw/master/dist/GithubPulse.crx.zip)
+The Google Chrome Extension is available on the [Chrome Web Store](https://chrome.google.com/webstore/detail/githubpulse/ppkickbgijieebbgfipephpafiiebapg) and if, for any reason, you want to download directly, it's also available [here](https://github.com/tadeuzagallo/GithubPulse/raw/master/dist/GithubPulse.crx)
 
 ## What's being used
 
@@ -38,7 +38,7 @@ The same react code is used for the Chrome Extension, just replacing the storage
 
 ## Building it locally
 
-As mentioned above I'm using Swift and React, so you'll need to have XCode 6+ installed, Node and CocoaPods already installed in order to build.
+As mentioned above I'm using Swift and React, so you'll need to have XCode 6+, Node and CocoaPods already installed in order to build.
 
 ### To get started:
 
@@ -48,10 +48,10 @@ As mentioned above I'm using Swift and React, so you'll need to have XCode 6+ in
 
 ### Debug building
 
-The debug build points the WebView to `webback-dev-server` default address: `localhost:8080`, so in order to get it running
+The debug build points the WebView to `webpack-dev-server`'s default address: `localhost:8080`, so in order to get it running
 
-* Start the webpack dev server: `$ cd front && webpack-dev-server`
-* Just build the app through XCode interface (Command line build step is yet to come)
+* Start the webpack dev server: `$ cd front && make osx.watch`
+* Just build the app through XCode interface
 
 ### Release building
 
@@ -61,7 +61,15 @@ Just run `$ make osx` and the file `GithubPulse.zip` will be placed inside the `
 
 ### Chrome Extension
 
-You can build de front end code with `$ make chrome`, I'm still packing the extension manually though...
+There actually is a target on the root `Makefile` called `chrome` but it won't work, because the private key is, well... private.
+
+But you can still build the front end and load the unpacked extensions. Here is how:
+
+* Run `$ cd front && make chrome` ( or `make chrome.watch` if you want to watch for changes)
+* Then go to `chrome:extension`
+* click on `Load unpacked extension...` (make sure `Developer mode` is checked on the top right of the page)
+* Select `GithubPulse/chrome_extension`
+* Done!
 
 ## Credits and Motivation
 
