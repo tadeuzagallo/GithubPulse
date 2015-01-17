@@ -19,14 +19,18 @@ var ProfileInfo = React.createClass({
           <img className="profile-info__picture" src={ this.props.picture + '&size=48' } />
 
           <div className="profile-info__data">
-            <h1 className="profile-info__name">
-              {this.props.name}
-              &nbsp;
-              <a className="profile-info__logout" onClick={ this._logout }>
-                <span className="octicon octicon-sign-out" />
-              </a>
-            </h1>
-            <h3 className="profile-info__username">@{ this.props.username }</h3>
+            <span className="profile-info__data__content">
+              <div className="profile-info__name">
+                {this.props.name}
+
+                <span
+                  onClick={ this._logout }
+                  className="profile-info__logout octicon octicon-sign-out" />
+              </div>
+              <div className="profile-info__username">
+                @{ this.props.username }
+              </div>
+            </span>
           </div>
         </div>
       </div>
