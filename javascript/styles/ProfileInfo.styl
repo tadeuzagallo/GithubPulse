@@ -1,45 +1,62 @@
 $width = 400px;
 
 .profile-info {
-  height: 120px;
-  padding: 10px;
+  position: relative;
 
-  border-bottom: 1px solid #ccc;
+  height: 90px;
+
+  border-bottom: 1px solid #e9e9e9;
 }
 
 .profile-info__picture {
-  float: left;
+  position: absolute;
 
-  width: 100px;
+  left: 20px;
+  top: 20px;
+  width: 50px;
 
-  border-radius: 6px;
+  border-radius: 50%;
 }
 
 .profile-info__data {
-  float: left;
+  position: absolute;
 
-  width: 275px;
-  height: 100px;
-  padding-left: 10px;
+  left: 90px;
+  top: 0px;
+  width: 290px;
+  height: 90px;
+
+  line-height: 86px;
+}
+
+.profile-info__data__content {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .profile-info__name {
-  margin: 10px 0 0 0;
+  margin-bottom: 4px;
 
   color: #4183c4;
-  font-size: 1.5em;
+  font-family: 'Open Sans';
+  font-size: 16pt;
+  font-weight: bold;
+  line-height: 16pt;
 }
 
 .profile-info__username {
   margin: 0;
 
-  color: #444;
-  font-size: 1em;
-  font-weight: 400;
-  line-height: 1.5em;
+  color: #696969;
+  font-family: 'Open Sans';
+  font-weight: normal;
+  font-size: 12pt;
+  line-height: 12pt;
 }
 
 .profile-info__logout {
+  margin-left: 6px;
+
   color: #444;
   cursor: pointer;
 }

@@ -3,7 +3,7 @@
 
   "name": "GithubPulse",
   "description": "Chrome Extension to help you remember to contribute every day on Github",
-  "version": "0.2.8",
+  "version": "0.3.0",
 
   "background": {
     "scripts": ["js/update.js"]

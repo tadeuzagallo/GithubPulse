@@ -2,14 +2,35 @@
   position: relative;
 
   width: 400px;
-  height: 325px;
+  height: 316px;
 
   background: white;
 }
 
 .update {
-  color: #333;
-  margin: 5px 0 0 8px;
+  height: 35px;
+  padding: 7px 6px;
+
+  background: linear-gradient(#fff, #e0e0e0);
+  border-top: 1px solid #c3c3c3;
+  color: #8d8d8d;
+  font-family: 'Open Sans';
+  font-size: 10pt;
+}
+
+.update__sync,
+.update__last {
+  float: left;
+}
+
+.update__sync {
+  width: 14px;
+  height: 14px;
+  margin: 3px;
+}
+
+.update__last {
+  margin: 1px 0 0 3px;
 }
 
 @-webkit-keyframes rotate {
@@ -27,19 +48,22 @@
 }
 
 .profile-title {
-  height: 25px;
+  height: 34px;
   padding-top: 4px;
 
-  color: #444;
-  font-size: 14px;
+  border-bottom: 1px solid #c3c3c3;
+  background: linear-gradient(#fff, #e0e0e0);
+  color: #696969;
+  font-family: montserrat;
+  font-size: 10.5pt;
+  line-height: 26px;
   text-align: center;
 }
 
 .version {
   float: right;
-  margin: 2px 8px 0 0;
+  margin: 1px 8px 0 0;
 
-  color: #9a9a9a;
-  font-size: 0.8em;
+  color: #8d8d8d;
   font-weight: bold;
 }

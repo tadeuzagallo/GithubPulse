@@ -106,9 +106,13 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
 #endif
     var request = NSURLRequest(URL: url!)
     
-    self.webView!.policyDelegate = self;
-    self.webView!.drawsBackground = false
-    self.webView!.mainFrame.loadRequest(request)
+    self.webView?.policyDelegate = self
+    self.webView?.drawsBackground = false
+    self.webView?.wantsLayer = true
+    self.webView?.layer?.cornerRadius = 5
+    self.webView?.layer?.masksToBounds = true
+    
+    self.webView?.mainFrame.loadRequest(request)
     
     super.viewDidLoad()
   }

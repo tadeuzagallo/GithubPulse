@@ -1,13 +1,9 @@
-.config {
-  color: #444;
-}
-
 .config__gear {
   position: absolute;
   z-index: 100;
 
-  top: 3px;
-  right: 5px;
+  top: 9px;
+  right: 8px;
 
   -webkit-transform: rotate(0deg);
   transition: -webkit-transform .5s;
@@ -31,14 +27,16 @@
   position: absolute;
   z-index: 99;
 
-  top: 1px;
-  right: 2px;
+  top: 3px;
+  right: 4px;
   padding: 20px 15px 15px 15px;
 
   background: white;
-  border: 1px solid #aaa;
+  border: 1px solid #c3c3c3;
   border-radius: 3px;
-  font-size: 0.8em;
+  color: #808080;
+  font-family: 'Open Sans';
+  font-size: 10pt;
 }
 
 .config__startup,
@@ -46,7 +44,7 @@
   margin-right: 8px;
 }
 
-.config__item {
+.config__item * {
   cursor: pointer;
 }
 
@@ -76,7 +74,7 @@
 
 .panel-enter,
 .panel-leave.panel-leave-active {
-  -webkit-transform: scale(0.1, 0.165);
+  -webkit-transform: scale(0.115, 0.21);
 
   .content {
     opacity: 0;

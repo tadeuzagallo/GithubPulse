@@ -1,13 +1,18 @@
 var React = require('react');
 var Chart = require('chart.js');
 
+
+require('../styles/ActivityGraph');
+
 var ActivityGraph = React.createClass({
   propTypes: {
     commits: React.PropTypes.arrayOf(React.PropTypes.number).isRequired
   },
   render() {
     return (
-      <canvas className="activity-graph" width="390" height="145" ref="canvas"></canvas>
+      <div className="activity-graph">
+        <canvas key="activity-graph" className="activity-graph__canvas" width="390" height="145" ref="canvas" />
+      </div>
     );
   },
   shouldComponentUpdate(nextProps) {

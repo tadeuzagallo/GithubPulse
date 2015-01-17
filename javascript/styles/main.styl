@@ -1,21 +1,46 @@
 body {
   margin: 0;
-  font-family: Helvetica, arial;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: normal;
+  src: url('../fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: bold;
+  src: url('../fonts/montserrat/Montserrat-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/open_sans/OpenSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-weight: bold;
+  src: url('../fonts/open_sans/OpenSans-Bold.ttf') format('truetype');
 }
 
 .chrome {
-  font-size: 1em;
-
   .profile-title {
-    padding-top: 6px;
+    padding-top: 4px;
   }
 
   .config__gear {
-    top: 5px;
+    top: 8px;
   }
 
   .update {
     margin-top: 7px;
+  }
+
+  .config__panel {
+    padding-top: 30px;
   }
 
   .config__item:nth-of-type(1)

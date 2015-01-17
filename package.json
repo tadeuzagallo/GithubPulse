@@ -1,6 +1,6 @@
 {
   "name": "GithubPulse",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "description": "Application to help you remember to contribute every day on Github",
   "main": "",
   "scripts": {
@@ -10,7 +10,9 @@
   "license": "MIT",
   "devDependencies": {
     "chart.js": "nnnick/Chart.js",
+    "crx": "^3.0.0",
     "css-loader": "^0.9.0",
+    "file-loader": "^0.8.1",
     "json-loader": "^0.5.1",
     "jsx-loader": "^0.12.2",
     "nib": "^1.0.4",
