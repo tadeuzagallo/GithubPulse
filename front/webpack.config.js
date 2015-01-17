@@ -6,7 +6,7 @@ var utils = {
 module.exports = {
   entry: [utils[process.env.TARGET], '../javascript/main.jsx'],
   output: {
-    publicPath: './public/',
+    publicPath: 'public/',
     path: __dirname + '/public',
     filename: 'bundle.js'
   },
