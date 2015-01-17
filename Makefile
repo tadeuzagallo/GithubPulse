@@ -1,3 +1,5 @@
+all: osx chrome
+
 osx:
 	$(MAKE) -C ./front -B osx
 	$(MAKE) -C ./widget -B release
