@@ -4,8 +4,80 @@
 * Author: Rafaell Lycan
 */
 
+*{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body{
   margin: 0;
   padding: 0;
+  color: #333;
   font-family: 'Open Sans', sans-serif;
+}
+
+img{
+  max-width: 100%;
+}
+
+.clear{
+  clear: both;
+}
+
+.center{
+  text-align: center;
+}
+
+.header{
+  color: white;
+  min-height: 80vh;
+  background: #eee url('../img/header-bg.jpg') no-repeat center top;
+  -webkit-background-size: cover;
+  background-size: cover;
+  padding: 20px 0 0;
+}
+
+.header .logo{
+  margin: 0 auto;
+  text-indent: -999px;
+  width: 124px;
+  height: 71px;
+  display: inline-block;
+  overflow: hidden;
+}
+.header .logo img{
+  display: block;
+}
+
+.header h3{
+  font-size: 1.2em;
+}
+
+.header .download small{
+  color: #ccc;
+}
+
+.header .download .btn{
+  color:white;
+  font-size: 1.5em;
+  border: 2px solid white;
+  padding: 10px 20px;
+  margin: 20px 0 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+}
+.header .download .btn:hover{
+  color: black;
+  background-color: white;
+}
+
+.header .app-screen{
+  width: 100%;
+  margin-top: 30px;
+}
+.header .app-screen img{
+  display: block;
+  margin: auto;
 }
