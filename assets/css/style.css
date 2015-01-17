@@ -29,6 +29,14 @@ img{
   text-align: center;
 }
 
+h3{
+  font-size: 1.5em;
+}
+h4{
+  font-size: 1.2em;
+}
+
+/* HEADER */
 .header{
   color: white;
   min-height: 80vh;
@@ -50,15 +58,11 @@ img{
   display: block;
 }
 
-.header h3{
-  font-size: 1.2em;
-}
-
-.header .download small{
+.download small{
   color: #ccc;
 }
 
-.header .download .btn{
+.download .btn{
   color:white;
   font-size: 1.5em;
   border: 2px solid white;
@@ -68,7 +72,7 @@ img{
   text-decoration: none;
   display: inline-block;
 }
-.header .download .btn:hover{
+.download .btn:hover{
   color: black;
   background-color: white;
 }
@@ -80,4 +84,21 @@ img{
 .header .app-screen img{
   display: block;
   margin: auto;
+}
+
+/* SECTION WHAT */
+.app-what{
+  padding: 50px 0 20px;
+  background-color: #eee;
+}
+
+.app-what .details{
+  margin-top: 50px;
+}
+
+.app-what .item-detail{
+  border-radius: 5px;
+}
+.app-what .description{
+  margin-top: 10px;
 }
