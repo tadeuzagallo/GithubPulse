@@ -23,6 +23,7 @@
     "stylus": "^0.49.3",
     "stylus-loader": "^0.5.0",
     "webpack": "^1.4.15",
-    "webpack-dev-server": "^1.7.0"
+    "webpack-dev-server": "^1.7.0",
+    "yabs": "0.0.2"
   }
 }

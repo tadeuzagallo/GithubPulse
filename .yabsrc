@@ -1,0 +1,6 @@
+{
+  "package.json": "version",
+  "chrome_extension/manifest.json": "version",
+  "widget/GithubPulse/Resources/Info.plist": "CFBundleShortVersionString",
+  "widget/GithubPulse/Resources/Info.plist": "CFBundleVersion"
+}
