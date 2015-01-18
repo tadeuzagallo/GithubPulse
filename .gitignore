@@ -2,5 +2,3 @@ node_modules
 dist
 .tmp
 vendor
-assets/css/main.css
-assets/js/main.js
