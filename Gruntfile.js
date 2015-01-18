@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         separator: ';'
       },
       app: {
-        src: ['vendor/jquery/dist/jquery.min.js','assets/js/*.js','!assets/js/main.js'],
+        src: ['vendor/jquery/dist/jquery.js','assets/js/*.js','!assets/js/main.js'],
         dest: 'assets/js/main.js',
       }
     },

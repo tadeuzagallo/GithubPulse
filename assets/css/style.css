@@ -1,4 +1,4 @@
-/*
+
 * Github Pulse
 * file: style.css
 * Author: Rafaell Lycan
@@ -13,7 +13,7 @@
 body{
   margin: 0;
   padding: 0;
-  color: #333;
+  color: #393939;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -34,6 +34,33 @@ h3{
 }
 h4{
   font-size: 1.2em;
+}
+
+.btn{
+  color:#333;
+  border: 2px solid #333;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  -webkit-transition: all 100ms linear;
+  -moz-transition: all 100ms linear;
+  transition: all 100ms linear;
+}
+
+.btn:hover{
+  color: white;
+  background-color: #333;
+}
+
+.btn.blue{
+  color:#4da6ff;
+  border-color: #4da6ff;
+}
+
+.btn.blue:hover{
+  color: white;
+  background-color: #4da6ff;
 }
 
 /* HEADER */
@@ -64,14 +91,19 @@ h4{
 
 .download .btn{
   color:white;
+  border-color: white;
   font-size: 1.5em;
-  border: 2px solid white;
-  padding: 10px 20px;
+  padding: 8px 40px;
   margin: 20px 0 10px;
-  border-radius: 5px;
-  text-decoration: none;
-  display: inline-block;
+  line-height: 1em;
 }
+
+.download .btn span{
+  display: block;
+  font-size: 0.5em;
+  color: #b1b1b1;
+}
+
 .download .btn:hover{
   color: black;
   background-color: white;
@@ -86,9 +118,13 @@ h4{
   margin: auto;
 }
 
+/* SECTIONS */
+.app-what, .app-why, .app-download{
+  padding: 50px 0;
+}
+
 /* SECTION WHAT */
 .app-what{
-  padding: 50px 0 20px;
   background-color: #eee;
 }
 
@@ -101,4 +137,44 @@ h4{
 }
 .app-what .description{
   margin-top: 10px;
+}
+
+/* SECTION WHY */
+.app-why{}
+
+/* SECTION download */
+.app-download{
+  border-top: 1px solid #ddd;
+}
+
+.app-download img{
+  max-width: 130px;
+  display: block;
+  margin: 30px auto;
+}
+
+.app-download .btn{
+  max-width: 300px;
+}
+
+/* Phablet */
+@media (max-width: 749px) {
+  .app-screen{
+    display: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 549px) {
+  .app-screen{
+    display: none;
+  }
+
+  .app-download img{
+    display: none;
+  }
+
+  .app-download .btn{
+    margin-bottom: 50px;
+  }
 }
