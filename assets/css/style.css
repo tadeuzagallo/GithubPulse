@@ -1,4 +1,4 @@
-
+/**
 * Github Pulse
 * file: style.css
 * Author: Rafaell Lycan
@@ -29,6 +29,10 @@ img{
   text-align: center;
 }
 
+.text-blue{
+  color: #4da6ff;
+}
+
 h3{
   font-size: 1.5em;
 }
@@ -51,6 +55,16 @@ h4{
 .btn:hover{
   color: white;
   background-color: #333;
+}
+
+.btn.gray{
+  color:#777;
+  border-color: #777;
+}
+
+.btn.gray:hover{
+  color: white;
+  background-color: #777;
 }
 
 .btn.blue{
@@ -140,7 +154,12 @@ h4{
 }
 
 /* SECTION WHY */
-.app-why{}
+.app-why .icon{
+  width: 100px;
+  padding: 20px;
+  border-radius: 50%;
+  border: 2px solid #4da6ff;
+}
 
 /* SECTION download */
 .app-download{

@@ -1,3 +1,9 @@
+/**
+* Github Pulse
+* file: app.js
+* Author: Rafaell Lycan
+*/
+
 ;(function(){
   'use strict';
 
