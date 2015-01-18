@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         separator: ';'
       },
       app: {
-        src: ['assets/js/*.js','!assets/js/main.js'],
+        src: ['vendor/jquery/dist/jquery.min.js','assets/js/*.js','!assets/js/main.js'],
         dest: 'assets/js/main.js',
       }
     },
@@ -32,8 +32,7 @@ module.exports = function(grunt) {
           jQuery: true
         },
       },
-      beforeconcat: ['assets/js/*.js','!assets/js/main.js'],
-      afterconcat: 'assets/js/main.js'
+      all: ['assets/js/*.js','!assets/js/main.js']
     },
     uglify: {
       js: {
