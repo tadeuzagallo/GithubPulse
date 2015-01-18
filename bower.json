@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "skeleton-css": "~2.0.4"
+    "skeleton-css": "~2.0.4",
+    "jquery": "~2.1.3"
   }
 }
