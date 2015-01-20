@@ -65,6 +65,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func checkForCommits() {
+    GithubUpdate.check()
+    
     if let username = parseData("username") as String? {
       self.fetchCommits(username)
     }

@@ -1,10 +1,12 @@
 PODS:
   - INPopoverController (0.0.1)
   - IYLoginItem (0.1)
+  - SSZipArchive (0.3.2)
 
 DEPENDENCIES:
   - INPopoverController (from `https://github.com/indragiek/INPopoverController.git`)
   - IYLoginItem
+  - SSZipArchive
 
 EXTERNAL SOURCES:
   INPopoverController:
@@ -18,5 +20,6 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   INPopoverController: 98d3a1678f0e986ed47b22c22ad39994617c6ad1
   IYLoginItem: dbdbc4636da5087b200f68456aa4367a1af35c1d
+  SSZipArchive: 11299a4e89821bd4085b12f25edaa85853e0051c
 
 COCOAPODS: 0.35.0
