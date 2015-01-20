@@ -66,4 +66,25 @@
 
   color: #8d8d8d;
   font-weight: bold;
+
+  .octicon-alert {
+    cursor: pointer;
+    margin-left: 3px;
+    font-size: 9pt;
+  }
+  
+  &.true:hover::before {
+    content: 'Update available, click to restart and apply';
+    position: absolute;
+    display: block;
+    width: 150px;
+    height: 40px;
+    bottom: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    background: black;
+    font: open sans;
+    color: white;
+    right: 3px;
+  }
 }

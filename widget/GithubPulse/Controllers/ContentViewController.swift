@@ -77,6 +77,10 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     self.calls["quit"] = { (args) in
       NSApplication.sharedApplication().terminate(self)
     }
+    
+    self.calls["update"] = { (args) in
+      GithubUpdate.check(true)
+    }
   }
   
   override init() {

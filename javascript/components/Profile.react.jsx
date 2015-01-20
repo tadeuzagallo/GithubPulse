@@ -22,7 +22,8 @@ var Profile = React.createClass({
       lastUpdatedAt: '',
       commits: [],
       _fetchingUserInfo: true,
-      _fetchingUserContributions: true
+      _fetchingUserContributions: true,
+      updateAvailable: false
     };
   },
   render() {
@@ -55,8 +56,9 @@ var Profile = React.createClass({
             <span>Last updated at:&nbsp;</span>
             <span>{ this.state.lastUpdatedAt }</span>
           </div>
-          <div className="version">
+          <div className={ 'version ' + this.state.updateAvailable }>
             v{ pkg.version }
+            { this.state.updateAvailable ? <span className="octicon octicon-alert" onClick={ this._updateVersion }/> : "" }
           </div>
         </div>
       </div>
@@ -77,6 +79,7 @@ var Profile = React.createClass({
 
     this._fetchUserInfo(force);
     this._fetchUserContributions(force);
+    this._checkForUpdates();
   },
   _fetchUserInfo(force) {
     var username = this.props.params.username;
@@ -143,6 +146,16 @@ var Profile = React.createClass({
     } else {
       Utils.fetch(['user_contributions', username], 15*60*1000, callback);
     }
+  },
+  _checkForUpdates() {
+    Utils.fetch('update_available', function (updateAvailable) {
+      this.setState({
+        updateAvailable: updateAvailable
+      });
+    }.bind(this));
+  },
+  _updateVersion() {
+    Utils.raw('update()');
   }
 });
 

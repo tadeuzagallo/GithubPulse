@@ -20,9 +20,16 @@ class GithubUpdate {
   var bundleVersion:String?
   var repoName:String?
   var githubVersion:String?
+  var install:Bool = false
   
   class func check() {
     GithubUpdate().check()
+  }
+  
+  class func check(install:Bool) {
+    let instance = GithubUpdate()
+    instance.install = install
+    instance.check()
   }
   
   func check() {
@@ -37,7 +44,6 @@ class GithubUpdate {
   }
   
   func getGithubVersion() {
-    return self.download("v0.3.1")
     if self.repoName == nil {
       return
     }
@@ -54,6 +60,7 @@ class GithubUpdate {
           println("Latest version is \(lastTag)")
           
           if version(self.bundleVersion!) != version(lastTag) {
+            NSUserDefaults.standardUserDefaults().setValue("{\"data\":true}", forKey: "update_available")
             self.download(lastTag)
           }
         }
@@ -78,11 +85,15 @@ class GithubUpdate {
       NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (_, data, _) in
         println("Download complete!")
         data.writeToFile(path, atomically: true)
-        self.extract(folder, tag: tag, path: path)
+        if self.install {
+          self.extract(folder, tag: tag, path: path)
+        }
       }
     } else {
       println("Version \(tag) is already on the cache!")
-      self.extract(folder, tag: tag, path: path)
+      if self.install {
+        self.extract(folder, tag: tag, path: path)
+      }
     }
   }
   
@@ -96,7 +107,7 @@ class GithubUpdate {
       SSZipArchive.unzipFileAtPath(path, toDestination: versionFolder)
     }
     
-    NSUserDefaults.standardUserDefaults().setValue(true, forKey: "update_available")
+    self.copy(tag)
   }
   
   func copy(tag:String) {
@@ -108,6 +119,8 @@ class GithubUpdate {
   }
   
   func relaunch(path:String) {
+    NSUserDefaults.standardUserDefaults().setValue("{\"data\":false}", forKey: "update_available")
+    
     println("Relaunching at \(path)...")
     NSTask.launchedTaskWithLaunchPath(path, arguments: [NSString(format: "%d", getpid())])
     exit(0)
