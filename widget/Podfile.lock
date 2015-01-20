@@ -1,9 +1,11 @@
 PODS:
+  - EDSemver (0.3.0)
   - INPopoverController (0.0.1)
   - IYLoginItem (0.1)
   - SSZipArchive (0.3.2)
 
 DEPENDENCIES:
+  - EDSemver
   - INPopoverController (from `https://github.com/indragiek/INPopoverController.git`)
   - IYLoginItem
   - SSZipArchive
@@ -18,6 +20,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/indragiek/INPopoverController.git
 
 SPEC CHECKSUMS:
+  EDSemver: 1eb8b041bc8681c341681bda9d4e4a61f8f495f1
   INPopoverController: 98d3a1678f0e986ed47b22c22ad39994617c6ad1
   IYLoginItem: dbdbc4636da5087b200f68456aa4367a1af35c1d
   SSZipArchive: 11299a4e89821bd4085b12f25edaa85853e0051c

@@ -6,6 +6,7 @@ target 'GithubPulse' do
 pod 'IYLoginItem'
 pod 'INPopoverController', git: 'https://github.com/indragiek/INPopoverController.git'
 pod 'SSZipArchive'
+pod 'EDSemver'
 
 end
 

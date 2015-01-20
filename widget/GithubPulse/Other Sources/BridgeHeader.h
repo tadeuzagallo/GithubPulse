@@ -9,3 +9,4 @@
 #import <IYLoginItem/NSBundle+LoginItem.h>
 #import <INPopoverController/INPopoverController.h>
 #import <SSZipArchive/SSZipArchive.h>
+#import <EDSemver/EDSemver.h>

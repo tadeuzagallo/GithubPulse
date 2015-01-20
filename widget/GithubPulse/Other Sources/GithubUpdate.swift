@@ -8,14 +8,6 @@
 
 import Foundation
 
-func version(version:String) -> String {
-  if version[version.startIndex] == "v" {
-    return version.substringFromIndex(advance(version.startIndex, 1))
-  } else {
-    return version;
-  }
-}
-
 class GithubUpdate {
   var bundleVersion:String?
   var repoName:String?
@@ -59,7 +51,7 @@ class GithubUpdate {
           
           println("Latest version is \(lastTag)")
           
-          if version(self.bundleVersion!) != version(lastTag) {
+          if EDSemver(string: lastTag).isGreaterThan(EDSemver(string: self.bundleVersion!)) {
             NSUserDefaults.standardUserDefaults().setValue("{\"data\":true}", forKey: "update_available")
             self.download(lastTag)
           }
