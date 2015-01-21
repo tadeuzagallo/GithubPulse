@@ -13,11 +13,18 @@
   };
 
   function getVersion(url){
-    var http = $.get(url).success(function(data){
+    $.get(url).success(function(data){
       var v = data[0].name;
       $('.download').find('span').text('Currently '+v);
     });
   }
+
+  $('.header a').click(function() {
+    event.preventDefault();
+    $('html, body').animate({
+        scrollTop: $('#download').offset().top
+    }, 500);
+  });
 
   getVersion(settings.api);
 
