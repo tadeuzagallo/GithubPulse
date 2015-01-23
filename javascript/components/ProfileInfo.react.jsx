@@ -16,18 +16,18 @@ var ProfileInfo = React.createClass({
     return (
       <div className="profile-info">
         <div>
-          <img className="profile-info__picture" src={ this.props.picture + '&size=48' } />
+          <img className="profile-info__picture" onClick={ this._gotoUsername } src={ this.props.picture + '&size=48' } />
 
           <div className="profile-info__data">
             <span className="profile-info__data__content">
               <div className="profile-info__name">
-                {this.props.name}
+                <span onClick={ this._gotoUsername }>{this.props.name}</span>
 
                 <span
                   onClick={ this._logout }
                   className="profile-info__logout octicon octicon-sign-out" />
               </div>
-              <div className="profile-info__username">
+              <div className="profile-info__username" onClick={ this._gotoUsername }>
                 @{ this.props.username }
               </div>
             </span>
@@ -39,6 +39,9 @@ var ProfileInfo = React.createClass({
   _logout() {
     Utils.clear('username');
     this.transitionTo('login');
+  },
+  _gotoUsername() {
+    Utils.openURL('https://github.com/' + this.props.username);
   }
 });
 

@@ -72,6 +72,10 @@ window.Utils = (function () {
     chrome.storage.sync.remove(key);
   };
 
+  Utils.openURL = function (url) {
+    chrome.tabs.create({ url: url });
+  };
+
   Utils.contributions = function (username, callback) {
     var request = new XMLHttpRequest();
     request.onload = function () {

@@ -99,6 +99,10 @@ window.Utils = (function () {
     Utils.redirect('osx:remove(' + key + ')');
   };
 
+  Utils.openURL = function (url) {
+    Utils.redirect('osx:open_url(' + url + ')');
+  };
+
   Utils.contributions = function (username, callback) {
     window.contributions = callback;
     Utils.redirect('osx:contributions(' + username + ')');

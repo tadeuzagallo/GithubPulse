@@ -81,6 +81,12 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     self.calls["update"] = { (args) in
       GithubUpdate.check(true)
     }
+
+    self.calls["open_url"] = { (args) in
+      if let checkURL = NSURL(string: args[0]) {
+        NSWorkspace.sharedWorkspace().openURL(checkURL)
+      }
+    }
   }
   
   override init() {
