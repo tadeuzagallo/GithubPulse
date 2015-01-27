@@ -9,6 +9,7 @@
   "author": "Tadeu Zagallo <tadeuzagallo@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "async": "^0.9.0",
     "chart.js": "nnnick/Chart.js",
     "crx": "^3.0.0",
     "css-loader": "^0.9.0",

@@ -108,6 +108,11 @@ window.Utils = (function () {
     Utils.redirect('osx:contributions(' + username + ')');
   };
 
+  Utils.contributionsForOthers = function (username, callback) {
+    window.contributions = callback;
+    Utils.redirect('osx:contributions(' + username + '%%false)');
+  };
+
   Utils.quit = function () {
     this.raw('quit()');
   };
