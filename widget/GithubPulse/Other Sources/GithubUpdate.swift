@@ -54,6 +54,8 @@ class GithubUpdate {
           if EDSemver(string: lastTag).isGreaterThan(EDSemver(string: self.bundleVersion!)) {
             NSUserDefaults.standardUserDefaults().setValue("{\"data\":true}", forKey: "update_available")
             self.download(lastTag)
+          } else {
+            NSUserDefaults.standardUserDefaults().setValue("{\"data\":false}", forKey: "update_available")
           }
         }
       }
