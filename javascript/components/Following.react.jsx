@@ -68,21 +68,37 @@ var Following = React.createClass({
       });
     };
 
-    getPage(1);
+    Utils.fetch([username, 'following'], 15*60*1000, function (following) {
+      if (following) {
+        _this.setState(following);
+      } else {
+        getPage(1);
+      }
+    });
   },
   _fetchContributions() {
     var _this = this;
+    var updated = 0;
     this.state.following.forEach((user) => {
       Utils.contributions(user.login, (success, today, streak, commits) => {
         user.today = today;
         user.streak = streak;
+        var maxStreak = Math.max(_this.state.maxStreak, user.streak);
+        var following = _this.state.following.sort((a, b) => {
+          return (b.streak - a.streak) || (b.today - a.today);
+        });
 
         _this.setState({
-          maxStreak: Math.max(_this.state.maxStreak, user.streak),
-          following: _this.state.following.sort((a, b) => {
-            return (b.streak - a.streak) || (b.today - a.today);
-          })
+          maxStreak: maxStreak,
+          following: following
         });
+
+        if (++updated === this.state.following.length) {
+          Utils.save([this.props.params.username, 'following'], {
+            maxStreak: maxStreak,
+            following: following
+          });
+        }
       }, true);
     });
   },
