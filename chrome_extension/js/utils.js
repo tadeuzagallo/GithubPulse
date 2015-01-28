@@ -76,7 +76,7 @@ window.Utils = (function () {
     chrome.tabs.create({ url: url });
   };
 
-  Utils.contributions = function (username, callback) {
+  Utils.contributions = function (username, callback, skipUpdateIcon) {
     var request = new XMLHttpRequest();
     request.onload = function () {
       var parser = new DOMParser();
@@ -89,7 +89,7 @@ window.Utils = (function () {
       var today = commits[commits.length - 1];
       for (var i = commits.length - 1, streak = 0; i >= 0 && commits[i] > 0; i--, streak++);
 
-      Utils.updateIcon(today);
+      if (!skipUpdateIcon) { Utils.updateIcon(today); }
       callback(true, today, streak, commits.slice(-30));
     };
 
@@ -139,6 +139,16 @@ window.Utils = (function () {
         }
       }
     });
+  };
+
+  Utils.forEachAsync = function (arr, action, idx) {
+    idx = idx || 0;
+    var next = function () {
+      if (idx !== arr.length) {
+        Utils.forEachAsync(arr, action, idx);
+      }
+    };
+    action(arr[idx++], next);
   };
 
   document.body.className = 'chrome';

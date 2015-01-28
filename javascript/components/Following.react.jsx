@@ -68,13 +68,13 @@ var Following = React.createClass({
   _fetchContributions() {
     var _this = this;
     Utils.forEachAsync(this.state.following, (user, callback) => {
-      Utils.contributionsForOthers(user.login, (success, today, streak, commits) => {
+      Utils.contributions(user.login, (success, today, streak, commits) => {
         user.today = today;
         user.streak = streak;
         _this.state.maxStreak = Math.max(_this.state.maxStreak, user.streak);
         _this.setState(_this.state);
         callback();
-      });
+      }, true);
     });
   },
   _profile() {

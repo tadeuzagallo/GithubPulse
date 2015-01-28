@@ -103,14 +103,9 @@ window.Utils = (function () {
     Utils.redirect('osx:open_url(' + url + ')');
   };
 
-  Utils.contributions = function (username, callback) {
+  Utils.contributions = function (username, callback, skipUpdateIcon) {
     window.contributions = callback;
-    Utils.redirect('osx:contributions(' + username + ')');
-  };
-
-  Utils.contributionsForOthers = function (username, callback) {
-    window.contributions = callback;
-    Utils.redirect('osx:contributions(' + username + '%%false)');
+    Utils.redirect('osx:contributions(' + username + (skipUpdateIcon?'%%false':'') + ')');
   };
 
   Utils.quit = function () {
