@@ -42,7 +42,11 @@ var Following = React.createClass({
     );
   },
   componentDidMount() {
+    window.update = function () {};
     this._fetchUserFollowing(false);
+  },
+  componentWillUnmount() {
+    window.update = null;
   },
   _fetchUserFollowing(force) {
     var _this = this;
@@ -52,12 +56,13 @@ var Following = React.createClass({
     var getPage = function (page) {
       GithubApi.get('users', username + '/following?per_page=100&page=' + page, (err, result) => {
         arr = arr.concat(result);
+
         if (result.length === 100) {
           getPage(++page);
         } else {
-          arr.sort((a, b) => { return a.login.localeCompare(b.login); });
-          _this.state.following = arr;
-          _this.setState(_this.state);
+          _this.setState({
+            following: arr
+          });
           _this._fetchContributions();
         }
       });
@@ -71,8 +76,13 @@ var Following = React.createClass({
       Utils.contributions(user.login, (success, today, streak, commits) => {
         user.today = today;
         user.streak = streak;
-        _this.state.maxStreak = Math.max(_this.state.maxStreak, user.streak);
-        _this.setState(_this.state);
+
+        _this.setState({
+          maxStreak: Math.max(_this.state.maxStreak, user.streak),
+          following: _this.state.following.sort((a, b) => {
+            return (b.streak - a.streak) || (b.today - a.today);
+          })
+        });
       }, true);
     });
   },
