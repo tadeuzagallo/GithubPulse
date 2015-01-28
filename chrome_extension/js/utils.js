@@ -141,16 +141,6 @@ window.Utils = (function () {
     });
   };
 
-  Utils.forEachAsync = function (arr, action, idx) {
-    idx = idx || 0;
-    var next = function () {
-      if (idx !== arr.length) {
-        Utils.forEachAsync(arr, action, idx);
-      }
-    };
-    action(arr[idx++], next);
-  };
-
   document.body.className = 'chrome';
 
   return Utils;

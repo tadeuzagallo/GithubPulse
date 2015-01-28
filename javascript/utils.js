@@ -103,23 +103,22 @@ window.Utils = (function () {
     Utils.redirect('osx:open_url(' + url + ')');
   };
 
+  var contributionsCallbacks = {};
+  window.contributions = function (username) {
+    var fn = contributionsCallbacks[username];
+    if (fn) {
+      contributionsCallbacks[username] = null;
+      fn.apply(null, [].slice.call(arguments, 1));
+    }
+  };
+
   Utils.contributions = function (username, callback, skipUpdateIcon) {
-    window.contributions = callback;
+    contributionsCallbacks[username] = callback;
     Utils.redirect('osx:contributions(' + username + (skipUpdateIcon?'%%false':'') + ')');
   };
 
   Utils.quit = function () {
     this.raw('quit()');
-  };
-
-  Utils.forEachAsync = function (arr, action, idx) {
-    idx = idx || 0;
-    var next = function () {
-      if (idx !== arr.length) {
-        Utils.forEachAsync(arr, action, idx);
-      }
-    };
-    action(arr[idx++], next);
   };
 
   return Utils;

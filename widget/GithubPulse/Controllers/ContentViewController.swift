@@ -25,7 +25,7 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
             NSNotificationCenter.defaultCenter().postNotificationName("check_icon", object: nil, userInfo: ["today": today])
           }
         }
-        let _ = self.webView?.stringByEvaluatingJavaScriptFromString("contributions(\(success), \(today),\(streak),\(commits))")
+        let _ = self.webView?.stringByEvaluatingJavaScriptFromString("contributions(\"\(args[0])\", \(success), \(today),\(streak),\(commits))")
       }
     }
     
