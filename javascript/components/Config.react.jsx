@@ -17,7 +17,7 @@ var Config = React.createClass({
     var overlay = '';
 
     if (this.state.open) {
-      overlay = <div onClick={ this._togglePanel } className="config__overlay" />
+      overlay = <div onClick={ this._togglePanel } className="config__overlay" />;
 
       panel = (
         <div className="config__panel" key="config__panel">

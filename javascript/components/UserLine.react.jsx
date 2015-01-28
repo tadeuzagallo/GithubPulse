@@ -1,6 +1,6 @@
 var React = require('react');
 
-require('../styles/UserLine')
+require('../styles/UserLine');
 
 var UserLine = React.createClass({
   render() {

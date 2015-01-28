@@ -7,7 +7,7 @@ var Stats = require('./Stats.react');
 var Config = require('./Config.react');
 var pkg = require('../../package.json');
 
-require('../styles/Profile')
+require('../styles/Profile');
 
 var Profile = React.createClass({
   getInitialState() {
@@ -95,7 +95,7 @@ var Profile = React.createClass({
           Utils.save(['user_info', username], result);
           result._fetchUserInfo = false;
           this.setState(result);
-        })
+        });
       }
     };
 

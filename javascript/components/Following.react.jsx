@@ -5,7 +5,7 @@ var GithubApi = require('../github-api');
 var Config = require('./Config.react');
 var UserLine = require('./UserLine.react');
 
-require('../styles/Following')
+require('../styles/Following');
 
 var Following = React.createClass({
   mixins: [ Router.Navigation ],
