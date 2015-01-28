@@ -44,6 +44,10 @@ class GithubUpdate {
     let request = NSURLRequest(URL: url!)
     
     NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) in
+      if data == nil || error != nil {
+        return
+      }
+      
       if let tags = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSArray? {
         
         if tags.count > 0 {
