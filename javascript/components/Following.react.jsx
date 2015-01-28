@@ -31,7 +31,7 @@ var Following = React.createClass({
           My Profile
         </div>
         <div className="following-title">
-          Following
+          Following ({usersLines.length})
         </div>
         <div className="following">
           <div className="following__userlist">
@@ -47,13 +47,23 @@ var Following = React.createClass({
   _fetchUserFollowing(force) {
     var _this = this;
     var username = this.props.params.username;
+    var arr = [];
 
-    GithubApi.get('users', username + '/following?per_page=100', (err, result) => {
-      result.sort((a, b) => { return a.login.localeCompare(b.login); });
-      _this.state.following = result;
-      _this.setState(_this.state);
-      _this._fetchContributions();
-    });
+    var getPage = function (page) {
+      GithubApi.get('users', username + '/following?per_page=100&page=' + page, (err, result) => {
+        arr = arr.concat(result);
+        if (result.length === 100) {
+          getPage(++page);
+        } else {
+          arr.sort((a, b) => { return a.login.localeCompare(b.login); });
+          _this.state.following = arr;
+          _this.setState(_this.state);
+          _this._fetchContributions();
+        }
+      });
+    };
+
+    getPage(1);
   },
   _fetchContributions() {
     var _this = this;
