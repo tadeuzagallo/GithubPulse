@@ -117,5 +117,15 @@ window.Utils = (function () {
     this.raw('quit()');
   };
 
+  Utils.forEachAsync = function (arr, action, idx) {
+    idx = idx || 0;
+    var next = function () {
+      if (idx !== arr.length) {
+        Utils.forEachAsync(arr, action, idx);
+      }
+    };
+    action(arr[idx++], next);
+  };
+
   return Utils;
 })();

@@ -1,6 +1,5 @@
 var React = require('react');
 var Router = require('react-router');
-var async = require('async');
 var GithubApi = require('../github-api');
 
 var Config = require('./Config.react');
@@ -13,7 +12,7 @@ var Following = React.createClass({
   getInitialState() {
     return {
       maxStreak: 0,
-      following: false,
+      following: false
     };
   },
   render() {
@@ -58,7 +57,7 @@ var Following = React.createClass({
   },
   _fetchContributions() {
     var _this = this;
-    async.eachSeries(_this.state.following, (user, callback) => {
+    Utils.forEachAsync(this.state.following, (user, callback) => {
       Utils.contributionsForOthers(user.login, (success, today, streak, commits) => {
         user.today = today;
         user.streak = streak;
