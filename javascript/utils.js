@@ -103,9 +103,18 @@ window.Utils = (function () {
     Utils.redirect('osx:open_url(' + url + ')');
   };
 
-  Utils.contributions = function (username, callback) {
-    window.contributions = callback;
-    Utils.redirect('osx:contributions(' + username + ')');
+  var contributionsCallbacks = {};
+  window.contributions = function (username) {
+    var fn = contributionsCallbacks[username];
+    if (fn) {
+      contributionsCallbacks[username] = null;
+      fn.apply(null, [].slice.call(arguments, 1));
+    }
+  };
+
+  Utils.contributions = function (username, callback, skipUpdateIcon) {
+    contributionsCallbacks[username] = callback;
+    Utils.redirect('osx:contributions(' + username + (skipUpdateIcon?'%%false':'') + ')');
   };
 
   Utils.quit = function () {

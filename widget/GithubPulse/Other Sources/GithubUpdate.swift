@@ -44,6 +44,10 @@ class GithubUpdate {
     let request = NSURLRequest(URL: url!)
     
     NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) in
+      if data == nil || error != nil {
+        return
+      }
+      
       if let tags = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSArray? {
         
         if tags.count > 0 {
@@ -54,6 +58,8 @@ class GithubUpdate {
           if EDSemver(string: lastTag).isGreaterThan(EDSemver(string: self.bundleVersion!)) {
             NSUserDefaults.standardUserDefaults().setValue("{\"data\":true}", forKey: "update_available")
             self.download(lastTag)
+          } else {
+            NSUserDefaults.standardUserDefaults().setValue("{\"data\":false}", forKey: "update_available")
           }
         }
       }

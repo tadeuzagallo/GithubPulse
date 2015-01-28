@@ -30,6 +30,9 @@ var ProfileInfo = React.createClass({
               <div className="profile-info__username" onClick={ this._gotoUsername }>
                 @{ this.props.username }
               </div>
+              <div className="profile-info__following" onClick={ this._showFollowing }>
+                Show Users I&#39;m Following
+              </div>
             </span>
           </div>
         </div>
@@ -42,7 +45,10 @@ var ProfileInfo = React.createClass({
   },
   _gotoUsername() {
     Utils.openURL('https://github.com/' + this.props.username);
-  }
+  },
+  _showFollowing() {
+    this.transitionTo('/compare/following/' + this.props.username);
+  },
 });
 
 module.exports = ProfileInfo;

@@ -76,7 +76,7 @@ window.Utils = (function () {
     chrome.tabs.create({ url: url });
   };
 
-  Utils.contributions = function (username, callback) {
+  Utils.contributions = function (username, callback, skipUpdateIcon) {
     var request = new XMLHttpRequest();
     request.onload = function () {
       var parser = new DOMParser();
@@ -89,7 +89,7 @@ window.Utils = (function () {
       var today = commits[commits.length - 1];
       for (var i = commits.length - 1, streak = 0; i >= 0 && commits[i] > 0; i--, streak++);
 
-      Utils.updateIcon(today);
+      if (!skipUpdateIcon) { Utils.updateIcon(today); }
       callback(true, today, streak, commits.slice(-30));
     };
 
