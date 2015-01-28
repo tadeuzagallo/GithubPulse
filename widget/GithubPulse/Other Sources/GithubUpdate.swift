@@ -44,7 +44,7 @@ class GithubUpdate {
     let request = NSURLRequest(URL: url!)
     
     NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) in
-      if (response == nil) {
+      if data == nil || error != nil {
         return
       }
       
