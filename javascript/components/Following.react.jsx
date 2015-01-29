@@ -85,7 +85,7 @@ var Following = React.createClass({
         user.streak = streak;
         var maxStreak = Math.max(_this.state.maxStreak, user.streak);
         var following = _this.state.following.sort((a, b) => {
-          return (b.streak - a.streak) || (b.today - a.today);
+          return (b.streak - a.streak) || (b.today - a.today) || (a.login.localeCompare(b.login));
         });
 
         _this.setState({
