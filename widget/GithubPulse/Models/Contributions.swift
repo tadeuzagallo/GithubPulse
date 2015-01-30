@@ -23,7 +23,8 @@ class Contributions : NSObject, NSXMLParserDelegate {
     self.year = [];
     
     let url = NSURL(string: "https://github.com/users/\(username)/contributions")
-    let request = NSURLRequest(URL: url!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
+    let request = NSMutableURLRequest(URL: url!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
+    request.HTTPShouldHandleCookies = false
     
     NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
       if error != nil {
