@@ -13,6 +13,8 @@
     "notifications",
     "storage",
     "alarms",
+    "webRequest",
+    "webRequestBlocking",
     "https://*/"
   ],
   "icons": {
