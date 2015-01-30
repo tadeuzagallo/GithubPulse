@@ -22,8 +22,8 @@ var Following = React.createClass({
     };
   },
   render() {
-    var usersLines = (<div></div>)
-      , progressBar = void 0;
+    var usersLines = (<div></div>);
+    var progressBar = '';
 
     if (this.state.following) {
       usersLines = this.state.following.map( (user) => {
@@ -44,17 +44,17 @@ var Following = React.createClass({
       <div className="following-container">
         <Config />
         <div className="following-profile" onClick={ this._profile }>
-          My Profile
+          Back
         </div>
         <div className="following-title">
-          Following ({usersLines.length})
+          Following ({ usersLines.length })
         </div>
         <div className="following">
           <div className="following__userlist">
             { usersLines }
           </div>
         </div>
-        {progressBar}
+        { progressBar }
       </div>
     );
   },
@@ -78,7 +78,6 @@ var Following = React.createClass({
           getPage(++page);
         } else {
           arr.forEach((u) => { u.streak = u.today = 0; });
-          arr.sort(userSort);
           _this.setState({
             following: arr
           });
