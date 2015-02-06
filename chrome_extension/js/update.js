@@ -49,8 +49,8 @@ var update = function (username) {
   request.onload = function () {
     var parser = new DOMParser();
     var svg = parser.parseFromString(this.responseText, "image/svg+xml");
-    var commits = svg.querySelectorAll('rect:last-child');
-    var today = parseInt(commits[commits.length - 1], 10);
+    var commits = svg.querySelectorAll('rect');
+    var today = parseInt(commits[commits.length - 1].getAttribute('data-count'), 10);
     var color = today === 0 ? 'red' : 'blue';
     var imgs = {};
     [19, 38].forEach(function (size) {
@@ -70,12 +70,13 @@ var update = function (username) {
   request.send(null);
 };
 
-chrome.alarms.onAlarm.addListener(function (alarm) {
+function onAlarm(alarm) {
   chrome.storage.sync.get('username', function (r) {
     var item = r.username && JSON.parse(r.username);
     item && item.data && update(item.data);
   });
-});
+}
+chrome.alarms.onAlarm.addListener(onAlarm);
 
 
 chrome.alarms.clearAll(function () {
@@ -84,3 +85,5 @@ chrome.alarms.clearAll(function () {
     periodInMinutes: 15
   });
 });
+
+onAlarm();
