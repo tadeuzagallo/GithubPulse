@@ -87,7 +87,7 @@ window.Utils = (function () {
       });
 
       var today = commits[commits.length - 1];
-      for (var i = commits.length - 1, streak = 0; i >= 0 && commits[i] > 0; i--, streak++);
+      for (var i = commits.length - 2, streak = today ? 1 : 0; i >= 0 && commits[i] > 0; i--, streak++);
 
       if (!skipUpdateIcon) { Utils.updateIcon(today); }
       callback(true, today, streak, commits.slice(-30));
