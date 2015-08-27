@@ -4,7 +4,7 @@ var utils = {
 };
 
 module.exports = {
-  entry: [utils[process.env.TARGET], '../javascript/main.jsx'],
+  entry: [utils[process.env.TARGET || 'osx'], '../javascript/main.jsx'],
   output: {
     publicPath: 'public/',
     path: __dirname + '/public',
