@@ -67,15 +67,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func checkForCommits() {
     GithubUpdate.check()
     
-    if let username = parseData("username") as String? {
+    if let username = parseData("username") as? String {
       self.fetchCommits(username)
     }
   }
   
   func parseData(key: String) -> AnyObject? {
-    if let input = NSUserDefaults.standardUserDefaults().valueForKey(key) as String? {
+    if let input = NSUserDefaults.standardUserDefaults().valueForKey(key) as? String {
       if let data = input.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-        if let object = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary? {
+        if let object = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as? NSDictionary {
           return object["data"]
         }
       }
@@ -85,7 +85,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func fetchCommits(username: String) {
-    let dontNotify = parseData("dont_notify") as Bool?
+    let dontNotify = parseData("dont_notify") as? Bool
     
     Contributions.fetch(username) { (success, _, _, today) in
       if success {
@@ -113,7 +113,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var imageName = count == 0 ?  "icon_notification" : "icon"
     
     if let domain = NSUserDefaults.standardUserDefaults().persistentDomainForName(NSGlobalDomain) {
-      if let style = domain["AppleInterfaceStyle"] as String? {
+      if let style = domain["AppleInterfaceStyle"] as? String {
         if style == "Dark" {
           imageName += "_dark"
         }
@@ -130,7 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
           
 
     if components.hour >= 18 {
-      var lastNotification = userDefaults.valueForKey("last_notification") as NSDate?
+      var lastNotification = userDefaults.valueForKey("last_notification") as? NSDate
       var todayStart = NSCalendar.currentCalendar().dateBySettingHour(1, minute: 0, second: 0, ofDate: now, options: nil)
       
       if lastNotification == nil || todayStart!.timeIntervalSinceDate(lastNotification!) > 0 {
@@ -155,7 +155,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     if (self.open) {
       self.popover.closePopover(nil)
     } else {
-      let controller = self.popover.contentViewController as ContentViewController
+      let controller = self.popover.contentViewController as! ContentViewController
       controller.webView?.stringByEvaluatingJavaScriptFromString("update(false)")
       
       self.popover.presentPopoverFromRect(self.statusItem.view!.bounds, inView: self.statusItem.view!, preferredArrowDirection: INPopoverArrowDirection.Up, anchorsToPositionView: true)
@@ -166,7 +166,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func _checkIconNotification(notification:NSNotification) {
-    self.updateIcon(notification.userInfo?["today"] as Int!)
+    self.updateIcon(notification.userInfo?["today"] as! Int)
   }
   
   func _darkModeChanged(notification:NSNotification) {
@@ -174,7 +174,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func _checkUsernameNotification(notification:NSNotification) {
-    if let username = self.parseData("username") as String? {
+    if let username = self.parseData("username") as? String {
       self.fetchCommits(username)
     } else {
       self.updateIcon(1)

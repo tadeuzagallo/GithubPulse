@@ -16,7 +16,7 @@ class Contributions : NSObject, NSXMLParserDelegate {
   var succeeded = false
   
   class func fetch(username: String, completionBlock: ((Bool, [Int], Int, Int) -> Void)?) {
-    Contributions().fetch(username, completionBlock)
+    Contributions().fetch(username, completionBlock: completionBlock)
   }
   
   func fetch(username: String, completionBlock: ((Bool, [Int], Int, Int) -> Void)!) {
@@ -62,7 +62,7 @@ class Contributions : NSObject, NSXMLParserDelegate {
   
   func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]!) {
     if elementName == "rect" {
-      self.year.append((attributeDict["data-count"] as String).toInt()!)
+      self.year.append((attributeDict["data-count"] as! String).toInt()!)
     }
   }
 }

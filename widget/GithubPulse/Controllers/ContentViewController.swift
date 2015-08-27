@@ -41,7 +41,7 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     }
     
     self.calls["get"] = { (args) in
-      var value = NSUserDefaults.standardUserDefaults().valueForKey(args[0]) as String?
+      var value = NSUserDefaults.standardUserDefaults().valueForKey(args[0]) as? String
       
       if value == nil {
         value = ""
@@ -90,12 +90,6 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
       }
     }
   }
-  
-  override init() {
-    self.calls = [:]
-    super.init()
-    self.loadCalls()
-  }
 
   required init?(coder: NSCoder) {
     self.calls = [:]
@@ -134,11 +128,11 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
   }
   
   override func webView(webView: WebView!, decidePolicyForNavigationAction actionInformation: [NSObject : AnyObject]!, request: NSURLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
-    var url:String = request.URL.absoluteString!.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-    
+    var url:String = request.URL!.absoluteString!.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+
     if url.hasPrefix("osx:") {
-      let matches = self.regex?.matchesInString(url, options: nil, range: NSMakeRange(0, countElements(url)))
-      let match = matches?[0] as NSTextCheckingResult
+      let matches = self.regex?.matchesInString(url, options: nil, range: NSMakeRange(0, count(url)))
+      let match = matches?[0] as! NSTextCheckingResult
       
       let fn = (url as NSString).substringWithRange(match.rangeAtIndex(1))
       let args = (url as NSString).substringWithRange(match.rangeAtIndex(2)).componentsSeparatedByString("%%")

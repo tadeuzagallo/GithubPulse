@@ -31,8 +31,8 @@ class GithubUpdate {
   
   func getBundleInfo() {
     let bundle = NSBundle.mainBundle()
-    self.bundleVersion = bundle.objectForInfoDictionaryKey("CFBundleVersion") as String?
-    self.repoName = bundle.objectForInfoDictionaryKey("GithubRepo") as String?
+    self.bundleVersion = bundle.objectForInfoDictionaryKey("CFBundleVersion") as? String
+    self.repoName = bundle.objectForInfoDictionaryKey("GithubRepo") as? String
   }
   
   func getGithubVersion() {
@@ -48,10 +48,10 @@ class GithubUpdate {
         return
       }
       
-      if let tags = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSArray? {
+      if let tags = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSArray {
         
         if tags.count > 0 {
-          let lastTag = tags[0]["name"] as String
+          let lastTag = tags[0]["name"] as! String
           
           println("Latest version is \(lastTag)")
           
