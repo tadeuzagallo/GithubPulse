@@ -20,9 +20,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/indragiek/INPopoverController.git
 
 SPEC CHECKSUMS:
-  EDSemver: 1eb8b041bc8681c341681bda9d4e4a61f8f495f1
-  INPopoverController: 98d3a1678f0e986ed47b22c22ad39994617c6ad1
-  IYLoginItem: dbdbc4636da5087b200f68456aa4367a1af35c1d
-  SSZipArchive: 11299a4e89821bd4085b12f25edaa85853e0051c
+  EDSemver: 124a90685873628ec30f42504b461a1a61757568
+  INPopoverController: e4c315804b6d227c84a6dd64adf6732600b659fc
+  IYLoginItem: e57a86b39d3b9ab0e2fc033adedae01efafd9adf
+  SSZipArchive: 11801759495fa4efb7512ef652eb0042d68305d7
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.0
