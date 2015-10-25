@@ -16,7 +16,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   INPopoverController:
-    :commit: 3564f98827415c858766720c0d0d3092c989b78d
+    :commit: 4c7c674b25e3859bd3627df35538fbb470c938ab
     :git: https://github.com/indragiek/INPopoverController.git
 
 SPEC CHECKSUMS:
@@ -25,4 +25,4 @@ SPEC CHECKSUMS:
   IYLoginItem: e57a86b39d3b9ab0e2fc033adedae01efafd9adf
   SSZipArchive: 11801759495fa4efb7512ef652eb0042d68305d7
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.39.0
