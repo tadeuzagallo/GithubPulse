@@ -104,10 +104,10 @@ class ContentViewController: NSViewController, NSXMLParserDelegate, WebPolicyDel
   }
   
   override func viewDidLoad() {
-    var indexPath = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "front")
 #if DEBUG
     let url = NSURL(string: "http://0.0.0.0:8080")
 #else
+    let indexPath = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "front")
     let url = NSURL(fileURLWithPath: indexPath!)
 #endif
     let request = NSURLRequest(URL: url!)
