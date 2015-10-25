@@ -76,28 +76,69 @@ window.Utils = (function () {
     chrome.tabs.create({ url: url });
   };
 
+  Utils.streakRegex = /Current streak<\/span>\s*<span[^>]*?>(\d+)\s*days/i;
   Utils.contributions = function (username, callback, skipUpdateIcon) {
     var request = new XMLHttpRequest();
     request.onload = function () {
-      var parser = new DOMParser();
-      var svg = parser.parseFromString(this.responseText, "image/svg+xml");
-      var nodeCounts = svg.querySelectorAll('rect');
-      var commits = [].map.call(nodeCounts, function (node) {
-        return parseInt(node.getAttribute('data-count'), 10);
-      });
+      var body = this.responseText;
+      var index = body.indexOf('<svg');
 
-      var today = commits[commits.length - 1];
-      for (var i = commits.length - 2, streak = today ? 1 : 0; i >= 0 && commits[i] > 0; i--, streak++);
-
-      if (!skipUpdateIcon) {
-        Utils.updateIcon(today);
+      if (index != -1) {
+        body = body.substr(index);
       }
 
-      callback(true, today, streak, commits.slice(-30));
+      var streak = 0;
+      var match = Utils.streakRegex.exec(body);
+      if (match) {
+        streak = parseInt(match[1], 10);
+      }
+
+      if (index == -1) {
+        Utils.graphContributions(username, finishSVG);
+      }
+
+      var closeIndex = body.indexOf('</svg>');
+      var svg = body.substr(0, closeIndex + 6);
+      finishSVG(svg);
+
+      function finishSVG(svg) {
+        var commits = Utils.parseSVG(svg);
+        var today = commits.length && commits[commits.length - 1];
+
+        if (!skipUpdateIcon) {
+          Utils.updateIcon(today);
+        }
+
+        callback(commits.length === 30, today, streak, commits);
+      }
     };
 
     request.onerror = function () {
       callback(false, null, null, null);
+      console.error(this.statusText);
+    };
+
+    request.open('GET', `https://github.com/${username}`, true);
+    request.send(null);
+  };
+
+  Utils.parseSVG = function (svg) {
+    var parser = new DOMParser();
+    var root = parser.parseFromString(svg, "image/svg+xml");
+    var nodeCounts = root.querySelectorAll('rect');
+    return [].slice.call(nodeCounts, -30).map(function (node) {
+      return parseInt(node.getAttribute('data-count'), 10);
+    });
+  };
+
+  Utils.graphContributions = function (username, callback) {
+    var request = new XMLHttpRequest();
+    request.onload = function () {
+      callback(this.responseText);
+    };
+
+    request.onerror = function () {
+      callback(null);
       console.error(this.statusText);
     };
 
