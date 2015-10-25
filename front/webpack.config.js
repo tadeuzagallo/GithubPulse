@@ -5,6 +5,7 @@ var utils = {
 
 module.exports = {
   entry: [utils[process.env.TARGET || 'osx'], '../javascript/main.jsx'],
+  devtool: 'source-map',
   output: {
     publicPath: 'public/',
     path: __dirname + '/public',
@@ -12,7 +13,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.jsx$/, loader: 'jsx-loader?harmony'},
+      {test: /\.jsx$/, loader: 'babel-loader'},
       {test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader'},
       {test: /\.json$/, loader: 'json-loader'},
       {test: /\.ttf$/, loader: 'file-loader' }

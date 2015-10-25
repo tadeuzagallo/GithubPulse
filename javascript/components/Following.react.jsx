@@ -126,7 +126,7 @@ var Following = React.createClass({
     });
   },
   _profile() {
-    this.transitionTo('profile', { username: this.props.params.username });
+    this.props.history.pushState(null, `/${this.props.params.username}`);
   }
 });
 

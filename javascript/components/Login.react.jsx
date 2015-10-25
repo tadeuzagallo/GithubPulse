@@ -1,5 +1,4 @@
 var React = require('react');
-var Navigation = require('react-router').Navigation;
 var assign = require('object-assign');
 
 var GithubApi = require('../github-api');
@@ -8,7 +7,6 @@ var Config = require('./Config.react');
 require('../styles/Login');
 
 var Login =  React.createClass({
-  mixins: [ Navigation ],
   getInitialState() {
     return {
       username: '',
@@ -65,8 +63,9 @@ var Login =  React.createClass({
   },
   _onKeyDown(event) {
     if (event.keyCode === 13) {
-      Utils.save('username', this.state.username);
-      this.transitionTo('profile', { username: this.state.username });
+      let username = this.state.username;
+      Utils.save('username', username);
+      this.props.history.pushState(null, `/${username}`);
     }
   }
 });

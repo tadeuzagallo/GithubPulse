@@ -1,5 +1,6 @@
 var React = require('react');
 var Router = require('react-router');
+var ReactDOM = require('react-dom');
 
 var GithubPulse = require('./GithubPulse.react');
 var Login = require('./Login.react');
@@ -7,17 +8,16 @@ var Profile = require('./Profile.react');
 var Following = require('./Following.react');
 
 var Route = Router.Route;
-var DefaultRoute = Router.DefaultRoute;
+var IndexRoute = Router.IndexRoute;
 
 var routes = (
-  <Route handler={GithubPulse}>
-    <Route name="profile" path=":username" handler={Profile} />
-    <Route name="following" path="/compare/following/:username" handler={Following} />
-    <DefaultRoute name="login" handler={Login} />
-  </Route>
+  <Router.Router>
+    <Route component={GithubPulse}>
+      <Route path="/" component={Login} />
+      <Route path="/:username" component={Profile} />
+      <Route path="/compare/following/:username" component={Following} />
+    </Route>
+  </Router.Router>
 );
 
-Router.run(routes, (Handler, state) => {
-  var params = state.params;
-  React.render(<Handler params={ params  } />, document.body);
-});
+ReactDOM.render(routes, document.getElementById('github-pulse'));

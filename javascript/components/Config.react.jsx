@@ -1,6 +1,5 @@
-var React = require('react/addons');
-
-var CSSTransitionGroup = React.addons.CSSTransitionGroup;
+var React = require('react');
+var CSSTransitionGroup = require('react-addons-css-transition-group');
 
 require('../styles/Config');
 
@@ -56,7 +55,7 @@ var Config = React.createClass({
         <img src="images/gear.svg" onClick={ this._togglePanel } className={ 'config__gear ' + this.state.open } />
 
         { overlay }
-        <CSSTransitionGroup transitionName="panel">
+        <CSSTransitionGroup transitionName="panel" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
           { panel }
         </CSSTransitionGroup>
       </div>

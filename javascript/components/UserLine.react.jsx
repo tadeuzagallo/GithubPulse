@@ -1,11 +1,11 @@
 var React = require('react');
 
+var cx = require('classnames');
+
 require('../styles/UserLine');
 
 var UserLine = React.createClass({
   render() {
-    var cx = React.addons.classSet;
-
     var hasToday = this.props.user.today > 0;
     var hasStreak = this.props.user.streak > 0;
 

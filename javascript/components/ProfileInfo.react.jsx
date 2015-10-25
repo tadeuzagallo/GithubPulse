@@ -1,12 +1,8 @@
 var React = require('react');
-var Router = require('react-router');
-
-var Link = Router.Link;
 
 require('../styles/ProfileInfo');
 
 var ProfileInfo = React.createClass({
-  mixins: [ Router.Navigation ],
   propTypes: {
     picture: React.PropTypes.string.isRequired,
     name: React.PropTypes.string,
@@ -40,14 +36,15 @@ var ProfileInfo = React.createClass({
     );
   },
   _logout() {
+    console.log(this.props);
     Utils.clear('username');
-    this.transitionTo('login');
+    this.props.history.pushState(null, '/');
   },
   _gotoUsername() {
     Utils.openURL('https://github.com/' + this.props.username);
   },
   _showFollowing() {
-    this.transitionTo('/compare/following/' + this.props.username);
+    this.props.history.pushState(null, `/compare/following/${this.props.username}`);
   },
 });
 

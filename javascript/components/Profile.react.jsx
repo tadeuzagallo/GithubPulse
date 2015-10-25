@@ -37,6 +37,7 @@ var Profile = React.createClass({
         </div>
         <div className="profile">
           <ProfileInfo
+            history={ this.props.history }
             picture={ this.state.avatar_url }
             name={ this.state.name }
             username={ this.state.login } />
