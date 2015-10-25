@@ -36,7 +36,7 @@ var ActivityGraph = React.createClass({
       this.chart.destroy();
     }
 
-    var canvas = this.refs.canvas.getDOMNode();
+    var canvas = this.refs.canvas;
     var ctx = canvas.getContext('2d');
     var commits = this.props.commits;
     var labels = [];
