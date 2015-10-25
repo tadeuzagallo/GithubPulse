@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "GithubPulse",
   "description": "Chrome Extension to help you remember to contribute every day on Github",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "background": {
     "scripts": [
       "js/update.js"
