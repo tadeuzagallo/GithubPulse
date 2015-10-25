@@ -54,7 +54,7 @@ var Login =  React.createClass({
   _fetchUserName() {
     Utils.fetch('username', (username) => {
       if (username) {
-        this.transitionTo('profile', { username: username });
+        this.props.history.pushState(null, `/${username}`);
       }
     });
   },
