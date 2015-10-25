@@ -12,13 +12,6 @@ var Stats = React.createClass({
     today: React.PropTypes.number.isRequired
   },
   render() {
-    var streak;
-    if (this.props.streak >= 365) {
-      streak = '+365';
-    } else {
-      streak = this.props.streak;
-    }
-
     return (
       <div className="stats">
         <div className="stat">
@@ -32,7 +25,7 @@ var Stats = React.createClass({
         </div>
 
         <div className="stat">
-          <div className="stat__count">{ streak }{ this.props.streak > 15 ? <span className="octicon octicon-flame notification" /> : '' }</div>
+          <div className="stat__count">{ this.props.streak }{ this.props.streak > 15 ? <span className="octicon octicon-flame notification" /> : '' }</div>
           <div className="stat__name">{ p('day', this.props.streak) } streak</div>
         </div>
 
