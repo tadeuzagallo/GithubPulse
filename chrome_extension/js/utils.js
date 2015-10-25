@@ -10,13 +10,37 @@ window.Utils = (function () {
       key = key.join('/');
     }
 
-    value = JSON.stringify({
-      time: Date.now(),
-      data: value
-    });
-
+    var time = Date.now();
     var data = {};
-    data[key] = value;
+    var stringifiedValue = JSON.stringify(value);
+
+    var quota = chrome.storage.sync.QUOTA_BYTES_PER_ITEM - key.length - 3;
+    if (stringifiedValue.length > quota) {
+      var n = 0;
+      var size = 0;
+      var value = '';
+      for (var i = 0; i < stringifiedValue.length; i++) {
+        var chr = stringifiedValue.charAt(i);
+        var code = stringifiedValue.charCodeAt(i);
+        var s = code > 0xFF || chr == '"' || chr == '\\' ? 2 : 1;
+        size += s;
+        if (size > quota) {
+          data[key + n++] = value;
+          value = stringifiedValue[i];
+          size = s;
+        } else {
+          value += stringifiedValue[i];
+        }
+      }
+      data[key + n++] = value;
+      data[key] = JSON.stringify({ time: time, n: n });
+    } else {
+      data[key] = JSON.stringify({
+        time: time,
+        data: value,
+      });
+    }
+
     chrome.storage.sync.set(data);
   };
 
@@ -37,17 +61,37 @@ window.Utils = (function () {
       var time = null;
 
       if (expiration !== -1 && item && Date.now() - item.time > expiration) {
-        item = null;
+        done(null);
       } else if (item) {
         time = item.time;
-        item = item.data;
+        if (item.hasOwnProperty('n')) {
+          var num = item.n;
+          var keys = []
+          for (var i = 0; i < num; i++) {
+            keys.push(key+i);
+          }
+          chrome.storage.sync.get(keys, function (r) {
+            var data = keys.map(function (key) {
+              return r[key];
+            }).join('');
+            var item = JSON.parse(data);
+            done(item);
+          });
+        } else {
+          item = item.data;
+          done(item);
+        }
+      } else {
+        done(null);
       }
 
-      if (key.indexOf('user_contributions') === 0 && item) {
-        Utils.updateIcon(item.today);
-      }
+      function done(item) {
+        if (key.indexOf('user_contributions') === 0 && item) {
+          Utils.updateIcon(item.today);
+        }
 
-      callback(item, time);
+        callback(item, time);
+      }
     });
   };
 
