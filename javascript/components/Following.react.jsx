@@ -27,7 +27,7 @@ var Following = React.createClass({
 
     if (this.state.following) {
       usersLines = this.state.following.map( (user) => {
-        return (<UserLine user={user} maxStreak={this.state.maxStreak} />);
+        return (<UserLine key={user.login} user={user} maxStreak={this.state.maxStreak} />);
       });
 
       if (this.state.updated < this.state.following.length) {
