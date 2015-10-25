@@ -200,6 +200,7 @@
 				5C406D461A4F93140005AF61 /* Frameworks */,
 				5C406D471A4F93140005AF61 /* Resources */,
 				AD4755B43057778C998501E7 /* Copy Pods Resources */,
+				D98E86498E97783920492065 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -216,7 +217,9 @@
 		5C406D411A4F93140005AF61 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Tadeu Zagallo";
 				TargetAttributes = {
 					5C406D481A4F93140005AF61 = {
@@ -295,6 +298,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GithubPulse/Pods-GithubPulse-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D98E86498E97783920492065 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GithubPulse/Pods-GithubPulse-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -333,6 +351,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -399,6 +418,7 @@
 				INFOPLIST_FILE = GithubPulse/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tadeuzagallo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "GithubPulse/Other Sources/BridgeHeader.h";
 			};
@@ -412,6 +432,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = GithubPulse/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tadeuzagallo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "GithubPulse/Other Sources/BridgeHeader.h";
 			};

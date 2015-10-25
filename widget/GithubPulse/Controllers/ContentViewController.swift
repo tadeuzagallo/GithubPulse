@@ -9,11 +9,11 @@
 import Cocoa
 import WebKit
 
-class ContentViewController: NSViewController, NSXMLParserDelegate {
+class ContentViewController: NSViewController, NSXMLParserDelegate, WebPolicyDelegate {
   @IBOutlet weak var webView:WebView?
   @IBOutlet weak var lastUpdate:NSTextField?
   
-  var regex = NSRegularExpression(pattern: "^osx:(\\w+)\\((.*)\\)$", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
+  var regex = try? NSRegularExpression(pattern: "^osx:(\\w+)\\((.*)\\)$", options: NSRegularExpressionOptions.CaseInsensitive)
   var calls: [String: [String] -> Void]
   
   func loadCalls() {
@@ -47,8 +47,8 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
         value = ""
       }
       
-      let key = args[0].stringByReplacingOccurrencesOfString("'", withString: "\\'", options: nil, range: nil)
-      let v = value!.stringByReplacingOccurrencesOfString("'", withString: "\\'", options: nil, range: nil)
+      let key = args[0].stringByReplacingOccurrencesOfString("'", withString: "\\'", options: [], range: nil)
+      let v = value!.stringByReplacingOccurrencesOfString("'", withString: "\\'", options: [], range: nil)
       
       self.webView?.stringByEvaluatingJavaScriptFromString("get('\(key)', '\(v)', \(args[1]))");
     }
@@ -106,11 +106,11 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
   override func viewDidLoad() {
     var indexPath = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "front")
 #if DEBUG
-    var url = NSURL(string: "http://0.0.0.0:8080")
+    let url = NSURL(string: "http://0.0.0.0:8080")
 #else
-    var url = NSURL(fileURLWithPath: indexPath!)
+    let url = NSURL(fileURLWithPath: indexPath!)
 #endif
-    var request = NSURLRequest(URL: url!)
+    let request = NSURLRequest(URL: url!)
     
     self.webView?.policyDelegate = self
     self.webView?.drawsBackground = false
@@ -127,25 +127,25 @@ class ContentViewController: NSViewController, NSXMLParserDelegate {
     self.webView?.reload(sender)
   }
   
-  override func webView(webView: WebView!, decidePolicyForNavigationAction actionInformation: [NSObject : AnyObject]!, request: NSURLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
-    var url:String = request.URL!.absoluteString!.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+  func webView(webView: WebView!, decidePolicyForNavigationAction actionInformation: [NSObject : AnyObject]!, request: NSURLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
+    let url:String = request.URL!.absoluteString.stringByRemovingPercentEncoding!
 
     if url.hasPrefix("osx:") {
-      let matches = self.regex?.matchesInString(url, options: nil, range: NSMakeRange(0, count(url)))
-      let match = matches?[0] as! NSTextCheckingResult
-      
-      let fn = (url as NSString).substringWithRange(match.rangeAtIndex(1))
-      let args = (url as NSString).substringWithRange(match.rangeAtIndex(2)).componentsSeparatedByString("%%")
-      
-      #if DEBUG
-        println(fn, args)
-      #endif
-      
-      let closure = self.calls[fn]
-      closure?(args)
+      let matches = self.regex?.matchesInString(url, options: [], range: NSMakeRange(0, url.characters.count))
+      if let match = matches?[0] {
+        let fn = (url as NSString).substringWithRange(match.rangeAtIndex(1))
+        let args = (url as NSString).substringWithRange(match.rangeAtIndex(2)).componentsSeparatedByString("%%")
+        
+        #if DEBUG
+          print(fn, args)
+        #endif
+        
+        let closure = self.calls[fn]
+        closure?(args)
+      }
     } else if (url.hasPrefix("log:")) {
 #if DEBUG
-      println(url)
+      print(url)
 #endif
     } else {
       listener.use()

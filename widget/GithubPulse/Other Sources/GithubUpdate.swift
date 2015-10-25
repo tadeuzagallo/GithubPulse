@@ -48,12 +48,12 @@ class GithubUpdate {
         return
       }
       
-      if let tags = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSArray {
+      if let tags = (try? NSJSONSerialization.JSONObjectWithData(data!, options: [])) as? NSArray {
         
         if tags.count > 0 {
           let lastTag = tags[0]["name"] as! String
           
-          println("Latest version is \(lastTag)")
+          print("Latest version is \(lastTag)")
           
           if EDSemver(string: lastTag).isGreaterThan(EDSemver(string: self.bundleVersion!)) {
             NSUserDefaults.standardUserDefaults().setValue("{\"data\":true}", forKey: "update_available")
@@ -71,37 +71,43 @@ class GithubUpdate {
     let fileManager = NSFileManager.defaultManager()
     let url = NSURL(string: "https://github.com/tadeuzagallo/GithubPulse/raw/\(tag)/dist/GithubPulse.zip")
     let request = NSURLRequest(URL: url!)
-    let folder = NSBundle.mainBundle().bundlePath.stringByAppendingPathComponent("Contents/Versions")
-    if !fileManager.fileExistsAtPath(folder) {
-      fileManager.createDirectoryAtPath(folder, withIntermediateDirectories: false, attributes: nil, error: nil)
+    let folder = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("Contents/Versions")
+
+    if !fileManager.fileExistsAtPath(folder.absoluteString) {
+      do {
+        try fileManager.createDirectoryAtPath(folder.absoluteString, withIntermediateDirectories: false, attributes: nil)
+      } catch _ {}
     }
     
-    let path = folder.stringByAppendingPathComponent("\(tag).zip")
+    let path = folder.URLByAppendingPathComponent("\(tag).zip").absoluteString
     
     if !fileManager.fileExistsAtPath(path) {
-      println("Downloading \(tag)...")
+      print("Downloading \(tag)...")
       NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (_, data, _) in
-        println("Download complete!")
-        data.writeToFile(path, atomically: true)
+        print("Download complete!")
+        data?.writeToFile(path, atomically: true)
         if self.install {
           self.extract(folder, tag: tag, path: path)
         }
       }
     } else {
-      println("Version \(tag) is already on the cache!")
+      print("Version \(tag) is already on the cache!")
       if self.install {
         self.extract(folder, tag: tag, path: path)
       }
     }
   }
   
-  func extract(folder:String, tag:String, path:String) {
+  func extract(folder:NSURL, tag:String, path:String) {
     let fileManager = NSFileManager.defaultManager()
-    let versionFolder = folder.stringByAppendingPathComponent(tag)
+    let versionFolder = folder.URLByAppendingPathComponent(tag).absoluteString
     
     if !fileManager.fileExistsAtPath(versionFolder) {
-      fileManager.createDirectoryAtPath(versionFolder, withIntermediateDirectories: false, attributes: nil, error: nil)
-      println("Unziping \(tag) to \(versionFolder)")
+      do {
+        try fileManager.createDirectoryAtPath(versionFolder, withIntermediateDirectories: false, attributes: nil)
+      } catch _ {
+      }
+      print("Unziping \(tag) to \(versionFolder)")
       SSZipArchive.unzipFileAtPath(path, toDestination: versionFolder)
     }
     
@@ -110,17 +116,17 @@ class GithubUpdate {
   
   func copy(tag:String) {
     let relaunchPath = NSBundle.mainBundle().executablePath
-    let currentPath = NSBundle.mainBundle().bundlePath
-    println("Replacing old version by \(tag)")
-    system("rm -rf /tmp/GithubPulse.app && mv \(currentPath) /tmp && mv /tmp/GithubPulse.app/Contents/Versions/\(tag)/GithubPulse.app \(currentPath.stringByDeletingLastPathComponent)")
+    let currentPath = NSBundle.mainBundle().bundleURL
+    print("Replacing old version by \(tag)")
+    system("rm -rf /tmp/GithubPulse.app && mv \(currentPath.absoluteString) /tmp && mv /tmp/GithubPulse.app/Contents/Versions/\(tag)/GithubPulse.app \(currentPath.URLByDeletingLastPathComponent?.absoluteString)")
     self.relaunch(relaunchPath!)
   }
   
   func relaunch(path:String) {
     NSUserDefaults.standardUserDefaults().setValue("{\"data\":false}", forKey: "update_available")
     
-    println("Relaunching at \(path)...")
-    NSTask.launchedTaskWithLaunchPath(path, arguments: [NSString(format: "%d", getpid())])
+    print("Relaunching at \(path)...")
+    NSTask.launchedTaskWithLaunchPath(path, arguments: [String(format: "%d", getpid())])
     exit(0)
   }
 }

@@ -31,8 +31,8 @@ class Contributions : NSObject, NSXMLParserDelegate {
         self.succeeded = false
       } else {
         self.succeeded = true
-        
-        let parser = NSXMLParser(data: data)
+
+        let parser = NSXMLParser(data: data!)
         parser.delegate = self
         parser.parse()
         
@@ -45,7 +45,7 @@ class Contributions : NSObject, NSXMLParserDelegate {
   
   func calculate() {
     if !self.year.isEmpty {
-      var length = self.year.count - 1
+      let length = self.year.count - 1
       self.today = self.year[length]
       self.streak = self.today > 0 ? 1 : 0
       self.commits = Array(self.year[length-29 ... length])
@@ -60,9 +60,9 @@ class Contributions : NSObject, NSXMLParserDelegate {
     }
   }
   
-  func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]!) {
+  func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
     if elementName == "rect" {
-      self.year.append((attributeDict["data-count"] as! String).toInt()!)
+      self.year.append(Int((attributeDict["data-count"]! as String))!)
     }
   }
 }

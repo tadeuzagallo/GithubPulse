@@ -75,7 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func parseData(key: String) -> AnyObject? {
     if let input = NSUserDefaults.standardUserDefaults().valueForKey(key) as? String {
       if let data = input.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-        if let object = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as? NSDictionary {
+        if let object = (try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)) as? NSDictionary {
           return object["data"]
         }
       }
@@ -126,12 +126,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func checkForNotification() {
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let now = NSDate()
-    let components = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitHour, fromDate: now)
+    let components = NSCalendar.currentCalendar().components(NSCalendarUnit.Hour, fromDate: now)
           
 
     if components.hour >= 18 {
-      var lastNotification = userDefaults.valueForKey("last_notification") as? NSDate
-      var todayStart = NSCalendar.currentCalendar().dateBySettingHour(1, minute: 0, second: 0, ofDate: now, options: nil)
+      let lastNotification = userDefaults.valueForKey("last_notification") as? NSDate
+      let todayStart = NSCalendar.currentCalendar().dateBySettingHour(1, minute: 0, second: 0, ofDate: now, options: [])
       
       if lastNotification == nil || todayStart!.timeIntervalSinceDate(lastNotification!) > 0 {
         let notification = NSUserNotification()
