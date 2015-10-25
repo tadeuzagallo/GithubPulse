@@ -36,16 +36,20 @@ var Login =  React.createClass({
     );
   },
   componentDidMount() {
+    this._mounted = true;
     this._fetchZen();
     this._fetchUserName();
+  },
+  componentWillUnmount() {
+    this._mounted = false;
   },
   _fetchZen() {
     Utils.fetch('zen', 60 * 60 * 1000, (zen) => {
       if (zen) {
-        this.setState({ zen: zen });
+        this._mounted && this.setState({ zen: zen });
       } else {
         GithubApi.get('zen', (err, result) => {
-          this.setState({ zen: result });
+          this._mounted && this.setState({ zen: result });
           Utils.save('zen', result);
         });
       }
