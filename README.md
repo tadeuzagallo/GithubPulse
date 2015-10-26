@@ -1,4 +1,4 @@
-# ![Github Pulse](resources/icon.png) Github Pulse [![Release 0.3.9](https://img.shields.io/badge/Release-0.3.9-green.svg)](https://github.com/tadeuzagallo/GithubPulse/releases)
+# ![Github Pulse](resources/icon.png) Github Pulse [![Release 0.3.10](https://img.shields.io/badge/Release-0.3.10-green.svg)](https://github.com/tadeuzagallo/GithubPulse/releases)
 
 Github Pulse is an app to help you keep your streaks, making a commit every day.
 
