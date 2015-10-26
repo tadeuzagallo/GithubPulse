@@ -73,13 +73,13 @@ class GithubUpdate {
     let request = NSURLRequest(URL: url!)
     let folder = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("Contents/Versions")
 
-    if !fileManager.fileExistsAtPath(folder.absoluteString) {
+    if !fileManager.fileExistsAtPath(folder.path!) {
       do {
-        try fileManager.createDirectoryAtPath(folder.absoluteString, withIntermediateDirectories: false, attributes: nil)
+        try fileManager.createDirectoryAtPath(folder.path!, withIntermediateDirectories: true, attributes: nil)
       } catch _ {}
     }
     
-    let path = folder.URLByAppendingPathComponent("\(tag).zip").absoluteString
+    let path = folder.URLByAppendingPathComponent("\(tag).zip").path!
     
     if !fileManager.fileExistsAtPath(path) {
       print("Downloading \(tag)...")
@@ -100,7 +100,7 @@ class GithubUpdate {
   
   func extract(folder:NSURL, tag:String, path:String) {
     let fileManager = NSFileManager.defaultManager()
-    let versionFolder = folder.URLByAppendingPathComponent(tag).absoluteString
+    let versionFolder = folder.URLByAppendingPathComponent(tag).path!
     
     if !fileManager.fileExistsAtPath(versionFolder) {
       do {
@@ -118,7 +118,7 @@ class GithubUpdate {
     let relaunchPath = NSBundle.mainBundle().executablePath
     let currentPath = NSBundle.mainBundle().bundleURL
     print("Replacing old version by \(tag)")
-    system("rm -rf /tmp/GithubPulse.app && mv \(currentPath.absoluteString) /tmp && mv /tmp/GithubPulse.app/Contents/Versions/\(tag)/GithubPulse.app \(currentPath.URLByDeletingLastPathComponent?.absoluteString)")
+    system("rm -rf /tmp/GithubPulse.app && mv \(currentPath.path!) /tmp && mv /tmp/GithubPulse.app/Contents/Versions/\(tag)/GithubPulse.app \(currentPath.URLByDeletingLastPathComponent?.path!)")
     self.relaunch(relaunchPath!)
   }
   
