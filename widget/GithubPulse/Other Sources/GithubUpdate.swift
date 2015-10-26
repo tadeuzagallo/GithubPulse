@@ -124,6 +124,7 @@ class GithubUpdate {
   
   func relaunch(path:String) {
     NSUserDefaults.standardUserDefaults().setValue("{\"data\":false}", forKey: "update_available")
+    NSUserDefaults.standardUserDefaults().synchronize()
     
     print("Relaunching at \(path)...")
     NSTask.launchedTaskWithLaunchPath(path, arguments: [String(format: "%d", getpid())])
