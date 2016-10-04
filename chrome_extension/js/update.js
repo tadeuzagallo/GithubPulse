@@ -4,7 +4,7 @@ var notify = function () {
   chrome.notifications.create('gotta_commit', {
     type: 'basic',
     iconUrl: '../images/icons/icon128.png',
-    title: 'You haven\'t commited today yet...',
+    title: 'You haven\'t committed yet today...',
     message: 'Rush to keep your streak going!'
   }, function (id) { });
 };

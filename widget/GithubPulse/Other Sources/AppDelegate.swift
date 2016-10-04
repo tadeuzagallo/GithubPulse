@@ -135,7 +135,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       
       if lastNotification == nil || todayStart!.timeIntervalSinceDate(lastNotification!) > 0 {
         let notification = NSUserNotification()
-        notification.title = "You haven't commited today yet...";
+        notification.title = "You haven't committed yet today...";
         notification.subtitle = "Rush to keep your streak going!"
         
         let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
