@@ -10,6 +10,12 @@ DEPENDENCIES:
   - IYLoginItem
   - SSZipArchive
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - EDSemver
+    - IYLoginItem
+    - SSZipArchive
+
 EXTERNAL SOURCES:
   INPopoverController:
     :git: https://github.com/indragiek/INPopoverController.git
@@ -25,4 +31,6 @@ SPEC CHECKSUMS:
   IYLoginItem: e57a86b39d3b9ab0e2fc033adedae01efafd9adf
   SSZipArchive: 11801759495fa4efb7512ef652eb0042d68305d7
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 5c83aa148e0159e32cee4574990fed76aeaaa2b6
+
+COCOAPODS: 1.5.0
