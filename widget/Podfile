@@ -1,12 +1,11 @@
-# Uncomment this line to define a global platform for your project
-# platform :ios, '6.0'
+platform :macos, '10.10'
+inhibit_all_warnings!
 
 target 'GithubPulse' do
 
-pod 'IYLoginItem'
-pod 'INPopoverController', git: 'https://github.com/indragiek/INPopoverController.git'
-pod 'SSZipArchive'
-pod 'EDSemver'
+  pod 'IYLoginItem'
+  pod 'INPopoverController', git: 'https://github.com/indragiek/INPopoverController.git'
+  pod 'SSZipArchive'
+  pod 'EDSemver'
 
 end
-
