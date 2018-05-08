@@ -222,6 +222,7 @@
 				TargetAttributes = {
 					5C406D481A4F93140005AF61 = {
 						CreatedOnToolsVersion = 6.1;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -392,6 +393,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tadeuzagallo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "GithubPulse/Other Sources/BridgeHeader.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -406,6 +408,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tadeuzagallo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "GithubPulse/Other Sources/BridgeHeader.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

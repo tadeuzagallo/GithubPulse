@@ -19,7 +19,7 @@ class CustomButton : NSButton {
       fatalError("init(coder:) has not been implemented")
   }
   
-  override func rightMouseDown(theEvent: NSEvent) {
+  override func rightMouseDown(with theEvent: NSEvent) {
     if self.rightAction != nil {
       self.rightAction?(theEvent)
     }

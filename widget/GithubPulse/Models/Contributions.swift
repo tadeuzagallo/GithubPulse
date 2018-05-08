@@ -19,29 +19,29 @@ class Contributions {
   var succeeded = false
   var state = 0
   var callback: FetchCallback = nil
-  let streakRegex = try? NSRegularExpression(pattern: "Current streak</span>\\s*<span[^>]*?>(\\d+)\\s*days", options: NSRegularExpressionOptions.CaseInsensitive)
+  let streakRegex = try? NSRegularExpression(pattern: "Current streak</span>\\s*<span[^>]*?>(\\d+)\\s*days", options: NSRegularExpression.Options.caseInsensitive)
   let dayRegex = try? NSRegularExpression(pattern: "<rect.*?data-count=\"(\\d+)\"", options: [])
   
-  class func fetch(username: String, completionBlock: FetchCallback) {
+  class func fetch(_ username: String, completionBlock: FetchCallback) {
     Contributions().fetch(username, completionBlock: completionBlock)
   }
 
-  private func baseFetch(URLString: String, completionBlock: (String) -> Void) {
-    let url = NSURL(string: URLString)
-    let request = NSMutableURLRequest(URL: url!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
-    request.HTTPShouldHandleCookies = false
+  fileprivate func baseFetch(_ URLString: String, completionBlock: @escaping (String) -> Void) {
+    let url = URL(string: URLString)
+    let request = NSMutableURLRequest(url: url!, cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
+    request.httpShouldHandleCookies = false
     
-    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) in
+    NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: OperationQueue.main) { (response, data, error) in
       if error != nil || data == nil {
         self.invokeCallback(false)
         return
       }
 
-      completionBlock(String(data: data!, encoding: NSUTF8StringEncoding)!)
+      completionBlock(String(data: data!, encoding: String.Encoding.utf8)!)
     }
   }
 
-  func fetch(username: String, completionBlock: FetchCallback) {
+  func fetch(_ username: String, completionBlock: FetchCallback) {
     self.username = username
     self.year = []
     self.callback = completionBlock
@@ -65,7 +65,7 @@ class Contributions {
     }
   }
 
-  private func invokeCallback(success: Bool) {
+  fileprivate func invokeCallback(_ success: Bool) {
     if callback != nil {
       callback(success, commits, streak, today)
     }
@@ -73,12 +73,12 @@ class Contributions {
     self.callback = nil
   }
 
-  private func getRange(input: String) -> NSRange {
-    let start = (input as NSString).rangeOfString("<svg")
+  fileprivate func getRange(_ input: String) -> NSRange {
+    let start = (input as NSString).range(of: "<svg")
     return NSMakeRange(start.location, (input as NSString).length - start.location)
   }
 
-  func parse(string: String) {
+  func parse(_ string: String) {
     let range = getRange(string)
 
     if range.location == NSNotFound {
@@ -92,25 +92,26 @@ class Contributions {
     invokeCallback(true)
   }
 
-  func parseStreak(string: String, range: NSRange) {
-    let streakMatch = streakRegex?.firstMatchInString(string, options: [], range: range)
+  func parseStreak(_ string: String, range: NSRange) {
+    let streakMatch = streakRegex?.firstMatch(in: string, options: [], range: range)
     if streakMatch != nil {
-      if let streak = Int((string as NSString).substringWithRange(streakMatch!.rangeAtIndex(1))) {
+      if let streak = Int((string as NSString).substring(with: streakMatch!.rangeAt(1))) {
         self.streak = streak
       }
     }
   }
 
-  func parseCommits(string: String, range: NSRange) {
-    let dayMatches = dayRegex?.matchesInString(string, options: [], range: range)
+  func parseCommits(_ string: String, range: NSRange) {
+    let dayMatches = dayRegex?.matches(in: string, options: [], range: range)
     if dayMatches != nil {
       var a = 30
-      for dayMatch in dayMatches!.reverse() {
-        if let day = Int((string as NSString).substringWithRange(dayMatch.rangeAtIndex(1))) {
-          commits.insert(day, atIndex: 0)
+      for dayMatch in dayMatches!.reversed() {
+        if let day = Int((string as NSString).substring(with: dayMatch.rangeAt(1))) {
+          commits.insert(day, at: 0)
         }
 
-        if --a == 0 {
+        a -= 1
+        if a == 0 {
           break
         }
       }

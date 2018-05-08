@@ -18,48 +18,48 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var popover:INPopoverController
   var statusItem:NSStatusItem!
   var statusButton:CustomButton!
-  var timer:NSTimer!
+  var timer:Timer!
   
   override init() {
     self.contentViewController = ContentViewController(nibName: "ContentViewController", bundle: nil)!
     self.popover = INPopoverController(contentViewController: self.contentViewController)
     
     self.popover.animates = false;
-    self.popover.color = NSColor.whiteColor()
+    self.popover.color = NSColor.white
     self.popover.borderWidth = 1
     self.popover.cornerRadius = 5;
     self.popover.borderColor = NSColor(calibratedWhite: 0.76, alpha: 1)
     
     super.init()
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "_checkUsernameNotification:", name: "check_username", object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "_checkIconNotification:", name: "check_icon", object: nil)
-    NSDistributedNotificationCenter.defaultCenter().addObserver(self, selector: "_darkModeChanged:", name: "AppleInterfaceThemeChangedNotification", object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate._checkUsernameNotification(_:)), name: NSNotification.Name( "check_username"), object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate._checkIconNotification(_:)), name: NSNotification.Name("check_icon"), object: nil)
+    DistributedNotificationCenter.default().addObserver(self, selector: #selector(AppDelegate._darkModeChanged), name: NSNotification.Name("AppleInterfaceThemeChangedNotification"), object: nil)
 
   }
   
-  func applicationDidFinishLaunching(aNotification: NSNotification) {
+  func applicationDidFinishLaunching(_ aNotification: Notification) {
     self.statusButton = CustomButton(frame: NSRect(x: 0, y: 0, width: 32, height: 24))
-    self.statusButton.bordered = false
+    self.statusButton.isBordered = false
     self.statusButton.target = self
-    self.statusButton.action = "toggle:"
+    self.statusButton.action = #selector(AppDelegate.toggle(_:))
     self.updateIcon(1)
     self.statusButton.rightAction = { (_) in
       self.contentViewController.refresh(nil)
     }
     
-    self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(32)
+    self.statusItem = NSStatusBar.system().statusItem(withLength: 32)
     self.statusItem.title = "Github Pulse"
     self.statusItem.highlightMode = true
     self.statusItem.view = self.statusButton
     
-    self.timer = NSTimer(fireDate: NSDate(), interval: 15*60, target: self, selector: "checkForCommits", userInfo: nil, repeats: true)
-    NSRunLoop.currentRunLoop().addTimer(self.timer, forMode: NSDefaultRunLoopMode)
+    self.timer = Timer(fireAt: Date(), interval: 15*60, target: self, selector: #selector(AppDelegate.checkForCommits), userInfo: nil, repeats: true)
+    RunLoop.current.add(self.timer, forMode: RunLoopMode.defaultRunLoopMode)
   }
   
   deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
-    NSDistributedNotificationCenter.defaultCenter().removeObserver(self)
+    NotificationCenter.default.removeObserver(self)
+    DistributedNotificationCenter.default().removeObserver(self)
     self.timer.invalidate()
     self.timer = nil
   }
@@ -72,10 +72,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
   
-  func parseData(key: String) -> AnyObject? {
-    if let input = NSUserDefaults.standardUserDefaults().valueForKey(key) as? String {
-      if let data = input.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-        if let object = (try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)) as? NSDictionary {
+  func parseData(_ key: String) -> AnyObject? {
+    if let input = UserDefaults.standard.value(forKey: key) as? String {
+      if let data = input.data(using: String.Encoding.utf8, allowLossyConversion: false) {
+        if let object = (try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)) as? [String: AnyObject] {
           return object["data"]
         }
       }
@@ -84,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     return nil
   }
   
-  func fetchCommits(username: String) {
+  func fetchCommits(_ username: String) {
     let dontNotify = parseData("dont_notify") as? Bool
     
     Contributions.fetch(username) { (success, _, _, today) in
@@ -100,7 +100,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   var lastIconCount = 0
-  func updateIcon(_count: Int) {
+  func updateIcon(_ _count: Int) {
     var count:Int
     
     if _count == -1 {
@@ -112,7 +112,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var imageName = count == 0 ?  "icon_notification" : "icon"
     
-    if let domain = NSUserDefaults.standardUserDefaults().persistentDomainForName(NSGlobalDomain) {
+    if let domain = UserDefaults.standard.persistentDomain(forName: UserDefaults.globalDomain) {
       if let style = domain["AppleInterfaceStyle"] as? String {
         if style == "Dark" {
           imageName += "_dark"
@@ -124,21 +124,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func checkForNotification() {
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-    let now = NSDate()
-    let components = NSCalendar.currentCalendar().components(NSCalendarUnit.Hour, fromDate: now)
+    let userDefaults = UserDefaults.standard
+    let now = Date()
+    let components = (Calendar.current as NSCalendar).components(NSCalendar.Unit.hour, from: now)
           
 
-    if components.hour >= 18 {
-      let lastNotification = userDefaults.valueForKey("last_notification") as? NSDate
-      let todayStart = NSCalendar.currentCalendar().dateBySettingHour(1, minute: 0, second: 0, ofDate: now, options: [])
+    if components.hour! >= 18 {
+      let lastNotification = userDefaults.value(forKey: "last_notification") as? Date
+      let todayStart = (Calendar.current as NSCalendar).date(bySettingHour: 1, minute: 0, second: 0, of: now, options: [])
       
-      if lastNotification == nil || todayStart!.timeIntervalSinceDate(lastNotification!) > 0 {
+      if lastNotification == nil || todayStart!.timeIntervalSince(lastNotification!) > 0 {
         let notification = NSUserNotification()
         notification.title = "You haven't committed yet today...";
         notification.subtitle = "Rush to keep your streak going!"
         
-        let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
+        let notificationCenter = NSUserNotificationCenter.default
         notificationCenter.scheduleNotification(notification)
         
         userDefaults.setValue(now, forKey: "last_notification")
@@ -146,7 +146,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
 
-  func applicationWillResignActive(notification: NSNotification) {
+  func applicationWillResignActive(_ notification: Notification) {
     self.open = false
     self.popover.closePopover(nil)
   }
@@ -156,24 +156,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       self.popover.closePopover(nil)
     } else {
       let controller = self.popover.contentViewController as! ContentViewController
-      controller.webView?.stringByEvaluatingJavaScriptFromString("update(false)")
+      _ = controller.webView?.stringByEvaluatingJavaScript(from: "update(false)")
       
-      self.popover.presentPopoverFromRect(self.statusItem.view!.bounds, inView: self.statusItem.view!, preferredArrowDirection: INPopoverArrowDirection.Up, anchorsToPositionView: true)
-      NSApp.activateIgnoringOtherApps(true)
+      self.popover.presentPopover(from: self.statusItem.view!.bounds, in: self.statusItem.view!, preferredArrowDirection: INPopoverArrowDirection.up, anchorsToPositionView: true)
+      NSApp.activate(ignoringOtherApps: true)
     }
     
     self.open = !self.open
   }
   
-  func _checkIconNotification(notification:NSNotification) {
+  func _checkIconNotification(_ notification:Notification) {
     self.updateIcon(notification.userInfo?["today"] as! Int)
   }
   
-  func _darkModeChanged(notification:NSNotification) {
+  @objc func _darkModeChanged(_ notification:Notification) {
     self.updateIcon(-1)
   }
   
-  func _checkUsernameNotification(notification:NSNotification) {
+  func _checkUsernameNotification(_ notification:Notification) {
     if let username = self.parseData("username") as? String {
       self.fetchCommits(username)
     } else {
