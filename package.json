@@ -27,7 +27,7 @@
     "react-dom": "^0.14.0",
     "react-router": "^1.0.0-rc3",
     "style-loader": "^0.13.0",
-    "stylus": "^0.52.4",
+    "stylus": "^0.54.5",
     "stylus-loader": "^1.4.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1",
