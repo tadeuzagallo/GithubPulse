@@ -11,7 +11,7 @@ DEPENDENCIES:
   - SSZipArchive
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - EDSemver
     - IYLoginItem
     - SSZipArchive
@@ -33,4 +33,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: dade730ab8cb891b697a1ea983b8a113a9ab0db7
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.6.1
